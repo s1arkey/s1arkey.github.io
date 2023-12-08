@@ -1,0 +1,14 @@
+{
+  "hash": "cd4a96340d4c2967ff0f08ff9f1a0890",
+  "result": {
+    "markdown": "---\ntitle: \"Untitled\"\neditor: visual\n---\n\n::: {.cell}\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

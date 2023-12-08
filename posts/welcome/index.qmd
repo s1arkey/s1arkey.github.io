@@ -1,12 +1,11 @@
 ---
 title: "Welcome To My Blog"
-author: "YOUR NAME"
+author: "Jake Starkey"
 date: "2023-10-27"
 categories: [news]
 ---
 
-This is the first post in a Quarto blog. Welcome!
+ Welcome To my Website!
 
-![](thumbnail.jpg)
+![](IMG_5109.JPG)
 
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.

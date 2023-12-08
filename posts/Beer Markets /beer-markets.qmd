@@ -1,9 +1,9 @@
 ---
 title: "Beer Markets"
-author: "Byeong-Hak Choe"
+author: "Jake Starkey"
 date: "2023-11-02"
 categories: [beer, code, data-analysis]
-image: "image.png"
+image: "Unknown.jpeg"
 
 execute: 
   warning: false

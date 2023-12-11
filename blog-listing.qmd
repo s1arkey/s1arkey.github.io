@@ -1,5 +1,5 @@
 ---
-title: "Insightful Analytics<br><br>"
+title: "Jake Starkeys blog<br><br>"
 listing:
   contents: posts
   type: default

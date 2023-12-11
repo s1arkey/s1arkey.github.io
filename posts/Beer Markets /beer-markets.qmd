@@ -1,5 +1,5 @@
 ---
-title: "Beer Markets"
+title: "Beer Markets "
 author: "Jake Starkey"
 date: "2023-11-02"
 categories: [beer, code, data-analysis]
@@ -10,3 +10,7 @@ execute:
   message: false
   
 ---
+```{r}
+
+```
+

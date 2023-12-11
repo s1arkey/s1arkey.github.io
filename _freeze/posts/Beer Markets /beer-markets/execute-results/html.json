@@ -1,0 +1,14 @@
+{
+  "hash": "7832abe64fc96448b571a264fabaf2c8",
+  "result": {
+    "markdown": "---\ntitle: \"Beer Markets \"\nauthor: \"Jake Starkey\"\ndate: \"2023-11-02\"\ncategories: [beer, code, data-analysis]\nimage: \"Unknown.jpeg\"\n\nexecute: \n  warning: false\n  message: false\n  \n---\n\n::: {.cell}\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

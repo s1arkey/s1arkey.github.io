@@ -1,6 +1,13 @@
 ---
-title: "Spotify all"
-editor: visual
+title: "Spotify All "
+author: "Jake Starkey"
+date: "2023-11-02"
+categories: [spotify]
+image: "Unknownspot.png"
+
+execute: 
+  warning: false
+  message: false
 ---
 
 ```{r}

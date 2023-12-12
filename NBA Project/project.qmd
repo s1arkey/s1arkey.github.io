@@ -1,11 +1,11 @@
-ß---
+---
 title: DANL Project
 subtitle: "Data-Driven Mastery: Unlocking Business Potential"
 author: 
-  - Name 1
-  - Name 2
-  - Name 3
-  - Name 4
+  - Name Jake Starkey
+  - Name Owen Ellick
+  - Name Luca Schitino
+  - Name Jack Helrigl
   - Name 5
 
 toc: true
@@ -48,27 +48,28 @@ theme_set(theme_ipsum()+
 # Introduction
 
 About this project :clap:
+Welcome to our project, where we dive into the dynamic world of professional basketball through the lens of salaries and performance statisics. We will analyize a dataset with NBA player salaries and stats from the 2022-2023 season.
 
 ```{r}
-1 + 1
+library(tidyverse)
+library(skimr)
 ```
 
 
 # Data
 
-The data.frame `mpg` contains a subset of the fuel economy data that the EPA makes available on [https://fueleconomy.gov/](https://fueleconomy.gov/). It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car. :oncoming_automobile:
 
 
-## Summary Statistics
+
+# Summary Statistics  
 
 ```{r}
-mpg <- ggplot2::mpg
+NBAsal <- read_csv("nba_salaries.csv")
 ```
 
 ```{r}
-#| results: asis
-#| echo: false
-rmarkdown::paged_table(mpg) 
+skim(NBAsal)%>%
+  select(-n_missing)
 ```
 
 

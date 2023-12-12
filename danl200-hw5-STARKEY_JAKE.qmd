@@ -1,6 +1,0 @@
----
-title: "Homework 5"
-editor: visual
----
-
-# Question 1

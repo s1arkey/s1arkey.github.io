@@ -1,7 +1,7 @@
 {
-  "hash": "484c55cf99cd7fd4834468cd9dadada2",
+  "hash": "36f2c04e5c80246e42d6aa6dee61ab82",
   "result": {
-    "markdown": "---\ntitle: \"Spotify All \"\nauthor: \"Jake Starkey\"\ndate: \"2023-11-02\"\ncategories: [spotify]\nimage: \"Unknownspot.png\"\n\nexecute: \n  warning: false\n  message: false\n---\n\n::: {.cell}\n\n:::\n",
+    "markdown": "---\ntitle: \"Spotify All \"\nauthor: \"Jake Starkey\"\ndate: \"2023-11-02\"\ncategories: [spotify]\nimage: \"Unknownspot.png\"\n\nexecute: \n  warning: false\n  message: false\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nspotify_all <- read.csv('https://bcdanl.github.io/data/spotify_all.csv')\n```\n:::\n\n\nMake sure that each blog post has categories and is associated with a proper image file that is displayed as a thumbnail at the list page of the blog\n\nake sure that each blog post uses emojis properly. (E.g., 😄 🍺 🎶 🍕)\n\nMake sure that each blog post includes its thumbnail image and at least three ggplot figures.\n\nYou can refer to the previous DANL 200 Homework Assignments and Exams for your blog posts.\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

@@ -63,7 +63,6 @@ image: "patty.jpeg"
 ```{r}
 NFL2022_stuffs <- read.csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')
 
-NFL2022_stuffs
 ```
 
 -   NFL2022_stuffs is the data.frame that contains information about NFL games in year 2022, in which the unit of observation is a single play for each drive in a NFL game.
@@ -96,7 +95,6 @@ In data.frame, NFL2022_stuffs, remove observations for which values of posteam i
 q2a <- NFL2022_stuffs %>% 
   filter(!is.na(posteam))
 
-q2a
 ```
 
 ## Q2b 🏈
@@ -117,7 +115,6 @@ meanvalq2b <- q2b %>%
   group_by(posteam) %>% 
   summarise(mean_pass = mean(pass, na.rm = TRUE))
 
-meanvalq2b
 ```
 
 ## Q2c 🏈
@@ -147,7 +144,6 @@ Comments:
 ```{r}
 NFL2022_epa <- read.csv('https://bcdanl.github.io/data/NFL2022_epa.csv')
 
-NFL2022_epa
 ```
 
 -   Variable description for NFL2022_epa
@@ -171,7 +167,6 @@ NFL2022_stuffs_EPA <- left_join(NFL2022_stuffs, NFL2022_epa, by = c("play_id", "
 NFL2022_stuffs_EPA <- NFL2022_stuffs_EPA %>%
   filter(!is.na(passer))
 
-NFL2022_stuffs_EPA
 
 ```
 

@@ -15,7 +15,7 @@ about:
       href: https://instagram.com
     - icon: github
       text: GitHub
-      href: https://github.com/s1arkey/YOUR_GITHUB_JAKE_STARKEY.github.io.git
+      href: https://github.com/s1arkey/s1arkey.github.io
     - icon: file-earmark-pdf
       text: Resumé
       href: https://GITHUB_USERNAME.github.io/resume-example.pdf

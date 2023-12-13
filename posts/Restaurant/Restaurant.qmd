@@ -1,0 +1,15 @@
+---
+title: "Restaurant "
+author: "Jake Starkey"
+date: "2023-11-02"
+image: "Unknown.jpeg"
+
+execute: 
+  warning: false
+  message: false
+---
+
+```{r}
+Restaurant_all <- read.csv('https://bcdanl.github.io/data/DOHMH_NYC_Restaurant_Inspection.csv')
+```
+

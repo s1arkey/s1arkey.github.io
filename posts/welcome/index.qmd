@@ -5,7 +5,10 @@ date: "2023-10-27"
 categories: [news]
 ---
 
- Welcome To my Website!
+Welcome To my Website!
 
-![](IMG_5109.JPG)
+![](IMG_5109.JPG) Thanks for tuning into my project! My blogs break down several data frames. Currently you are on my welcome post. The other blogs are Beer Markets, Spotify, Restaurants, and NFL in 2022.
 
+During free time I like to hangout with friends. Other hobbies include lifting, playing lacrosse, skiing, and going on hikes.
+
+I hope you enjoy my website.

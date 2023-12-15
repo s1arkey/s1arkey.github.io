@@ -25,7 +25,7 @@
     "href": "posts/Spotify all/spotifyall.html",
     "title": "Spotify All",
     "section": "",
-    "text": "Make sure that each blog post has categories and is associated with a proper image file that is displayed as a thumbnail at the list page of the blog\nake sure that each blog post uses emojis properly. (E.g., 😄 🍺 🎶 🍕)\nMake sure that each blog post includes its thumbnail image and at least three ggplot figures.\nYou can refer to the previous DANL 200 Homework Assignments and Exams for your blog posts."
+    "text": "For Question 1, run the following R command to read the CSV file, spotify_all.csv as data.frame, spotify_all:\n\nlibrary(tidyverse)\nlibrary(skimr)\n\n\nspotify_all <- read.csv('https://bcdanl.github.io/data/spotify_all.csv')\n\n\nrmarkdown::paged_table(spotify_all)\n\n\n\n  \n\n\n\nThe data.frame spotify_all includes information about Spotify users' playlists.\n\nThe unit of observation in spotify_all is a track in a music playlist. 🎶"
   },
   {
     "objectID": "posts/welcome/index.html",
@@ -60,14 +60,14 @@
     "href": "blog-listing.html",
     "title": "Jake Starkeys blog",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n0 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n7 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n0 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nJake Starkey\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n7 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nJake Starkey\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "project.html",
     "href": "project.html",
-    "title": "Jake Starkey",
+    "title": "DANL Project",
     "section": "",
-    "text": "ß— title: DANL Project subtitle: “Data-Driven Mastery: Unlocking Business Potential” author: - Name 1 - Name 2 - Name 3 - Name 4 - Name 5\ntoc: true toc-title: “Table of Contents” toc-depth: 2 number-sections: true\nfig-width: 9\nexecute: code-tools: true message: false warning: false\nfrom: markdown+emoji"
+    "text": "##1 Introduction\nAbout this project 👏 Welcome to our project, where we dive into the dynamic world of professional basketball through the lens of salaries and performance statisics. We will analyize a dataset with NBA player salaries and stats from the 2022-2023 season."
   },
   {
     "objectID": "project.html#summary-statistics",
@@ -79,8 +79,134 @@
   {
     "objectID": "project.html#mpg-and-a-type-of-cars",
     "href": "project.html#mpg-and-a-type-of-cars",
-    "title": "Jake Starkey",
-    "section": "MPG and a Type of Cars",
-    "text": "MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) :blue_car: :truck: :minibus:.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
+    "title": "DANL Project",
+    "section": "3.1 MPG and a Type of Cars",
+    "text": "3.1 MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) 🚙 🚚 🚐.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
+  },
+  {
+    "objectID": "posts/Restaurant/Restaurant.html",
+    "href": "posts/Restaurant/Restaurant.html",
+    "title": "Restaurant",
+    "section": "",
+    "text": "##Question 1\nLoad the data.frame for Question 1."
+  },
+  {
+    "objectID": "project.html#data",
+    "href": "project.html#data",
+    "title": "DANL Project",
+    "section": "0.1 2 Data",
+    "text": "0.1 2 Data\nThe data.frame NBAsal contains a data from the 2022-2023 NBA season. It contains player per-game and advanced statistics for that season with player salary data. This allows us to create a comprehensive resource for understanding the performance and financial aspects of professional basketball players."
+  },
+  {
+    "objectID": "project.html#conclusion",
+    "href": "project.html#conclusion",
+    "title": "DANL Project",
+    "section": "5.1 Conclusion 🏅🏀👟",
+    "text": "5.1 Conclusion 🏅🏀👟\n-Our exploration of NBA player salaries and performance unveiled key insights, emphasizing the pivotal role of scoring in determining player value.\n-Efficient players like Zion Williamson and Kevin Durant, with high field goal percentages, stood out.\n-Analyzing minutes played and turnovers for the top 10 players highlighted patterns, revealing challenges for primary ball handlers and consistency among players like Devin Booker and Donovan Mitchell."
+  },
+  {
+    "objectID": "posts/Restaurant/Restaurant.html#q1a",
+    "href": "posts/Restaurant/Restaurant.html#q1a",
+    "title": "Restaurant",
+    "section": "Q1a",
+    "text": "Q1a\nWhat are the mean, standard deviation, first quartile, median, third quartile, and maximum of SCORE for each GRADE of restaurants?\n\nrestaurant %>% \n  group_by(GRADE) %>% \n  skim(SCORE) %>% \n  select(-n_missing)\n\n\nData summary\n\n\nName\nPiped data\n\n\nNumber of rows\n17633\n\n\nNumber of columns\n12\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nnumeric\n1\n\n\n________________________\n\n\n\nGroup variables\nGRADE\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nGRADE\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nSCORE\nA\n1\n9.26\n3.42\n0\n7\n10\n12\n13\n▁▂▂▅▇\n\n\nSCORE\nB\n1\n21.03\n4.16\n0\n18\n21\n24\n36\n▁▁▇▇▁\n\n\nSCORE\nC\n1\n38.56\n10.83\n0\n31\n36\n44\n86\n▁▇▇▂▁"
+  },
+  {
+    "objectID": "posts/Restaurant/Restaurant.html#q1b",
+    "href": "posts/Restaurant/Restaurant.html#q1b",
+    "title": "Restaurant",
+    "section": "Q1b",
+    "text": "Q1b\nHow many restaurants with a GRADE of A are there in NYC? How much percentage of restaurants in NYC are a GRADE of C?\n\nfreq <- as.data.frame( table(restaurant$GRADE) )\n\nprop <- as.data.frame( 100 * prop.table(table(restaurant$GRADE)) )"
+  },
+  {
+    "objectID": "posts/Restaurant/Restaurant.html#q1c",
+    "href": "posts/Restaurant/Restaurant.html#q1c",
+    "title": "Restaurant",
+    "section": "Q1c",
+    "text": "Q1c\nProvide both (1) ggplot code and (2) a simple comment to describe how the distribution of SCORE varies by GRADE and CRITICAL FLAG.\n\nBoxplots\n\n\nggplot(restaurant) +\n  geom_boxplot(aes(x = SCORE, y = GRADE, fill = GRADE) ) +\n  facet_grid( CRITICAL.FLAG ~ . )\n\n\n\n\n-Histograms\n\nggplot(restaurant) +\n  geom_histogram(aes(x = SCORE), binwidth = 1 ) +\n  facet_grid( CRITICAL.FLAG ~ GRADE )\n\n\n\n\n-Mostly, -The values of SCORE for GRADE A ranges from 0 to 13. -The values of SCORE for GRADE B ranges 13 to 27. -The values of SCORE for GRADE C ranges 24 to 75. -For Not Critical type, two SCORE values around 1 and 12 are most common, while 12 is the single most common SCORE value for Critical type."
+  },
+  {
+    "objectID": "posts/Restaurant/Restaurant.html#q1d",
+    "href": "posts/Restaurant/Restaurant.html#q1d",
+    "title": "Restaurant",
+    "section": "Q1d",
+    "text": "Q1d\nProvide both (1) ggplot code and (2) a simple comment to describe how the proportion of CRITICAL FLAG varies by GRADE and BORO.\n\nggplot(restaurant) +\n  geom_bar(aes(x = CRITICAL.FLAG,\n               y = after_stat(prop), group = 1)) +\n  facet_grid( GRADE ~ BORO )\n\n\n\n\n-For GRADE A, the probability distribution of CRITICAL FLAG are similar across BOROs.\n-For GRADE B, the restaurants in Staten Island are more likely to be Critical than in other BOROs.\n-For GRADE C, the restaurants in Bronx are more likely to be Critical than in other BOROs."
+  },
+  {
+    "objectID": "posts/Restaurant/Restaurant.html#q1e",
+    "href": "posts/Restaurant/Restaurant.html#q1e",
+    "title": "Restaurant",
+    "section": "Q1e",
+    "text": "Q1e\nFor the 10 most common CUISINE DESCRIPTION values, find the CUISINE DESCRIPTION value that has the highest proportion of GRADE A.\n\nq2e <- restaurant %>% \n  group_by(CUISINE.DESCRIPTION) %>% \n  mutate(n = n()) %>% \n  ungroup() %>% \n  filter(dense_rank(-n) <= 10) %>% \n  group_by(CUISINE.DESCRIPTION, GRADE) %>% \n  count() %>% \n  group_by(CUISINE.DESCRIPTION) %>% \n  mutate(prop_A = n / sum(n)) %>% \n  filter(GRADE == 'A') %>% \n  arrange(-prop_A)"
+  },
+  {
+    "objectID": "posts/Restaurant/Restaurant.html#q1f",
+    "href": "posts/Restaurant/Restaurant.html#q1f",
+    "title": "Restaurant",
+    "section": "Q1f",
+    "text": "Q1f\n-Find the 3 most common names of restaurants (DBA) in each BORO. -If the third most common DBA values are multiple, please include all the DBA values. -Overall, which DBA value is most common in NYC?\n\nq2f <- restaurant %>% \n  select(DBA, BORO) %>% \n  group_by(BORO, DBA) %>% \n  summarize(n = n()) %>% \n  mutate(ranking = dense_rank(-n)) %>% \n  filter(ranking <= 3) %>% \n  arrange(BORO, ranking)\n\nq2f_ <- restaurant %>% \n  group_by(DBA) %>% \n  count() %>% \n  arrange(-n)\n\nNote that chipotle mexican grill and subway are both the third most popular franchise/chain in Manhattan. 🌯\nOverall, dunkin is the most popular franchise/chain in NYC. 🍩"
+  },
+  {
+    "objectID": "posts/Restaurant/Restaurant.html#q1g",
+    "href": "posts/Restaurant/Restaurant.html#q1g",
+    "title": "Restaurant",
+    "section": "Q1g",
+    "text": "Q1g\nFor all the DBA values that appear in the result of Q1f, find the DBA value that is most likely to commit critical violation.\n\nq2g <- restaurant %>% \n  filter(DBA %in% q2f$DBA) %>% \n  group_by(DBA, CRITICAL.FLAG) %>% \n  count() %>% \n  group_by(DBA) %>% \n  mutate(lag_n = lag(n),\n         tot = sum(n),\n         prop_crit = lag_n / tot) %>% \n  select(DBA, prop_crit) %>% \n  filter(!is.na(prop_crit)) %>% \n  arrange(-prop_crit)\n\n-Among popular franchises/chains, subway is most likely to commit Critical violation in NYC. 🥪"
+  },
+  {
+    "objectID": "posts/Beer Markets /beer-markets.html",
+    "href": "posts/Beer Markets /beer-markets.html",
+    "title": "Beer Markets",
+    "section": "",
+    "text": "For Question 1, run the following R command to read the beer market data.\n\nlibrary(tidyverse)\nlibrary(skimr)\n\n\nbeer_mkts <- read.csv('https://bcdanl.github.io/data/beer_markets.csv')\n\n\nrmarkdown::paged_table(beer_mkts)\n\n\n\n  \n\n\n\n-Each observation in beer_mkts is a household-level transaction record for a purchase of beer."
+  },
+  {
+    "objectID": "posts/Beer Markets /beer-markets.html#q1a",
+    "href": "posts/Beer Markets /beer-markets.html#q1a",
+    "title": "Beer Markets",
+    "section": "Q1a",
+    "text": "Q1a\n-Find the top 5 markets in terms of the total beer_floz. -Find the top 5 markets in terms of the total beer_floz of BUD LIGHT. -Find the top 5 markets in terms of the total beer_floz of BUSCH LIGHT. -Find the top 5 markets in terms of the total beer_floz of COORS LIGHT. -Find the top 5 markets in terms of the total beer_floz of MILLER LITE. -Find the top 5 markets in terms of the total beer_floz of NATURAL LIGHT.\n\nQ1a1 <- beer_mkts %>% \n   group_by(market) %>% \n   summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n   arrange(-beer_floz_tot) %>% \n   slice(1:5)\n\nQ1a_bud <- beer_mkts %>% \n  filter(brand == \"BUD LIGHT\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)\n\nQ1a_busch <- beer_mkts %>% \n  filter(brand == \"BUSCH LIGHT\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)\n\nQ1a_coors <- beer_mkts %>% \n  filter(brand == \"COORS LIGHT\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)\n\nQ1a_miller <- beer_mkts %>% \n  filter(brand == \"MILLER LITE\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)\n\nQ1a_natural <- beer_mkts %>% \n  filter(brand == \"NATURAL LIGHT\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)"
+  },
+  {
+    "objectID": "posts/Beer Markets /beer-markets.html#q1b",
+    "href": "posts/Beer Markets /beer-markets.html#q1b",
+    "title": "Beer Markets",
+    "section": "Q1b🍻",
+    "text": "Q1b🍻\n-For households that purchased BUD LIGHT at least once, what fraction of households did purchase only BUD LIGHT?\n-For households that purchased BUSCH LIGHT at least once, what fraction of households did purchase only BUSCH LIGHT?\n-For households that purchased COORS LIGHT at least once, what fraction of households did purchase only COORS LIGHT?\n-For households that purchased MILLER LITE at least once, what fraction of households did purchase only MILLER LITE?\n-For households that purchased NATURAL LIGHT at least once, what fraction of households did purchase only NATURAL LIGHT?\n-Which beer brand does have the largest proportion of such loyal consumers?\n\nq1b <- beer_mkts %>% \n  mutate(bud = ifelse(brand==\"BUD LIGHT\", 1, 0), # 1 if brand==\"BUD LIGHT\"; 0 otherwise\n         busch = ifelse(brand==\"BUSCH LIGHT\", 1, 0),\n         coors = ifelse(brand==\"COORS LIGHT\", 1, 0),\n         miller = ifelse(brand==\"MILLER LITE\", 1, 0),\n         natural = ifelse(brand==\"NATURAL LIGHT\", 1, 0),\n         .after = hh) %>% \n  select(hh:natural) %>%  # select the variables we need\n  group_by(hh) %>% \n  summarise(n_transactions = n(), # number of beer transactions for each hh\n            n_bud = sum(bud), # number of BUD LIGHT transactions for each hh\n            n_busch = sum(busch), \n            n_coors = sum(coors), \n            n_miller = sum(miller), \n            n_natural = sum(natural) \n  ) %>% \n  summarise(loyal_bud = sum(n_transactions == n_bud) / sum(n_bud > 0), \n              # sum(n_transactions == n_bud) : the number of households that purchased BUD LIGHT only\n              # sum(n_bud > 0) : the number of households that purchased BUD LIGHT at least once.\n            loyal_busch = sum(n_transactions == n_busch) / sum(n_busch > 0),\n            loyal_coors = sum(n_transactions == n_coors) / sum(n_coors > 0),\n            loyal_miller = sum(n_transactions == n_miller) / sum(n_miller > 0),\n            loyal_natural = sum(n_transactions == n_natural) / sum(n_natural > 0)\n  )\n\nq1b\n\n# A tibble: 1 × 5\n  loyal_bud loyal_busch loyal_coors loyal_miller loyal_natural\n      <dbl>       <dbl>       <dbl>        <dbl>         <dbl>\n1     0.660       0.473       0.639        0.631         0.510"
+  },
+  {
+    "objectID": "posts/Beer Markets /beer-markets.html#q1c",
+    "href": "posts/Beer Markets /beer-markets.html#q1c",
+    "title": "Beer Markets",
+    "section": "Q1c 🍻",
+    "text": "Q1c 🍻\n-For each household, calculate the number of beer transactions. -For each household, calculate the proportion of each beer brand choice.\n\nq1c <- beer_mkts %>% \n  count(hh, brand) %>% \n  group_by(hh) %>% \n  mutate(n_tot = sum(n)) %>%  \n  arrange(hh, brand) %>% \n  mutate( prop = n / n_tot ) \n\nq1c\n\n# A tibble: 13,202 × 5\n# Groups:   hh [10,408]\n        hh brand           n n_tot  prop\n     <int> <chr>       <int> <int> <dbl>\n 1 2000235 BUD LIGHT       1     1 1    \n 2 2000417 COORS LIGHT     8     8 1    \n 3 2000711 COORS LIGHT    13    13 1    \n 4 2000946 BUD LIGHT       1     2 0.5  \n 5 2000946 MILLER LITE     1     2 0.5  \n 6 2001521 BUD LIGHT       6    11 0.545\n 7 2001521 COORS LIGHT     3    11 0.273\n 8 2001521 MILLER LITE     2    11 0.182\n 9 2001531 BUSCH LIGHT     1     1 1    \n10 2001581 BUSCH LIGHT     5     5 1    \n# ℹ 13,192 more rows"
+  },
+  {
+    "objectID": "posts/Spotify all/spotifyall.html#q1a",
+    "href": "posts/Spotify all/spotifyall.html#q1a",
+    "title": "Spotify All",
+    "section": "Q1a 🎶",
+    "text": "Q1a 🎶\n\nFind the ten most popular song. 🎵\n\nA value of a song is defined as a combination of a artist_name value and a track_name value.\nWho are artists for those ten most popular song?\n\n\nQ1a <- spotify_all %>% \n  count(artist_name, track_name) %>% \n  arrange(-n) %>% \n  head(10)\n\nQ1a\n\n        artist_name                          track_name   n\n1             Drake                           One Dance 143\n2    Kendrick Lamar                             HUMBLE. 142\n3  The Chainsmokers                              Closer 129\n4              DRAM         Broccoli (feat. Lil Yachty) 127\n5       Post Malone                     Congratulations 119\n6             Migos Bad and Boujee (feat. Lil Uzi Vert) 117\n7              KYLE             iSpy (feat. Lil Yachty) 115\n8      Lil Uzi Vert                       XO TOUR Llif3 113\n9             Aminé                            Caroline 107\n10           Khalid                            Location 102"
+  },
+  {
+    "objectID": "posts/Spotify all/spotifyall.html#q1b",
+    "href": "posts/Spotify all/spotifyall.html#q1b",
+    "title": "Spotify All",
+    "section": "Q1b 🎼",
+    "text": "Q1b 🎼\n\nFind the five most popular artist in terms of the number of occurrences in the data.frame, spotify_all.\nWhat is the most popular song for each of the five most popular artist?\n\n\nQ1b <- spotify_all %>% \n  group_by(artist_name) %>% \n  mutate(n_popular_artist = n()) %>% \n  ungroup() %>% \n  mutate( artist_ranking = dense_rank( desc(n_popular_artist) ) ) %>% \n  filter( artist_ranking <= 5) %>% \n  group_by(artist_name, track_name) %>% \n  mutate(n_popular_track = n()) %>% \n  group_by(artist_name) %>% \n  mutate(track_ranking = dense_rank( desc(n_popular_track) ) ) %>% \n  filter( track_ranking <= 2) %>%   # I just wanted to see the top two tracks for each artist\n  select(artist_name, artist_ranking, n_popular_artist, track_name, track_ranking, n_popular_track) %>% \n  distinct() %>% \n  arrange(artist_ranking, track_ranking)\n\nQ1b\n\n# A tibble: 10 × 6\n# Groups:   artist_name [5]\n   artist_name    artist_ranking n_popular_artist track_name  track_ranking\n   <chr>                   <int>            <int> <chr>               <int>\n 1 Drake                       1             2715 One Dance               1\n 2 Drake                       1             2715 Jumpman                 2\n 3 Kanye West                  2             1065 Gold Digger             1\n 4 Kanye West                  2             1065 Stronger                2\n 5 Kendrick Lamar              3             1035 HUMBLE.                 1\n 6 Kendrick Lamar              3             1035 DNA.                    2\n 7 Rihanna                     4              915 Needed Me               1\n 8 Rihanna                     4              915 Work                    2\n 9 The Weeknd                  5              913 Starboy                 1\n10 The Weeknd                  5              913 The Hills               2\n# ℹ 1 more variable: n_popular_track <int>"
+  },
+  {
+    "objectID": "posts/Spotify all/spotifyall.html#q1c",
+    "href": "posts/Spotify all/spotifyall.html#q1c",
+    "title": "Spotify All",
+    "section": "Q1c 🎹",
+    "text": "Q1c 🎹\nProvide both (1) ggplot codes and (2) a couple of sentences to describe the relationship between pos and the ten most popular artists.\n\nQ1c <- spotify_all %>% \n  group_by(artist_name) %>% \n  mutate(n_popular_artist = n()) %>% \n  ungroup() %>% \n  mutate( artist_ranking = dense_rank( desc(n_popular_artist) ) ) %>% \n  filter( artist_ranking <= 10) \n  \n# boxplot\nggplot(Q1c,\n       aes(x = pos, y = fct_reorder(artist_name, -artist_ranking)) ) +\n  geom_boxplot() +\n  stat_summary(\n    fun = mean,\n    color = 'red'\n  )\n\n\n\n\n\nggplot(Q1c) +\n  geom_histogram(aes(x = pos), binwidth = 1) + \n  facet_grid(fct_reorder(artist_name, artist_ranking) ~ .  , switch = \"y\") +\n  theme(strip.text.y.left = element_text(angle = 0))\n\n\n\n\n\nAll are skewed right.\n\nUsers tend to locate these popular artists' songs early in their playlist.\n\nThe distribution of pos does not seem to vary a lot across the ten most popular artists.\nAnything noticeable can be mentioned."
+  },
+  {
+    "objectID": "posts/Spotify all/spotifyall.html#q1d",
+    "href": "posts/Spotify all/spotifyall.html#q1d",
+    "title": "Spotify All",
+    "section": "Q1d 🎵",
+    "text": "Q1d 🎵\nCreate the data.frame with pid-artist level of observations with the following four variables:\n\npid: playlist id\nplaylist_name: name of playlist\nartist: name of the track's primary artist, which appears only once within a playlist\nn_artist: number of occurrences of artist within a playlist\n\n\nQ1d <- spotify_all %>% \n  count(pid, playlist_name, artist_name) %>% \n  rename(n_artist = n) %>% \n  arrange(pid, -n_artist, artist_name)\n\n\nrmarkdown::paged_table(Q1d)"
   }
 ]

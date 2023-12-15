@@ -14,95 +14,11 @@
     "text": "3.1 MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) 🚙 🚚 🚐.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
   },
   {
-    "objectID": "posts/NFL in 2022/danl200-hw5-STARKEY_JAKE.html",
-    "href": "posts/NFL in 2022/danl200-hw5-STARKEY_JAKE.html",
-    "title": "NFL 2022",
-    "section": "",
-    "text": "Provide a link for your Github repository ✅ https://github.com/s1arkey/s1arkey.github.io\nAdd a URL for your website (https://YOUR_GITHUB_USERNAME.github.io/) in the About section in your GitHub repository webpage by clicking the setting. ✅\n\nSee about section in my GitHub repository webpage for answer\nLink to website https://s1arkey.github.io/\n\n\n\n\n\n\nMake sure that your GitHub repository, named YOUR_GITHUB_USERNAME.github.io, is set to public. ✅\nUpdate your website at https://YOUR_GITHUB_USERNAME.github.io/index.html to:\n\nInclude links to (1) your LinkedIn page, (2) GitHub page (https://github.com/YOUR_GITHUB_USERNAME), and (3) a PDF file of your Rèsume (https://YOUR_GITHUB_USERNAME.github.io/YOUR_RESUME.pdf) ✅\nOffer a description of yourself, detailing your education background and professional experience. ✅\nDisplay your own profile picture with your face, not the one shown below. ✅\n\n\n\n\n\n\nChange the title of your blog. ✅\n\nThat is, to replace Insightful Analytics with your own blog name.\n\nRemove the blog posts Post With Code, Starwars, and Beer Markets. ✅\nRevise the Welcome To My Blog post. ✅\nPost three different blog articles based on data analysis using the following three CSV files: ✅\n\nhttps://bcdanl.github.io/data/DOHMH_NYC_Restaurant_Inspection.csv\nhttps://bcdanl.github.io/data/spotify_all.csv\nhttps://bcdanl.github.io/data/beer_markets.csv\n\n\nMake sure that each blog post has categories and is associated with a proper image file that is displayed as a thumbnail at the list page of the blog. ✅\nMake sure that each blog post uses emojis properly. (E.g., 😄 🍺 🎶 🍕) ✅\nMake sure that each blog post includes its thumbnail image and at least three ggplot figures. ✅\nYou can refer to the previous DANL 200 Homework Assignments and Exams for your blog posts.\n\n\n##Question 2. NFL in 2022 🏈\n\nAdd a blog post with your answers for Question 2 to your website (https://YOUR_GITHUB_USERNAME.github.io/).\n\nMake sure that your blog post for Question 2 includes all the questionnaires and your answers to them.\nMake sure that your blog post for Question 2 has a section for each sub-question (e.g., Q2a, Q2b) in Question 2, so that the Table of Contents display the section for each questionnaire.\n\nThe following is the data.frame for Question 2.\n\n\nNFL2022_stuffs <- read.csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')\n\n\nNFL2022_stuffs is the data.frame that contains information about NFL games in year 2022, in which the unit of observation is a single play for each drive in a NFL game.\n\n\n\n\n\nplay_id: Numeric play identifier that when used with game_id and drive provides the unique identifier for a single play\ngame_id: Ten digit identifier for NFL game.\ndrive: Numeric drive number in the game.\nweek: Season week.\nposteam: String abbreviation for the team with possession.\nqtr: Quarter of the game (5 is overtime).\nhalf_seconds_remaining: Numeric seconds remaining in the half.\ndown: The down for the given play.\n\nBasically you get four attempts (aka downs) to move the ball 10 yards (by either running with it or passing it).\nIf you make 10 yards then you get another set of four downs.\n\npass: Binary indicator if the play was a pass play.\nwp: Estimated winning probability for the posteam given the current situation at the start of the given play.\n\n\n\n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors\n\nlibrary(skimr)\n\nIn data.frame, NFL2022_stuffs, remove observations for which values of posteam is missing.\n\nq2a <- NFL2022_stuffs %>% \n  filter(!is.na(posteam))\n\n\n\n\n\nSummarize the mean value of pass for each posteam when all the following conditions hold:\n\n\nwp is greater than 20% and less than 75%;\ndown is less than or equal to 2; and\nhalf_seconds_remaining is greater than 120.\n\n\nq2b <- NFL2022_stuffs %>% \n  filter(between(wp, 0.2, 0.75),\n         down <= 2,\n         half_seconds_remaining > 120)\n\nmeanvalq2b <- q2b %>% \n  group_by(posteam) %>% \n  summarise(mean_pass = mean(pass, na.rm = TRUE))\n\n\n\n\n\nProvide both (1) a ggplot code with geom_point() using the resulting data.frame in Q2b and (2) a simple comments to describe the mean value of pass for each posteam.\n\nIn the ggplot, reorder the posteam categories based on the mean value of pass in ascending or in descending order.\n\n\n\nmeanvaldesc <- meanvalq2b %>% \n  arrange(desc(mean_pass))\n\nggplot(meanvaldesc, aes(x = mean_pass, y = reorder(posteam, mean_pass))) +\n  geom_point()+\n  labs(x= \"Percentage of Pass Plays\",\n       y= \"Team with possesion\")\n\n\n\n\nComments:\n\nCincinnati, Kansas City, Los Angeles Chargers, Buffalo Bills, and Philadelphia eagles had the top 5 highest average percentage of pass plays during the 2022 season.\nAtlanta, Washington, Chicago, New Orleans, and Tennessee had the top 5 lowest average percentage of pass plays during the 2022 season.\n\n\n\n\n\nConsider the following data.frame, NFL2022_epa:\n\n\nNFL2022_epa <- read.csv('https://bcdanl.github.io/data/NFL2022_epa.csv')\n\n\nVariable description for NFL2022_epa\n\nplay_id: Numeric play identifier that when used with game_id and drive provides the unique identifier for a single play\ngame_id: Ten digit identifier for NFL game.\ndrive: Numeric drive number in the game.\nposteam: String abbreviation for the team with possession.\npasser: Name of the player who passed a ball to a receiver by initially taking a three-step drop and backpedaling into the pocket to make a pass. (Mostly, they are quarterbacks)\nreceiver: Name of the receiver.\nepa: Expected points added (EPA) by the posteam for the given play.\n\nCreate the data.frame, NFL2022_stuffs_EPA, that includes\n\nAll the variables in the data.frame, NFL2022_stuffs;\nThe variables, passer, receiver, and epa, from the data.frame, NFL2022_epa. by joining the two data.frames.\n\nIn the resulting data.frame, NFL2022_stuffs_EPA, remove observations with NA in passer.\n\nAnswer:\n\nNFL2022_stuffs_EPA <- left_join(NFL2022_stuffs, NFL2022_epa, by = c(\"play_id\", \"game_id\", \"drive\", \"posteam\"))\n\nNFL2022_stuffs_EPA <- NFL2022_stuffs_EPA %>%\n  filter(!is.na(passer))\n\n\n\n\n\nProvide both (1) a single ggplot and (2) a simple comment to describe the NFL weekly trend of weekly mean value of epa for each of the following two passers,\n\n“J.Allen”\n“P.Mahomes”\n\n\n\ntwo_passers <- c(\"J.Allen\", \"P.Mahomes\")\n\nfiltered_twopassers <- NFL2022_stuffs_EPA %>% \n  filter(passer %in% two_passers)\n\nmean_epa_data <- filtered_twopassers %>% group_by(week, passer) %>% \n  summarise(mean_epa = mean(epa, na.rm = TRUE))\n\n`summarise()` has grouped output by 'week'. You can override using the\n`.groups` argument.\n\nggplot(mean_epa_data, aes(x= week, y= mean_epa, color = passer))+\n  geom_line()+\n  scale_color_manual(values =c(\"J.Allen\" =\"blue\", \"P.Mahomes\"=\"red\"))+\n  labs(x= \"Week\",\n       y= \"Mean value of expected points added (EPA)\")\n\n\n\n\nComment: Patrick Mahomes generally had a higher mean value of epa. However, there were a few weeks that Josh Allen had a higher mean value of epa.\n\n\n\nCalculate the difference between the mean value of epa for “J.Allen” the mean value of epa for “P.Mahomes” for each value of week.\n\ndifference_epa <- mean_epa_data %>% \n  pivot_wider(names_from = passer, values_from = mean_epa)\n\ndifference_epa$epa_differnce <- difference_epa$'J.Allen' - difference_epa$'P.Mahomes'\n\nprint(difference_epa)\n\n# A tibble: 22 × 4\n# Groups:   week [22]\n    week J.Allen P.Mahomes epa_differnce\n   <int>   <dbl>     <dbl>         <dbl>\n 1     1   0.530    0.698        -0.169 \n 2     2   0.487    0.148         0.339 \n 3     3   0.169    0.246        -0.0763\n 4     4   0.191    0.271        -0.0803\n 5     5   0.627    0.302         0.325 \n 6     6   0.307    0.133         0.173 \n 7     7  NA        0.701        NA     \n 8     8   0.224   NA            NA     \n 9     9  -0.208    0.0965       -0.304 \n10    10   0.161    0.589        -0.429 \n# ℹ 12 more rows\n\n\n\n\n\n\nSummarize the resulting data.frame in Q2d, with the following four variables:\n\nposteam: String abbreviation for the team with possession.\npasser: Name of the player who passed a ball to a receiver by initially taking a three-step drop, and backpedaling into the pocket to make a pass. (Mostly, they are quarterbacks.)\nmean_epa: Mean value of epa in 2022 for each passer\nn_pass: Number of observations for each passer\n\nThen find the top 10 NFL passers in 2022 in terms of the mean value of epa, conditioning that n_pass must be greater than or equal to the third quantile level of n_pass.\n\n\nsummary_data <- NFL2022_stuffs_EPA %>%\n  group_by(posteam, passer) %>%\n  summarise(\n    mean_epa = mean(epa, na.rm = TRUE),\n    n_pass = n()\n  )\n\n`summarise()` has grouped output by 'posteam'. You can override using the\n`.groups` argument.\n\nquantile_threshold_passer <- quantile(summary_data$n_pass, 0.75)\nfiltered_summary_data <- summary_data %>%\n  filter(n_pass >= quantile_threshold_passer)\n\ntop_10_passers <- filtered_summary_data %>%\n  arrange(desc(mean_epa)) %>% \n  head(n=10)\n  \ntop_10_passers\n\n# A tibble: 10 × 4\n# Groups:   posteam [10]\n   posteam passer       mean_epa n_pass\n   <chr>   <chr>           <dbl>  <int>\n 1 KC      P.Mahomes      0.286     880\n 2 MIA     T.Tagovailoa   0.234     453\n 3 SF      J.Garoppolo    0.200     348\n 4 BUF     J.Allen        0.172     785\n 5 DET     J.Goff         0.171     661\n 6 CIN     J.Burrow       0.153     854\n 7 DAL     D.Prescott     0.147     529\n 8 PHI     J.Hurts        0.138     672\n 9 JAX     T.Lawrence     0.128     764\n10 CLE     J.Brissett     0.0912    445"
-  },
-  {
-    "objectID": "posts/Spotify all/spotifyall.html",
-    "href": "posts/Spotify all/spotifyall.html",
-    "title": "Spotify All",
-    "section": "",
-    "text": "For Question 1, run the following R command to read the CSV file, spotify_all.csv as data.frame, spotify_all:\n\nlibrary(tidyverse)\nlibrary(skimr)\n\n\nspotify_all <- read.csv('https://bcdanl.github.io/data/spotify_all.csv')\n\n\nrmarkdown::paged_table(spotify_all)\n\n\n\n  \n\n\n\nThe data.frame spotify_all includes information about Spotify users' playlists.\n\nThe unit of observation in spotify_all is a track in a music playlist. 🎶"
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "Thanks for tuning into my project! My blogs break down several data frames. Currently you are on my welcome post. The other blogs are Beer Markets, Spotify, Restaurants, and NFL in 2022.\nDuring free time I like to hangout with friends. Other hobbies include lifting, playing lacrosse, skiing, and going on hikes.\nI hope you enjoy my website."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Jake Starkey",
-    "section": "",
-    "text": "Jake Starkey majors in Data Analytics. Outside of school, Jake plays lacrosse and loves the outdoors. At home he enjoys surfing anytime there is a wave"
-  },
-  {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Jake Starkey",
-    "section": "Education",
-    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  Major in Data Analytics | Aug 2022 - May 2026"
-  },
-  {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Jake Starkey",
-    "section": "Experience",
-    "text": "Experience\nStudent | August 2022 - May 2026"
-  },
-  {
-    "objectID": "blog-listing.html",
-    "href": "blog-listing.html",
-    "title": "Jake Starkeys blog",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n7 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nJake Starkey\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "project.html",
-    "href": "project.html",
-    "title": "DANL Project",
-    "section": "",
-    "text": "##1 Introduction\nAbout this project 👏 Welcome to our project, where we dive into the dynamic world of professional basketball through the lens of salaries and performance statisics. We will analyize a dataset with NBA player salaries and stats from the 2022-2023 season."
-  },
-  {
-    "objectID": "project.html#summary-statistics",
-    "href": "project.html#summary-statistics",
-    "title": "Jake Starkey",
-    "section": "Summary Statistics",
-    "text": "Summary Statistics\n\nmpg <- ggplot2::mpg\n\n\n\n\n  \n\n\n\nskim(mpg) %>% \n  select(-n_missing)\n\n\nData summary\n\n\nName\nmpg\n\n\nNumber of rows\n234\n\n\nNumber of columns\n11\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n6\n\n\nnumeric\n5\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\nskim_variable\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nmanufacturer\n1\n4\n10\n0\n15\n0\n\n\nmodel\n1\n2\n22\n0\n38\n0\n\n\ntrans\n1\n8\n10\n0\n10\n0\n\n\ndrv\n1\n1\n1\n0\n3\n0\n\n\nfl\n1\n1\n1\n0\n5\n0\n\n\nclass\n1\n3\n10\n0\n7\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\ndispl\n1\n3.47\n1.29\n1.6\n2.4\n3.3\n4.6\n7\n▇▆▆▃▁\n\n\nyear\n1\n2003.50\n4.51\n1999.0\n1999.0\n2003.5\n2008.0\n2008\n▇▁▁▁▇\n\n\ncyl\n1\n5.89\n1.61\n4.0\n4.0\n6.0\n8.0\n8\n▇▁▇▁▇\n\n\ncty\n1\n16.86\n4.26\n9.0\n14.0\n17.0\n19.0\n35\n▆▇▃▁▁\n\n\nhwy\n1\n23.44\n5.95\n12.0\n18.0\n24.0\n27.0\n44\n▅▅▇▁▁"
-  },
-  {
-    "objectID": "project.html#mpg-and-a-type-of-cars",
-    "href": "project.html#mpg-and-a-type-of-cars",
-    "title": "DANL Project",
-    "section": "3.1 MPG and a Type of Cars",
-    "text": "3.1 MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) 🚙 🚚 🚐.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
-  },
-  {
     "objectID": "posts/Restaurant/Restaurant.html",
     "href": "posts/Restaurant/Restaurant.html",
     "title": "Restaurant",
     "section": "",
     "text": "##Question 1\nLoad the data.frame for Question 1."
-  },
-  {
-    "objectID": "project.html#data",
-    "href": "project.html#data",
-    "title": "DANL Project",
-    "section": "0.1 2 Data",
-    "text": "0.1 2 Data\nThe data.frame NBAsal contains a data from the 2022-2023 NBA season. It contains player per-game and advanced statistics for that season with player salary data. This allows us to create a comprehensive resource for understanding the performance and financial aspects of professional basketball players."
-  },
-  {
-    "objectID": "project.html#conclusion",
-    "href": "project.html#conclusion",
-    "title": "DANL Project",
-    "section": "5.1 Conclusion 🏅🏀👟",
-    "text": "5.1 Conclusion 🏅🏀👟\n-Our exploration of NBA player salaries and performance unveiled key insights, emphasizing the pivotal role of scoring in determining player value.\n-Efficient players like Zion Williamson and Kevin Durant, with high field goal percentages, stood out.\n-Analyzing minutes played and turnovers for the top 10 players highlighted patterns, revealing challenges for primary ball handlers and consistency among players like Devin Booker and Donovan Mitchell."
   },
   {
     "objectID": "posts/Restaurant/Restaurant.html#q1a",
@@ -154,32 +70,18 @@
     "text": "Q1g\nFor all the DBA values that appear in the result of Q1f, find the DBA value that is most likely to commit critical violation.\n\nq2g <- restaurant %>% \n  filter(DBA %in% q2f$DBA) %>% \n  group_by(DBA, CRITICAL.FLAG) %>% \n  count() %>% \n  group_by(DBA) %>% \n  mutate(lag_n = lag(n),\n         tot = sum(n),\n         prop_crit = lag_n / tot) %>% \n  select(DBA, prop_crit) %>% \n  filter(!is.na(prop_crit)) %>% \n  arrange(-prop_crit)\n\n-Among popular franchises/chains, subway is most likely to commit Critical violation in NYC. 🥪"
   },
   {
-    "objectID": "posts/Beer Markets /beer-markets.html",
-    "href": "posts/Beer Markets /beer-markets.html",
-    "title": "Beer Markets",
+    "objectID": "posts/NFL in 2022/danl200-hw5-STARKEY_JAKE.html",
+    "href": "posts/NFL in 2022/danl200-hw5-STARKEY_JAKE.html",
+    "title": "NFL 2022",
     "section": "",
-    "text": "For Question 1, run the following R command to read the beer market data.\n\nlibrary(tidyverse)\nlibrary(skimr)\n\n\nbeer_mkts <- read.csv('https://bcdanl.github.io/data/beer_markets.csv')\n\n\nrmarkdown::paged_table(beer_mkts)\n\n\n\n  \n\n\n\n-Each observation in beer_mkts is a household-level transaction record for a purchase of beer."
+    "text": "Provide a link for your Github repository ✅ https://github.com/s1arkey/s1arkey.github.io\nAdd a URL for your website (https://YOUR_GITHUB_USERNAME.github.io/) in the About section in your GitHub repository webpage by clicking the setting. ✅\n\nSee about section in my GitHub repository webpage for answer\nLink to website https://s1arkey.github.io/\n\n\n\n\n\n\nMake sure that your GitHub repository, named YOUR_GITHUB_USERNAME.github.io, is set to public. ✅\nUpdate your website at https://YOUR_GITHUB_USERNAME.github.io/index.html to:\n\nInclude links to (1) your LinkedIn page, (2) GitHub page (https://github.com/YOUR_GITHUB_USERNAME), and (3) a PDF file of your Rèsume (https://YOUR_GITHUB_USERNAME.github.io/YOUR_RESUME.pdf) ✅\nOffer a description of yourself, detailing your education background and professional experience. ✅\nDisplay your own profile picture with your face, not the one shown below. ✅\n\n\n\n\n\n\nChange the title of your blog. ✅\n\nThat is, to replace Insightful Analytics with your own blog name.\n\nRemove the blog posts Post With Code, Starwars, and Beer Markets. ✅\nRevise the Welcome To My Blog post. ✅\nPost three different blog articles based on data analysis using the following three CSV files: ✅\n\nhttps://bcdanl.github.io/data/DOHMH_NYC_Restaurant_Inspection.csv\nhttps://bcdanl.github.io/data/spotify_all.csv\nhttps://bcdanl.github.io/data/beer_markets.csv\n\n\nMake sure that each blog post has categories and is associated with a proper image file that is displayed as a thumbnail at the list page of the blog. ✅\nMake sure that each blog post uses emojis properly. (E.g., 😄 🍺 🎶 🍕) ✅\nMake sure that each blog post includes its thumbnail image and at least three ggplot figures. ✅\nYou can refer to the previous DANL 200 Homework Assignments and Exams for your blog posts.\n\n\n##Question 2. NFL in 2022 🏈\n\nAdd a blog post with your answers for Question 2 to your website (https://YOUR_GITHUB_USERNAME.github.io/).\n\nMake sure that your blog post for Question 2 includes all the questionnaires and your answers to them.\nMake sure that your blog post for Question 2 has a section for each sub-question (e.g., Q2a, Q2b) in Question 2, so that the Table of Contents display the section for each questionnaire.\n\nThe following is the data.frame for Question 2.\n\n\nNFL2022_stuffs <- read.csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')\n\n\nNFL2022_stuffs is the data.frame that contains information about NFL games in year 2022, in which the unit of observation is a single play for each drive in a NFL game.\n\n\n\n\n\nplay_id: Numeric play identifier that when used with game_id and drive provides the unique identifier for a single play\ngame_id: Ten digit identifier for NFL game.\ndrive: Numeric drive number in the game.\nweek: Season week.\nposteam: String abbreviation for the team with possession.\nqtr: Quarter of the game (5 is overtime).\nhalf_seconds_remaining: Numeric seconds remaining in the half.\ndown: The down for the given play.\n\nBasically you get four attempts (aka downs) to move the ball 10 yards (by either running with it or passing it).\nIf you make 10 yards then you get another set of four downs.\n\npass: Binary indicator if the play was a pass play.\nwp: Estimated winning probability for the posteam given the current situation at the start of the given play.\n\n\n\n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.4     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors\n\nlibrary(skimr)\n\nIn data.frame, NFL2022_stuffs, remove observations for which values of posteam is missing.\n\nq2a <- NFL2022_stuffs %>% \n  filter(!is.na(posteam))\n\n\n\n\n\nSummarize the mean value of pass for each posteam when all the following conditions hold:\n\n\nwp is greater than 20% and less than 75%;\ndown is less than or equal to 2; and\nhalf_seconds_remaining is greater than 120.\n\n\nq2b <- NFL2022_stuffs %>% \n  filter(between(wp, 0.2, 0.75),\n         down <= 2,\n         half_seconds_remaining > 120)\n\nmeanvalq2b <- q2b %>% \n  group_by(posteam) %>% \n  summarise(mean_pass = mean(pass, na.rm = TRUE))\n\n\n\n\n\nProvide both (1) a ggplot code with geom_point() using the resulting data.frame in Q2b and (2) a simple comments to describe the mean value of pass for each posteam.\n\nIn the ggplot, reorder the posteam categories based on the mean value of pass in ascending or in descending order.\n\n\n\nmeanvaldesc <- meanvalq2b %>% \n  arrange(desc(mean_pass))\n\nggplot(meanvaldesc, aes(x = mean_pass, y = reorder(posteam, mean_pass))) +\n  geom_point()+\n  labs(x= \"Percentage of Pass Plays\",\n       y= \"Team with possesion\")\n\n\n\n\nComments:\n\nCincinnati, Kansas City, Los Angeles Chargers, Buffalo Bills, and Philadelphia eagles had the top 5 highest average percentage of pass plays during the 2022 season.\nAtlanta, Washington, Chicago, New Orleans, and Tennessee had the top 5 lowest average percentage of pass plays during the 2022 season.\n\n\n\n\n\nConsider the following data.frame, NFL2022_epa:\n\n\nNFL2022_epa <- read.csv('https://bcdanl.github.io/data/NFL2022_epa.csv')\n\n\nVariable description for NFL2022_epa\n\nplay_id: Numeric play identifier that when used with game_id and drive provides the unique identifier for a single play\ngame_id: Ten digit identifier for NFL game.\ndrive: Numeric drive number in the game.\nposteam: String abbreviation for the team with possession.\npasser: Name of the player who passed a ball to a receiver by initially taking a three-step drop and backpedaling into the pocket to make a pass. (Mostly, they are quarterbacks)\nreceiver: Name of the receiver.\nepa: Expected points added (EPA) by the posteam for the given play.\n\nCreate the data.frame, NFL2022_stuffs_EPA, that includes\n\nAll the variables in the data.frame, NFL2022_stuffs;\nThe variables, passer, receiver, and epa, from the data.frame, NFL2022_epa. by joining the two data.frames.\n\nIn the resulting data.frame, NFL2022_stuffs_EPA, remove observations with NA in passer.\n\nAnswer:\n\nNFL2022_stuffs_EPA <- left_join(NFL2022_stuffs, NFL2022_epa, by = c(\"play_id\", \"game_id\", \"drive\", \"posteam\"))\n\nNFL2022_stuffs_EPA <- NFL2022_stuffs_EPA %>%\n  filter(!is.na(passer))\n\n\n\n\n\nProvide both (1) a single ggplot and (2) a simple comment to describe the NFL weekly trend of weekly mean value of epa for each of the following two passers,\n\n“J.Allen”\n“P.Mahomes”\n\n\n\ntwo_passers <- c(\"J.Allen\", \"P.Mahomes\")\n\nfiltered_twopassers <- NFL2022_stuffs_EPA %>% \n  filter(passer %in% two_passers)\n\nmean_epa_data <- filtered_twopassers %>% group_by(week, passer) %>% \n  summarise(mean_epa = mean(epa, na.rm = TRUE))\n\n`summarise()` has grouped output by 'week'. You can override using the\n`.groups` argument.\n\nggplot(mean_epa_data, aes(x= week, y= mean_epa, color = passer))+\n  geom_line()+\n  scale_color_manual(values =c(\"J.Allen\" =\"blue\", \"P.Mahomes\"=\"red\"))+\n  labs(x= \"Week\",\n       y= \"Mean value of expected points added (EPA)\")\n\n\n\n\nComment: Patrick Mahomes generally had a higher mean value of epa. However, there were a few weeks that Josh Allen had a higher mean value of epa.\n\n\n\nCalculate the difference between the mean value of epa for “J.Allen” the mean value of epa for “P.Mahomes” for each value of week.\n\ndifference_epa <- mean_epa_data %>% \n  pivot_wider(names_from = passer, values_from = mean_epa)\n\ndifference_epa$epa_differnce <- difference_epa$'J.Allen' - difference_epa$'P.Mahomes'\n\nprint(difference_epa)\n\n# A tibble: 22 × 4\n# Groups:   week [22]\n    week J.Allen P.Mahomes epa_differnce\n   <int>   <dbl>     <dbl>         <dbl>\n 1     1   0.530    0.698        -0.169 \n 2     2   0.487    0.148         0.339 \n 3     3   0.169    0.246        -0.0763\n 4     4   0.191    0.271        -0.0803\n 5     5   0.627    0.302         0.325 \n 6     6   0.307    0.133         0.173 \n 7     7  NA        0.701        NA     \n 8     8   0.224   NA            NA     \n 9     9  -0.208    0.0965       -0.304 \n10    10   0.161    0.589        -0.429 \n# ℹ 12 more rows\n\n\n\n\n\n\nSummarize the resulting data.frame in Q2d, with the following four variables:\n\nposteam: String abbreviation for the team with possession.\npasser: Name of the player who passed a ball to a receiver by initially taking a three-step drop, and backpedaling into the pocket to make a pass. (Mostly, they are quarterbacks.)\nmean_epa: Mean value of epa in 2022 for each passer\nn_pass: Number of observations for each passer\n\nThen find the top 10 NFL passers in 2022 in terms of the mean value of epa, conditioning that n_pass must be greater than or equal to the third quantile level of n_pass.\n\n\nsummary_data <- NFL2022_stuffs_EPA %>%\n  group_by(posteam, passer) %>%\n  summarise(\n    mean_epa = mean(epa, na.rm = TRUE),\n    n_pass = n()\n  )\n\n`summarise()` has grouped output by 'posteam'. You can override using the\n`.groups` argument.\n\nquantile_threshold_passer <- quantile(summary_data$n_pass, 0.75)\nfiltered_summary_data <- summary_data %>%\n  filter(n_pass >= quantile_threshold_passer)\n\ntop_10_passers <- filtered_summary_data %>%\n  arrange(desc(mean_epa)) %>% \n  head(n=10)\n  \ntop_10_passers\n\n# A tibble: 10 × 4\n# Groups:   posteam [10]\n   posteam passer       mean_epa n_pass\n   <chr>   <chr>           <dbl>  <int>\n 1 KC      P.Mahomes      0.286     880\n 2 MIA     T.Tagovailoa   0.234     453\n 3 SF      J.Garoppolo    0.200     348\n 4 BUF     J.Allen        0.172     785\n 5 DET     J.Goff         0.171     661\n 6 CIN     J.Burrow       0.153     854\n 7 DAL     D.Prescott     0.147     529\n 8 PHI     J.Hurts        0.138     672\n 9 JAX     T.Lawrence     0.128     764\n10 CLE     J.Brissett     0.0912    445"
   },
   {
-    "objectID": "posts/Beer Markets /beer-markets.html#q1a",
-    "href": "posts/Beer Markets /beer-markets.html#q1a",
-    "title": "Beer Markets",
-    "section": "Q1a",
-    "text": "Q1a\n-Find the top 5 markets in terms of the total beer_floz. -Find the top 5 markets in terms of the total beer_floz of BUD LIGHT. -Find the top 5 markets in terms of the total beer_floz of BUSCH LIGHT. -Find the top 5 markets in terms of the total beer_floz of COORS LIGHT. -Find the top 5 markets in terms of the total beer_floz of MILLER LITE. -Find the top 5 markets in terms of the total beer_floz of NATURAL LIGHT.\n\nQ1a1 <- beer_mkts %>% \n   group_by(market) %>% \n   summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n   arrange(-beer_floz_tot) %>% \n   slice(1:5)\n\nQ1a_bud <- beer_mkts %>% \n  filter(brand == \"BUD LIGHT\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)\n\nQ1a_busch <- beer_mkts %>% \n  filter(brand == \"BUSCH LIGHT\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)\n\nQ1a_coors <- beer_mkts %>% \n  filter(brand == \"COORS LIGHT\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)\n\nQ1a_miller <- beer_mkts %>% \n  filter(brand == \"MILLER LITE\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)\n\nQ1a_natural <- beer_mkts %>% \n  filter(brand == \"NATURAL LIGHT\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)"
-  },
-  {
-    "objectID": "posts/Beer Markets /beer-markets.html#q1b",
-    "href": "posts/Beer Markets /beer-markets.html#q1b",
-    "title": "Beer Markets",
-    "section": "Q1b🍻",
-    "text": "Q1b🍻\n-For households that purchased BUD LIGHT at least once, what fraction of households did purchase only BUD LIGHT?\n-For households that purchased BUSCH LIGHT at least once, what fraction of households did purchase only BUSCH LIGHT?\n-For households that purchased COORS LIGHT at least once, what fraction of households did purchase only COORS LIGHT?\n-For households that purchased MILLER LITE at least once, what fraction of households did purchase only MILLER LITE?\n-For households that purchased NATURAL LIGHT at least once, what fraction of households did purchase only NATURAL LIGHT?\n-Which beer brand does have the largest proportion of such loyal consumers?\n\nq1b <- beer_mkts %>% \n  mutate(bud = ifelse(brand==\"BUD LIGHT\", 1, 0), # 1 if brand==\"BUD LIGHT\"; 0 otherwise\n         busch = ifelse(brand==\"BUSCH LIGHT\", 1, 0),\n         coors = ifelse(brand==\"COORS LIGHT\", 1, 0),\n         miller = ifelse(brand==\"MILLER LITE\", 1, 0),\n         natural = ifelse(brand==\"NATURAL LIGHT\", 1, 0),\n         .after = hh) %>% \n  select(hh:natural) %>%  # select the variables we need\n  group_by(hh) %>% \n  summarise(n_transactions = n(), # number of beer transactions for each hh\n            n_bud = sum(bud), # number of BUD LIGHT transactions for each hh\n            n_busch = sum(busch), \n            n_coors = sum(coors), \n            n_miller = sum(miller), \n            n_natural = sum(natural) \n  ) %>% \n  summarise(loyal_bud = sum(n_transactions == n_bud) / sum(n_bud > 0), \n              # sum(n_transactions == n_bud) : the number of households that purchased BUD LIGHT only\n              # sum(n_bud > 0) : the number of households that purchased BUD LIGHT at least once.\n            loyal_busch = sum(n_transactions == n_busch) / sum(n_busch > 0),\n            loyal_coors = sum(n_transactions == n_coors) / sum(n_coors > 0),\n            loyal_miller = sum(n_transactions == n_miller) / sum(n_miller > 0),\n            loyal_natural = sum(n_transactions == n_natural) / sum(n_natural > 0)\n  )\n\nq1b\n\n# A tibble: 1 × 5\n  loyal_bud loyal_busch loyal_coors loyal_miller loyal_natural\n      <dbl>       <dbl>       <dbl>        <dbl>         <dbl>\n1     0.660       0.473       0.639        0.631         0.510"
-  },
-  {
-    "objectID": "posts/Beer Markets /beer-markets.html#q1c",
-    "href": "posts/Beer Markets /beer-markets.html#q1c",
-    "title": "Beer Markets",
-    "section": "Q1c 🍻",
-    "text": "Q1c 🍻\n-For each household, calculate the number of beer transactions. -For each household, calculate the proportion of each beer brand choice.\n\nq1c <- beer_mkts %>% \n  count(hh, brand) %>% \n  group_by(hh) %>% \n  mutate(n_tot = sum(n)) %>%  \n  arrange(hh, brand) %>% \n  mutate( prop = n / n_tot ) \n\nq1c\n\n# A tibble: 13,202 × 5\n# Groups:   hh [10,408]\n        hh brand           n n_tot  prop\n     <int> <chr>       <int> <int> <dbl>\n 1 2000235 BUD LIGHT       1     1 1    \n 2 2000417 COORS LIGHT     8     8 1    \n 3 2000711 COORS LIGHT    13    13 1    \n 4 2000946 BUD LIGHT       1     2 0.5  \n 5 2000946 MILLER LITE     1     2 0.5  \n 6 2001521 BUD LIGHT       6    11 0.545\n 7 2001521 COORS LIGHT     3    11 0.273\n 8 2001521 MILLER LITE     2    11 0.182\n 9 2001531 BUSCH LIGHT     1     1 1    \n10 2001581 BUSCH LIGHT     5     5 1    \n# ℹ 13,192 more rows"
+    "objectID": "posts/Spotify all/spotifyall.html",
+    "href": "posts/Spotify all/spotifyall.html",
+    "title": "Spotify All",
+    "section": "",
+    "text": "For Question 1, run the following R command to read the CSV file, spotify_all.csv as data.frame, spotify_all:\n\nlibrary(tidyverse)\nlibrary(skimr)\n\n\nspotify_all <- read.csv('https://bcdanl.github.io/data/spotify_all.csv')\n\n\nrmarkdown::paged_table(spotify_all)\n\n\n\n  \n\n\n\nThe data.frame spotify_all includes information about Spotify users' playlists.\n\nThe unit of observation in spotify_all is a track in a music playlist. 🎶"
   },
   {
     "objectID": "posts/Spotify all/spotifyall.html#q1a",
@@ -208,5 +110,89 @@
     "title": "Spotify All",
     "section": "Q1d 🎵",
     "text": "Q1d 🎵\nCreate the data.frame with pid-artist level of observations with the following four variables:\n\npid: playlist id\nplaylist_name: name of playlist\nartist: name of the track's primary artist, which appears only once within a playlist\nn_artist: number of occurrences of artist within a playlist\n\n\nQ1d <- spotify_all %>% \n  count(pid, playlist_name, artist_name) %>% \n  rename(n_artist = n) %>% \n  arrange(pid, -n_artist, artist_name)\n\n\nrmarkdown::paged_table(Q1d)"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "Thanks for tuning into my project! My blogs break down several data frames. Currently you are on my welcome post. The other blogs are Beer Markets, Spotify, Restaurants, and NFL in 2022.\nDuring free time I like to hangout with friends. Other hobbies include lifting, playing lacrosse, skiing, and going on hikes.\nI hope you enjoy my website."
+  },
+  {
+    "objectID": "posts/Beer Markets /beer-markets.html",
+    "href": "posts/Beer Markets /beer-markets.html",
+    "title": "Beer Markets",
+    "section": "",
+    "text": "For Question 1, run the following R command to read the beer market data.\n\nlibrary(tidyverse)\nlibrary(skimr)\n\n\nbeer_mkts <- read.csv('https://bcdanl.github.io/data/beer_markets.csv')\n\n\nrmarkdown::paged_table(beer_mkts)\n\n\n\n  \n\n\n\n-Each observation in beer_mkts is a household-level transaction record for a purchase of beer."
+  },
+  {
+    "objectID": "posts/Beer Markets /beer-markets.html#q1a",
+    "href": "posts/Beer Markets /beer-markets.html#q1a",
+    "title": "Beer Markets",
+    "section": "Q1a",
+    "text": "Q1a\n-Find the top 5 markets in terms of the total beer_floz. -Find the top 5 markets in terms of the total beer_floz of BUD LIGHT. -Find the top 5 markets in terms of the total beer_floz of BUSCH LIGHT. -Find the top 5 markets in terms of the total beer_floz of COORS LIGHT. -Find the top 5 markets in terms of the total beer_floz of MILLER LITE. -Find the top 5 markets in terms of the total beer_floz of NATURAL LIGHT.\n\nQ1a1 <- beer_mkts %>% \n   group_by(market) %>% \n   summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n   arrange(-beer_floz_tot) %>% \n   slice(1:5)\n\nQ1a_bud <- beer_mkts %>% \n  filter(brand == \"BUD LIGHT\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)\n\nQ1a_busch <- beer_mkts %>% \n  filter(brand == \"BUSCH LIGHT\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)\n\nQ1a_coors <- beer_mkts %>% \n  filter(brand == \"COORS LIGHT\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)\n\nQ1a_miller <- beer_mkts %>% \n  filter(brand == \"MILLER LITE\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)\n\nQ1a_natural <- beer_mkts %>% \n  filter(brand == \"NATURAL LIGHT\") %>% \n  group_by(market) %>% \n  summarize(beer_floz_tot = sum(beer_floz, na.rm = T)) %>% \n  arrange(-beer_floz_tot) %>% \n  slice(1:5)"
+  },
+  {
+    "objectID": "posts/Beer Markets /beer-markets.html#q1b",
+    "href": "posts/Beer Markets /beer-markets.html#q1b",
+    "title": "Beer Markets",
+    "section": "Q1b🍻",
+    "text": "Q1b🍻\n-For households that purchased BUD LIGHT at least once, what fraction of households did purchase only BUD LIGHT?\n-For households that purchased BUSCH LIGHT at least once, what fraction of households did purchase only BUSCH LIGHT?\n-For households that purchased COORS LIGHT at least once, what fraction of households did purchase only COORS LIGHT?\n-For households that purchased MILLER LITE at least once, what fraction of households did purchase only MILLER LITE?\n-For households that purchased NATURAL LIGHT at least once, what fraction of households did purchase only NATURAL LIGHT?\n-Which beer brand does have the largest proportion of such loyal consumers?\n\nq1b <- beer_mkts %>% \n  mutate(bud = ifelse(brand==\"BUD LIGHT\", 1, 0), # 1 if brand==\"BUD LIGHT\"; 0 otherwise\n         busch = ifelse(brand==\"BUSCH LIGHT\", 1, 0),\n         coors = ifelse(brand==\"COORS LIGHT\", 1, 0),\n         miller = ifelse(brand==\"MILLER LITE\", 1, 0),\n         natural = ifelse(brand==\"NATURAL LIGHT\", 1, 0),\n         .after = hh) %>% \n  select(hh:natural) %>%  # select the variables we need\n  group_by(hh) %>% \n  summarise(n_transactions = n(), # number of beer transactions for each hh\n            n_bud = sum(bud), # number of BUD LIGHT transactions for each hh\n            n_busch = sum(busch), \n            n_coors = sum(coors), \n            n_miller = sum(miller), \n            n_natural = sum(natural) \n  ) %>% \n  summarise(loyal_bud = sum(n_transactions == n_bud) / sum(n_bud > 0), \n              # sum(n_transactions == n_bud) : the number of households that purchased BUD LIGHT only\n              # sum(n_bud > 0) : the number of households that purchased BUD LIGHT at least once.\n            loyal_busch = sum(n_transactions == n_busch) / sum(n_busch > 0),\n            loyal_coors = sum(n_transactions == n_coors) / sum(n_coors > 0),\n            loyal_miller = sum(n_transactions == n_miller) / sum(n_miller > 0),\n            loyal_natural = sum(n_transactions == n_natural) / sum(n_natural > 0)\n  )\n\nq1b\n\n# A tibble: 1 × 5\n  loyal_bud loyal_busch loyal_coors loyal_miller loyal_natural\n      <dbl>       <dbl>       <dbl>        <dbl>         <dbl>\n1     0.660       0.473       0.639        0.631         0.510"
+  },
+  {
+    "objectID": "posts/Beer Markets /beer-markets.html#q1c",
+    "href": "posts/Beer Markets /beer-markets.html#q1c",
+    "title": "Beer Markets",
+    "section": "Q1c 🍻",
+    "text": "Q1c 🍻\n-For each household, calculate the number of beer transactions. -For each household, calculate the proportion of each beer brand choice.\n\nq1c <- beer_mkts %>% \n  count(hh, brand) %>% \n  group_by(hh) %>% \n  mutate(n_tot = sum(n)) %>%  \n  arrange(hh, brand) %>% \n  mutate( prop = n / n_tot ) \n\nq1c\n\n# A tibble: 13,202 × 5\n# Groups:   hh [10,408]\n        hh brand           n n_tot  prop\n     <int> <chr>       <int> <int> <dbl>\n 1 2000235 BUD LIGHT       1     1 1    \n 2 2000417 COORS LIGHT     8     8 1    \n 3 2000711 COORS LIGHT    13    13 1    \n 4 2000946 BUD LIGHT       1     2 0.5  \n 5 2000946 MILLER LITE     1     2 0.5  \n 6 2001521 BUD LIGHT       6    11 0.545\n 7 2001521 COORS LIGHT     3    11 0.273\n 8 2001521 MILLER LITE     2    11 0.182\n 9 2001531 BUSCH LIGHT     1     1 1    \n10 2001581 BUSCH LIGHT     5     5 1    \n# ℹ 13,192 more rows"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Jake Starkey",
+    "section": "",
+    "text": "Jake Starkey majors in Data Analytics. Outside of school, Jake plays lacrosse and loves the outdoors. At home he enjoys surfing anytime there is a wave"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Jake Starkey",
+    "section": "Education",
+    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  Major in Data Analytics | Aug 2022 - May 2026"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Jake Starkey",
+    "section": "Experience",
+    "text": "Experience\nStudent | August 2022 - May 2026"
+  },
+  {
+    "objectID": "blog-listing.html",
+    "href": "blog-listing.html",
+    "title": "Jake Starkeys blog",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n7 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nJake Starkey\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nJake Starkey\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "DANL Project",
+    "section": "",
+    "text": "##1 Introduction\nAbout this project 👏 Welcome to our project, where we dive into the dynamic world of professional basketball through the lens of salaries and performance statisics. We will analyize a dataset with NBA player salaries and stats from the 2022-2023 season."
+  },
+  {
+    "objectID": "project.html#data",
+    "href": "project.html#data",
+    "title": "DANL Project",
+    "section": "0.1 2 Data",
+    "text": "0.1 2 Data\nThe data.frame NBAsal contains a data from the 2022-2023 NBA season. It contains player per-game and advanced statistics for that season with player salary data. This allows us to create a comprehensive resource for understanding the performance and financial aspects of professional basketball players."
+  },
+  {
+    "objectID": "project.html#conclusion",
+    "href": "project.html#conclusion",
+    "title": "DANL Project",
+    "section": "5.1 Conclusion 🏅🏀👟",
+    "text": "5.1 Conclusion 🏅🏀👟\n-Our exploration of NBA player salaries and performance unveiled key insights, emphasizing the pivotal role of scoring in determining player value.\n-Efficient players like Zion Williamson and Kevin Durant, with high field goal percentages, stood out.\n-Analyzing minutes played and turnovers for the top 10 players highlighted patterns, revealing challenges for primary ball handlers and consistency among players like Devin Booker and Donovan Mitchell."
   }
 ]

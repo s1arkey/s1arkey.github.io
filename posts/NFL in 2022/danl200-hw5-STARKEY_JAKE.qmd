@@ -1,5 +1,5 @@
 ---
-title: "NFL 2022" 
+title: "NFL 2022"
 author: "Jake Starkey"
 date: "2023-11-02"
 categories: [NFL]

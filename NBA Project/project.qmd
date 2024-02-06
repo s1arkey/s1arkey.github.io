@@ -2,11 +2,11 @@
 title: DANL Project
 subtitle: "Data-Driven Mastery: Unlocking Business Potential"
 author: 
-  - Name Jake Starkey
-  - Name Owen Ellick
-  - Name Luca Schitino
-  - Name Jack Helrigl
-  - Name 5
+  - Jake Starkey
+  - Owen Ellick
+  - Luca Schitino
+  - Jack Helrigl
+
 
 toc: true
 toc-title: "Table of Contents"
@@ -45,7 +45,7 @@ theme_set(theme_ipsum()+
 
 
 
-# Introduction
+##  Introduction
 
 About this project :clap:
 Welcome to our project, where we dive into the dynamic world of professional basketball through the lens of salaries and performance statisics. We will analyize a dataset with NBA player salaries and stats from the 2022-2023 season.

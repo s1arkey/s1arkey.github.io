@@ -2,16 +2,16 @@
   {
     "objectID": "NBA Project/project.html",
     "href": "NBA Project/project.html",
-    "title": "DANL Project",
+    "title": "Jake Starkey",
     "section": "",
-    "text": "About this project 👏 Welcome to our project, where we dive into the dynamic world of professional basketball through the lens of salaries and performance statisics. We will analyize a dataset with NBA player salaries and stats from the 2022-2023 season.\n\nlibrary(tidyverse)\nlibrary(skimr)"
+    "text": "About this project :clap: Welcome to our project, where we dive into the dynamic world of professional basketball through the lens of salaries and performance statisics. We will analyize a dataset with NBA player salaries and stats from the 2022-2023 season.\n\nlibrary(tidyverse)\nlibrary(skimr)"
   },
   {
     "objectID": "NBA Project/project.html#mpg-and-a-type-of-cars",
     "href": "NBA Project/project.html#mpg-and-a-type-of-cars",
-    "title": "DANL Project",
-    "section": "3.1 MPG and a Type of Cars",
-    "text": "3.1 MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) 🚙 🚚 🚐.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
+    "title": "Jake Starkey",
+    "section": "MPG and a Type of Cars",
+    "text": "MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) :blue_car: :truck: :minibus:.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
   },
   {
     "objectID": "posts/Restaurant/Restaurant.html",

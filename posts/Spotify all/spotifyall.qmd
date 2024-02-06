@@ -27,7 +27,7 @@ spotify_all <- read.csv('https://bcdanl.github.io/data/spotify_all.csv')
 rmarkdown::paged_table(spotify_all)
 ```
 
-The data.frame spotify_all includes information about Spotify users\' playlists.
+The data.frame spotify_all includes information about Spotify users' playlists.
 
 -   The unit of observation in spotify_all is a track in a music playlist. 🎶
 
@@ -105,7 +105,7 @@ ggplot(Q1c) +
 
 -   All are skewed right.
 
-    -   Users tend to locate these popular artists\' songs early in their playlist.
+    -   Users tend to locate these popular artists' songs early in their playlist.
 
 -   The distribution of pos does not seem to vary a lot across the ten most popular artists.
 
@@ -119,7 +119,7 @@ Create the data.frame with pid-artist level of observations with the following f
 
 -   playlist_name: name of playlist
 
--   artist: name of the track\'s primary artist, which appears only once within a playlist
+-   artist: name of the track's primary artist, which appears only once within a playlist
 
 -   n_artist: number of occurrences of artist within a playlist
 

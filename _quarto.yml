@@ -11,7 +11,7 @@ website:
         href: project.qmd
       - text: Blog
         href: blog-listing.qmd
-        text: Python Data Analysis
+      - text: Python Data Analysis
         menu: 
           - text: Python Basics with ipynb
             href: basic-python-intro.ipynb

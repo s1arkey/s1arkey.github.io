@@ -1,0 +1,180 @@
+---
+title: "Python Basics "
+author: "Jake Starkey"
+date: "2023-11-02"
+categories: [ code, data-analysis]
+image: "Unknown.jpeg"
+execute: 
+  warning: false
+  message: false
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+## Variables Are Names, Not Places
+
+*A value is datum (literal) such as a number or text
+
+*There are different types of values:
+
+*352.3 is known as a float or double;
+
+*22 is an integer;
+
+*"Hello World!" is a string.
+
+```{python}
+list_example =  [10, 1.23, "like this", True, None]
+print(list_example)
+type(list_example)
+```
+
+\[10, 1.23, 'like this', True, None\]
+
+*The most.
+basic built-in data types that we'll need to know about are: integers, 10 floats, 1.23 strings, "like this" booleans, True nothing, None
+
+*Python also has a built-in type of data container called a list (ex. \[10,15,20\]) that can contain anything, even different types
+
+##Values, Variables, and Types
+
+```{python}
+a = 10
+print(a)
+```
+
+*A variable is a name that refers to a value.
+
+**We can think of a variable as a box that has a value, or multiple values, packed inside it A variable is just a name!
+
+*Sometimes you will hear variables referred to as objects.
+
+*Everything that is not a literal value, such as 10, is an object
+
+##Assignment (=)
+
+```{python}
+# Here we assign the integer value 5 to the variable x.
+x = 5   
+
+# Now we can use the variable x in the next line.
+y = x + 12  
+y
+```
+
+*In Python, we use = to assign a value to a variable 
+
+*In math, = means equality of both sides 
+
+*In programs, = means assignment: assign the value on the right side to the variable on the left side.
+
+*In programming code, everything on the right side needs to have a value.
+
+*The right side can be a literal value, or a variable that has already been assigned a value, or a combination.
+
+*When Python reads y= x + 12, it does the following: Sees the = in the middle.Knows that this is an assignment.
+
+*Calculates the right side (gets the value of the object referred to by x and adds it to 12).
+
+*Assigns the result to the left-side variable, y.
+
+##Code and Comment Style
+
+*The two main principles for coding and managing data are:
+**Make things easier for your future self.
+**Don't trust your future self.
+
+*The # mark is Google Colab's comment character 
+**The # character has many names: hash, sharp, pound, or octothorpe.
+**The \# indicates that the rest of the line is to be ignored.
+**Write comments before the line that you want the comment to apply to.
+
+*Consider adding more comments on code cells and their results using text cells.
+
+##Brackets 
+*There are several kinds of brackets in Python, including \[\], {}, and ().
+
+```{python}
+vector = ['a', 'b']
+vector[0]
+```
+
+*[] is used to denote a list or to signify accessing a position using an index
+
+
+```{python}
+{'a', 'b'}  # set
+{'first_letter': 'a', 'second_letter': 'b'}  # dictionary
+```
+{'first_letter': 'a', 'second_letter': 'b'}
+{} is used to denote a set or a dictionary (with key-value pairs)
+
+
+*() is used to denote
+**a tuple, or
+**the arguments to a function, ex. function(x) where x is the input passed to the function
+##Q1
+```{python}
+(2**5/(7*(4-2**3)))
+```
+##Q2
+```{python}
+20 == '20'
+```
+*This is saying 20 is not equal to ‘20’ because they are different data types (int vs string)
+```{python}
+x = 4.0
+y = .5
+z = 3*y - x
+
+x < y or 3*y < x
+```
+True
+  *This says the expression is true since 3*.5 < 4
+  
+##Q3
+```{python}
+fare = "$10.00"
+tip = "2.00$"
+tax = "$ 0.80"
+```
+Write a Python code that uses slicing and the print() function to print out the following message:
+
+The total trip cost is: $12.80
+
+```{python}
+total =fare = "$10.00"
+tip = "2.00$"
+tax = "$ 0.80"
+total = fare[0:2] + tip[0] + tax[3:6]
+print("The total trip cost is:", total)
+
+#The total trip cost is: $12.80The total trip cost is:", total)
+```
+##Q4
+```{python}
+list_variable = [100, 144, 169, 1000, 8]
+```
+Write a Python code that uses print() and max() functions to print out the largest value in the list, list_variable, as follows:
+
+The largest value in the list is: 1000
+```{python}
+list_variable = [100,144,169,1000,8]
+x =max(list_variable)
+print('The largest value in the list is:',x)
+
+#The largest value in the list is: 1000
+```
+The largest value in the list is: 1000
+##Q5
+*Import the pandas library as pd.
+*Install the itables package.
+*From itables, import the function init_notebook_mode and show.
+```{python}
+import pandas as pd
+!pip install itables
+from itables import init_notebook_mode
+from itables import show
+```
+

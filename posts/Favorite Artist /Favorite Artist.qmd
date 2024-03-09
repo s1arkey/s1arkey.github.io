@@ -1,0 +1,143 @@
+---
+title: "Favorite Artist"
+author: "Jake Starkey"
+date: "2024-03-06"
+categories: [ code, data-analysis]
+image: "Unknown.jpeg"
+execute: 
+  warning: false
+  message: false
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+## Favorite Artist 
+
+The purpose of this blog is to give reader’s insight into my favorite artist’s within the Spotify DataFrame
+
+Below is the spotify DataFrame that reads the file spotify_all.csv containing data of Spotify users’ playlist information (Source: Spotify Million Playlist Dataset Challenge)..
+
+```{python}
+import pandas as pd
+spotify = pd.read_csv('https://bcdanl.github.io/data/spotify_all.csv')
+spotify
+```
+
+# Variable Description 
+
+- pid: playlist ID; unique ID for playlist
+- playlist_name: a name of playlist
+- pos: a position of the track within a playlist (starting from 0)
+- artist_name: name of the track’s primary artist
+- track_name: name of the track
+- duration_ms: duration of the track in milliseconds
+- album_name: name of the track’s album
+## Occurances
+
+```{python}
+artist_count = spotify['artist_name'].value_counts()
+artist_count
+```
+
+- The above code counts the occurences of each artist
+as you can see, Kanye West appears the most in playlists and he is my favorite artist.
+
+## Favorite Artist Data Frame 
+
+```{python}
+favorite_artists = spotify[spotify['artist_name'].isin(['Kanye West', '21 Savage','Drake'])]
+favorite_artists
+```
+
+-  The above code filters the DataFrame to show only the songs by my three favorite artists: Drake, Kanye West, and 21 Savage
+
+
+
+
+##Brackets 
+*There are several kinds of brackets in Python, including \[\], {}, and ().
+
+```{python}
+vector = ['a', 'b']
+vector[0]
+```
+
+*[] is used to denote a list or to signify accessing a position using an index
+
+
+```{python}
+{'a', 'b'}  # set
+{'first_letter': 'a', 'second_letter': 'b'}  # dictionary
+```
+{'first_letter': 'a', 'second_letter': 'b'}
+{} is used to denote a set or a dictionary (with key-value pairs)
+
+
+*() is used to denote
+**a tuple, or
+**the arguments to a function, ex. function(x) where x is the input passed to the function
+##Q1
+```{python}
+(2**5/(7*(4-2**3)))
+```
+##Q2
+```{python}
+20 == '20'
+```
+*This is saying 20 is not equal to ‘20’ because they are different data types (int vs string)
+```{python}
+x = 4.0
+y = .5
+z = 3*y - x
+
+x < y or 3*y < x
+```
+True
+  *This says the expression is true since 3*.5 < 4
+  
+##Q3
+```{python}
+fare = "$10.00"
+tip = "2.00$"
+tax = "$ 0.80"
+```
+Write a Python code that uses slicing and the print() function to print out the following message:
+
+The total trip cost is: $12.80
+
+```{python}
+total =fare = "$10.00"
+tip = "2.00$"
+tax = "$ 0.80"
+total = fare[0:2] + tip[0] + tax[3:6]
+print("The total trip cost is:", total)
+
+#The total trip cost is: $12.80The total trip cost is:", total)
+```
+##Q4
+```{python}
+list_variable = [100, 144, 169, 1000, 8]
+```
+Write a Python code that uses print() and max() functions to print out the largest value in the list, list_variable, as follows:
+
+The largest value in the list is: 1000
+```{python}
+list_variable = [100,144,169,1000,8]
+x =max(list_variable)
+print('The largest value in the list is:',x)
+
+#The largest value in the list is: 1000
+```
+The largest value in the list is: 1000
+##Q5
+*Import the pandas library as pd.
+*Install the itables package.
+*From itables, import the function init_notebook_mode and show.
+```{python}
+import pandas as pd
+!pip install itables
+from itables import init_notebook_mode
+from itables import show
+```
+

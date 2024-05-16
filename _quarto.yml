@@ -6,7 +6,9 @@ website:
   title: "Jake Starkey"
   navbar:
     pinned: true
-    left:
+    left: 
+      - text: Danl_210_prject
+        href: Danl_210_project.qmd
       - text: Project
         href: project.qmd
       - text: Blog

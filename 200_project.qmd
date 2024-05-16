@@ -1,0 +1,157 @@
+---
+title: DANL Project
+subtitle: "Data-Driven Mastery: Unlocking Business Potential"
+author: 
+  - Name Jake Starkey
+  - Name Owen Ellick
+  - Name Luca Schitino
+  - Name Jack Helrigl
+  - Name 5
+
+toc: true
+toc-title: "Table of Contents"
+toc-depth: 2
+number-sections: true
+
+fig-width: 9
+
+execute:
+  code-tools: true
+  message: false
+  warning: false
+
+from: markdown+emoji
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(skimr)
+library(ggthemes)
+library(hrbrthemes)
+
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="lightgray"),
+                axis.title.x = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(10,0,0,0)),
+                axis.title.y = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(0,10,0,0))
+                )
+          )
+```
+
+##1 Introduction
+
+About this project :clap: Welcome to our project, where we dive into the dynamic world of professional basketball through the lens of salaries and performance statisics. We will analyize a dataset with NBA player salaries and stats from the 2022-2023 season.
+
+```{r}
+library(tidyverse)
+library(skimr)
+```
+
+## 2 Data
+
+The data.frame NBAsal contains a data from the 2022-2023 NBA season. It contains player per-game and advanced statistics for that season with player salary data. This allows us to create a comprehensive resource for understanding the performance and financial aspects of professional basketball players.
+
+# Summary Statistics
+
+```{r}
+NBAsal <- read_csv("nba_salaries.csv")
+```
+
+```{r}
+skim(NBAsal)%>%
+  select(-n_missing)
+```
+
+# 2.2 Top Players and Points Per Game :basketball:
+
+The following shows the top 10 players during the NBA 2022-2023 season based on the number of points per game.
+
+```{r}
+top_10_players <- NBAsal %>% 
+  group_by(PTS) %>% 
+  arrange(desc(PTS)) %>% 
+  head(10) %>% 
+  relocate(PTS,.before = Position)
+  
+top_10_players
+```
+
+Comments:
+
+Joel Embiid, Damian Lillard, Shai Gilgeous-Alexander, Giannis Antetokounmpo, Jayson Tatum, Stephen Curry, Kevin Durant, Lebron James, Donovan Mitchell, and Devin Booker are the top 10 players based on points per game for the 2022-2023 NBA season
+
+# 2.3 Points Per Game and Salary :bouncing_ball_man:
+
+Provide both ggplot codes and a couple of sentences to describe the relationship between salary and points per game.
+
+```{r}
+ggplot(NBAsal, aes(x= PTS, y= Salary))+
+  geom_point()+
+  geom_smooth(method = "lm", se = FALSE, color = "blue")
+```
+
+Comments:
+
+The plot above shows us that during 2022-2023 season players that had a higher average points per game generally had a higher salary than players that had a lower average points per game.
+
+This implies that players that score more points per game are generally considered more valuable to a franchise which is why they are paid more.
+
+# 2.4 Top FG% :bouncing_ball_man:
+
+Find the ten highest FG% Values of players who have attmpted more than 15 Field Goal Attempts per game
+
+FG% is the ratio of field goals made to field goals attempted Generally a higher field goal percentage denotes higher efficiency. A FG% of .500 (50%) or above is considered a good percentage, although it depends on the position. Who are the players for those top 10 FG% values?
+
+```{r}
+top_FG_Percentage <- NBAsal %>% 
+  group_by(`FG%`) %>%
+  filter(FGA > 15) %>% 
+  arrange(desc(`FG%`)) %>% 
+  head(10) %>% 
+  relocate(`FG%`, .before = Position) %>% 
+  relocate(FGA, .before = Position)
+
+top_FG_Percentage
+```
+
+Comments:
+
+-   Zion Williamson, Anthony Davis, Kevin Durant, Giannis Antetokounmpo, Joel Embiid, Kawhi Leonard, De'Aaron Fox, Shai Gilgeous-Alexander, Bradley Beal, Demar DeRozan have the highest FG% for players with more than 15 attempts per game.
+
+-   All these players have a FG% above a .50 which means they are considered highly efficient
+
+# 2.5 MP (minutes per game) Vs TOV (turnovers)
+
+Provide both ggplot codes and a couple of sentences to describe the relationship between Minutes Played Per Game and Turnovers for the top 10 players based on Points Per Game.
+
+```{r}
+ggplot(top_10_players, aes(x= MP, y= TOV))+
+  geom_point()+
+  geom_smooth(method = "lm", se = FALSE, color = "blue")+
+  facet_wrap(~`Player Name`, ncol = 2)
+
+```
+
+Comments:
+
+-Giannis Antetokounmpo played the least amount of minutes per game, but had the most turnovers per game. This makes sense as Giannis is the primary ball handler for his team, therfore there is more opportunity for him to turnover the ball
+
+=Devin Booker, Donovan Mitchell, Jayson Tatum, and Shai Gilgeous-Alexander all play around 35-37 minutes per game and turnover the ball the least out of those 10 players
+
+-Stephen Curry, Lebron James, and Kevin Durant all play similar minutes and turnover the ball at a similar rate
+
+--They are all older in age and play similar minutes due to load management. They turnover the ball at an almost identical rate per game.
+
+## Conclusion 🏅🏀👟
+
+-Our exploration of NBA player salaries and performance unveiled key insights, emphasizing the pivotal role of scoring in determining player value.
+
+-Efficient players like Zion Williamson and Kevin Durant, with high field goal percentages, stood out.
+
+-Analyzing minutes played and turnovers for the top 10 players highlighted patterns, revealing challenges for primary ball handlers and consistency among players like Devin Booker and Donovan Mitchell.

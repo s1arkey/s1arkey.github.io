@@ -7,18 +7,18 @@ website:
   navbar:
     pinned: true
     left: 
-      - text: Danl_210_prject
-        href: Danl_210_project.qmd
+     # - text: Danl_210_prject
+        #href: Danl_210_project.qmd
       - text: Project
         href: project.qmd
       - text: Blog
         href: blog-listing.qmd
-      - text: Python Data Analysis
-        menu: 
-          - text: Python Basics with ipynb
-            href: basic-python-intro.ipynb
-          - text: Python Basics with qmd
-            href: danl-210-quarto-py-only.qmd
+      #- text: Python Data Analysis
+       # menu: 
+        #  - text: Python Basics with ipynb
+          #  href: basic-python-intro.ipynb
+         # - text: Python Basics with qmd
+          #  href: danl-210-quarto-py-only.qmd
 
   page-footer: 
     center: "Powered with GitHub and Quarto<br>©Jake Starkey, 2023"

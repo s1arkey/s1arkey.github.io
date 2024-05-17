@@ -22,6 +22,7 @@ execute:
 
 from: markdown+emoji
 ---
+
 ```{r setup}
 #| include: false
 library(tidyverse)
@@ -43,25 +44,18 @@ theme_set(theme_ipsum()+
           )
 ```
 
+## Introduction
 
-
-##  Introduction
-
-About this project :clap:
-Welcome to our project, where we dive into the dynamic world of professional basketball through the lens of salaries and performance statisics. We will analyize a dataset with NBA player salaries and stats from the 2022-2023 season.
+About this project :clap: Welcome to our project, where we dive into the dynamic world of professional basketball through the lens of salaries and performance statisics. We will analyize a dataset with NBA player salaries and stats from the 2022-2023 season.
 
 ```{r}
 library(tidyverse)
 library(skimr)
 ```
 
-
 # Data
 
-
-
-
-# Summary Statistics  
+# Summary Statistics
 
 ```{r}
 NBAsal <- read_csv("nba_salaries.csv")
@@ -72,16 +66,14 @@ skim(NBAsal)%>%
   select(-n_missing)
 ```
 
-
 ```{r}
 skim(mpg) %>% 
   select(-n_missing)
 ```
 
-
 ## MPG and a Type of Cars
-The following boxplot shows how the distribution of highway MPG (`hwy`) varies by a type of cars (`class`) :blue_car: :truck: :minibus:.
 
+The following boxplot shows how the distribution of highway MPG (`hwy`) varies by a type of cars (`class`) :blue_car: :truck: :minibus:.
 
 ```{r}
 ggplot(data = mpg) +
@@ -89,5 +81,3 @@ ggplot(data = mpg) +
                show.legend = F) +
   labs(x = "Class", y = "Highway\nMPG") 
 ```
-
-

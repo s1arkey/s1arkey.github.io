@@ -4,6 +4,7 @@ subtitle: "Data-Driven Mastery: Unlocking Business Potential"
 author: Jake Starkey
   - Name Jake Starkey
   - Name Owen Ellick
+  - Name Dylan Thody
 
 
 toc: true
@@ -20,132 +21,210 @@ execute:
 
 from: markdown+emoji
 ---
-##Analyzing ESG and Financial Data for Investment Decision Making
+
+## Analyzing ESG and Financial Data for Investment Decision Making
 
 ```{python}
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-esg_df = pd.read_csv('yfinance-balance-sheet.csv')
+balance_sheet = pd.read_csv('yfinance-balance-sheet.csv')
 stock_data = pd.read_csv('yfinance-history.csv')
-
-merged_df = pd.merge(esg_df, stock_data, on='symbol')
+esg_proj_data = pd.read_csv('esg_proj_data.csv')
 
 ```
 
-##1 Introduction
+## 1 Introduction
 
- ESG(Environmental, Social, and Governance) factors are increasingly being considered by investors for making informed investment decisions. Understanding the relationship between ESG metrics and financial performance can provide valuable insights into a company's sustainability and long-term viability.
- 
- This project aims to analyze the relationship between ESG metrics and financial/accounting data to identify any correlations and trends that may exist. By doing so, we seek to provide investors with a better understanding of how ESG factors impact financial performance and assist them in making more sustainable investment decisions.
+ESG(Environmental, Social, and Governance) factors are increasingly being considered by investors for making informed investment decisions. Understanding the relationship between ESG metrics and financial performance can provide valuable insights into a company's sustainability and long-term viability.
 
-The project utilizes Python scripts to collect financial, accounting, and ESG data. The financial and accounting data is obtained using the yfinance library, while Selenium is employed to gather ESG data from the Sustainability Section of company webpages on Yahoo! Finance.
+This project aims to analyze the relationship between ESG metrics and financial/accounting data to identify any correlations and trends that may exist. By doing so, we seek to provide investors with a better understanding of how ESG factors impact financial performance and assist them in making more sustainable investment decisions.
+
+The project utilizes Python scripts to collect financial, accounting, and ESG data. The financial and accounting data is obtained using the yfinance library, while Selenium is employed to gather ESG data from the Sustainability Section of company webpages on Yahoo! Finance. ##Descripted Statistics ##Ungrouped Statistics for Balance Sheets
 
 ```{python}
-esg_df.info()
-stock_data.info()
-```
 
-## Grouped and Un-grouped Descriptive Statistics
-
- We will provide summary statistics such as mean, median, standard deviation, and quartiles for both the ESG data and the financial/accounting data.
-
-# Summary Statistics
-
-```{r}
-NBAsal <- read_csv("nba_salaries.csv")
-```
-
-```{r}
-skim(NBAsal)%>%
-  select(-n_missing)
-```
-
-# 2.2 Top Players and Points Per Game :basketball:
-
-The following shows the top 10 players during the NBA 2022-2023 season based on the number of points per game.
-
-```{r}
-top_10_players <- NBAsal %>% 
-  group_by(PTS) %>% 
-  arrange(desc(PTS)) %>% 
-  head(10) %>% 
-  relocate(PTS,.before = Position)
-  
-top_10_players
-```
-
-Comments:
-
-Joel Embiid, Damian Lillard, Shai Gilgeous-Alexander, Giannis Antetokounmpo, Jayson Tatum, Stephen Curry, Kevin Durant, Lebron James, Donovan Mitchell, and Devin Booker are the top 10 players based on points per game for the 2022-2023 NBA season
-
-# 2.3 Points Per Game and Salary :bouncing_ball_man:
-
-Provide both ggplot codes and a couple of sentences to describe the relationship between salary and points per game.
-
-```{r}
-ggplot(NBAsal, aes(x= PTS, y= Salary))+
-  geom_point()+
-  geom_smooth(method = "lm", se = FALSE, color = "blue")
-```
-
-Comments:
-
-The plot above shows us that during 2022-2023 season players that had a higher average points per game generally had a higher salary than players that had a lower average points per game.
-
-This implies that players that score more points per game are generally considered more valuable to a franchise which is why they are paid more.
-
-# 2.4 Top FG% :bouncing_ball_man:
-
-Find the ten highest FG% Values of players who have attmpted more than 15 Field Goal Attempts per game
-
-FG% is the ratio of field goals made to field goals attempted Generally a higher field goal percentage denotes higher efficiency. A FG% of .500 (50%) or above is considered a good percentage, although it depends on the position. Who are the players for those top 10 FG% values?
-
-```{r}
-top_FG_Percentage <- NBAsal %>% 
-  group_by(`FG%`) %>%
-  filter(FGA > 15) %>% 
-  arrange(desc(`FG%`)) %>% 
-  head(10) %>% 
-  relocate(`FG%`, .before = Position) %>% 
-  relocate(FGA, .before = Position)
-
-top_FG_Percentage
-```
-
-Comments:
-
--   Zion Williamson, Anthony Davis, Kevin Durant, Giannis Antetokounmpo, Joel Embiid, Kawhi Leonard, De'Aaron Fox, Shai Gilgeous-Alexander, Bradley Beal, Demar DeRozan have the highest FG% for players with more than 15 attempts per game.
-
--   All these players have a FG% above a .50 which means they are considered highly efficient
-
-# 2.5 MP (minutes per game) Vs TOV (turnovers)
-
-Provide both ggplot codes and a couple of sentences to describe the relationship between Minutes Played Per Game and Turnovers for the top 10 players based on Points Per Game.
-
-```{r}
-ggplot(top_10_players, aes(x= MP, y= TOV))+
-  geom_point()+
-  geom_smooth(method = "lm", se = FALSE, color = "blue")+
-  facet_wrap(~`Player Name`, ncol = 2)
+print(balance_sheet.describe())
 
 ```
 
-Comments:
+# Grouped stats for balance sheets
 
--Giannis Antetokounmpo played the least amount of minutes per game, but had the most turnovers per game. This makes sense as Giannis is the primary ball handler for his team, therfore there is more opportunity for him to turnover the ball
+```{python}
 
-=Devin Booker, Donovan Mitchell, Jayson Tatum, and Shai Gilgeous-Alexander all play around 35-37 minutes per game and turnover the ball the least out of those 10 players
+balance_sheet[['Total Assets','Total Debt']].describe()
+```
 
--Stephen Curry, Lebron James, and Kevin Durant all play similar minutes and turnover the ball at a similar rate
+## Y-finance stats ungrouped
 
---They are all older in age and play similar minutes due to load management. They turnover the ball at an almost identical rate per game.
+```{python}
 
-## Conclusion 🏅🏀👟
+print(stock_data.describe())
+```
 
--Our exploration of NBA player salaries and performance unveiled key insights, emphasizing the pivotal role of scoring in determining player value.
+# Y-finance stats volume
 
--Efficient players like Zion Williamson and Kevin Durant, with high field goal percentages, stood out.
+```{python}
+stock_data['Volume'].describe()
+```
 
--Analyzing minutes played and turnovers for the top 10 players highlighted patterns, revealing challenges for primary ball handlers and consistency among players like Devin Booker and Donovan Mitchell.
+## ESG stats ungrouped
+
+```{python}
+
+print(esg_proj_data.describe())
+```
+
+# Grouped
+
+```{python}
+esg_proj_data['Total ESG Risk Score' ].describe()
+esg_proj_data['Controversy Level'].describe()
+```
+
+## Heatmap
+
+```{python}
+numeric_data = esg_proj_data.select_dtypes(include='number')
+corr_matrix = numeric_data.corr()
+plt.figure(figsize=(8, 6))
+
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5)
+
+
+plt.title('Correlation Heatmap with Varied Correlations')
+
+
+plt.show()
+```
+
+## Question 1
+
+What is the distribution of closing prices for each company?
+
+```{python}
+#stock_data = pd.read_csv('yfinance-history.csv')
+
+# Convert 'Date' column to datetime format
+#stock_data['Date'] = pd.to_datetime(stock_data['Date'])
+
+# Filter data for the last year
+#one_year_ago = pd.Timestamp.now() - pd.DateOffset(years=1)
+#filtered_data = stock_data[stock_data['Date'] >= one_year_ago]
+
+# Plot histogram for each company's closing prices
+#plt.figure(figsize=(12, 8))
+#sns.histplot(data=filtered_data, x='Close', h
+#hue='ticker_symbol', bins=20, kde=True)
+#plt.title('Distribution of Closing Prices for Each Company Over the Last Year')
+#plt.xlabel('Closing Price')
+#plt.ylabel('Frequency')
+#plt.legend(title='Company')
+#plt.show()
+
+#This block was having render issues hence the #
+```
+
+The graph reveals insights into the variability and central tendency of closing prices across different companies. Companies with narrower and taller peaks in their histograms exhibit closing prices concentrated around specific values, indicating less variability. Conversely, broader and flatter histograms suggest a wider range of closing prices and greater variability in stock performance.
+
+## Question 2
+
+Whats the distribution of ESG score? And Which factor of ESG tends to cause the most risk?
+
+```{python}
+def plot_distributions(df, title_prefix):
+    for col in df.select_dtypes(include=['float64', 'int64']).columns:
+        plt.figure(figsize=(10, 6))
+        sns.histplot(df[col].dropna(), bins=20, kde=True)
+        plt.title(f'Distribution of {title_prefix} {col}')
+        plt.xlabel(col)
+        plt.ylabel('Frequency')
+        plt.show()
+   
+
+# Plot distributions for ESG data
+plot_distributions(esg_proj_data, 'ESG Data')
+```
+
+By visually inspecting the histograms, we can understand the distribution of ESG scores. The Environmental aspect of ESG causes companys the most risk.\
+
+## Question 3
+
+Which companies how the worst controversy level?
+
+```{python}
+top_10_companies = esg_proj_data.sort_values(by='Total ESG Risk Score', ascending=False).head(10)
+
+print(top_10_companies)
+
+```
+
+Companies with the worst controversy level are companies that deal with heavy machinery. For example, Boeing and Caterpillar Inc., both have a controversy level of a 4.0 and are the worst out of the top ten companies. Boeing, which builds airplanes, and Caterpillar, which build cranes and other machinery, both fall into the same category.
+## Question 4
+
+How do the successful companies compare in terms of ESG Risk Score and Controversy Level?
+
+```{python}
+df = (esg_proj_data
+       .sort_values(['Total ESG Risk Score', 'Controversy Level'])
+       [["Comapny Name", 'Comapny Name', 'Total ESG Risk Score', 'Controversy Level']]
+       .drop_duplicates(subset = 'Comapny Name')
+       )
+
+df
+```
+
+Insight on Correlation Among Stock Close, ESG Risk Score, and Controversy Level
+
+The heatmap analysis surprisingly reveals minimal correlation among a company's stock Close value, ESG Risk Score, and Controversy Level. However, the strongest correlation is found between the ESG Risk Score and Controversy Level. This highlights the close link between sustainability metrics and controversies, suggesting that investors focused on ethical considerations should prioritize ESG ratings and associated controversies when making investment decisions.
+
+```{python}
+Heatmap = esg_proj_data[[ 'Total ESG Risk Score', 'Controversy Level']].corr()
+
+plt.figure(figsize=(8, 6))
+
+#sns.heatmap(corr, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5)
+
+# Title of the heatmap
+plt.title('Correlation Heatmap with Varied Correlations')
+
+# Display the heatmap
+plt.show()
+
+```
+## Conclusion 
+
+In this project, we conducted an analysis focusing on stock prices, Environmental, Social, and Governance (ESG) scores, controversy levels, and their correlations. Here's a concise summary of our findings:
+
+Closing Prices Distribution:
+
+Histograms revealed variability in closing prices across companies. Narrow peaks indicate less variability, while broader ones suggest greater variability.
+
+ESG Scores Distribution:
+
+The Environmental aspect of ESG posed the most risk, as seen in the score distribution.
+
+Companies with Worst Controversy Level:
+
+Heavy machinery companies like Boeing and Caterpillar Inc. had the highest controversy levels, hinting at industry-specific trends.
+
+Comparison of Successful Companies in ESG:
+
+Successful companies showed varying ESG risk and controversy levels, emphasizing the need for sustainability in investment decisions.
+
+Insight on Correlation:
+
+While stock prices showed minimal correlation with ESG factors, a strong link was observed between ESG risk scores and controversy levels.
+
+Conclusion:
+
+Considering ESG factors alongside financial metrics is crucial for investors, as sustainability and controversies can significantly impact long-term performance.
+This analysis provides valuable insights for ethical investment decisions, highlighting the importance of integrating sustainability considerations into financial analysis.
+## References
+
+Collaboraters:Owen Ellick, Dylan Thody
+
+ChatGPT Helped with errors and code
+
+yahoo finance: https://finance.yahoo.com/

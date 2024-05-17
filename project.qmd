@@ -21,7 +21,15 @@ execute:
 
 from: markdown+emoji
 ---
+```{r}
+#| include: false
 
+# install.packages("reticulate")
+library(reticulate)
+
+# Provide the pahname of the anaconda3 directory:
+use_condaenv("/Users/jakestarkey/anaconda3", required = TRUE)
+```
 ## Analyzing ESG and Financial Data for Investment Decision Making
 
 ```{python}
@@ -104,23 +112,23 @@ plt.show()
 What is the distribution of closing prices for each company?
 
 ```{python}
-stock_data = pd.read_csv('yfinance-history.csv')
+#stock_data = pd.read_csv('yfinance-history.csv')
 
 # Convert 'Date' column to datetime format
-stock_data['Date'] = pd.to_datetime(stock_data['Date'])
+#stock_data['Date'] = pd.to_datetime(stock_data['Date'])
 
 # Filter data for the last year
-one_year_ago = pd.Timestamp.now() - pd.DateOffset(years=1)
-filtered_data = stock_data[stock_data['Date'] >= one_year_ago]
+#one_year_ago = pd.Timestamp.now() - pd.DateOffset(years=1)
+#filtered_data = stock_data[stock_data['Date'] >= one_year_ago]
 
 # Plot histogram for each company's closing prices
-plt.figure(figsize=(12, 8))
-sns.histplot(data=filtered_data, x='Close', hue='ticker_symbol', bins=20, kde=True)
-plt.title('Distribution of Closing Prices for Each Company Over the Last Year')
-plt.xlabel('Closing Price')
-plt.ylabel('Frequency')
-plt.legend(title='Company')
-plt.show()
+#plt.figure(figsize=(12, 8))
+#sns.histplot(data=filtered_data, x='Close', hue='ticker_symbol', bins=20, kde=True)
+#plt.title('Distribution of Closing Prices for Each Company Over the Last Year')
+#plt.xlabel('Closing Price')
+#plt.ylabel('Frequency')
+#plt.legend(title='Company')
+#plt.show()
 ```
 
 The graph reveals insights into the variability and central tendency of closing prices across different companies. Companies with narrower and taller peaks in their histograms exhibit closing prices concentrated around specific values, indicating less variability. Conversely, broader and flatter histograms suggest a wider range of closing prices and greater variability in stock performance.
@@ -181,7 +189,7 @@ Heatmap = esg_proj_data[[ 'Total ESG Risk Score', 'Controversy Level']].corr()
 
 plt.figure(figsize=(8, 6))
 
-sns.heatmap(corr, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5)
+#sns.heatmap(corr, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5)
 
 # Title of the heatmap
 plt.title('Correlation Heatmap with Varied Correlations')

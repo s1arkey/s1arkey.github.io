@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Jake Starkey – danl_210_project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Jake Starkey</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./project.html">Project</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./blog-listing.html">Blog</a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="analyzing-esg-and-financial-data-for-investment-decision-making" class="level2">
+<h2 class="anchored" data-anchor-id="analyzing-esg-and-financial-data-for-investment-decision-making">Analyzing ESG and Financial Data for Investment Decision Making</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>balance_sheet <span class="op">=</span> pd.read_csv(<span class="st">'yfinance-balance-sheet.csv'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>stock_data <span class="op">=</span> pd.read_csv(<span class="st">'yfinance-history.csv'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>esg_proj_data <span class="op">=</span> pd.read_csv(<span class="st">'esg_proj_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">1 Introduction</h2>
+<p>ESG(Environmental, Social, and Governance) factors are increasingly being considered by investors for making informed investment decisions. Understanding the relationship between ESG metrics and financial performance can provide valuable insights into a company’s sustainability and long-term viability.</p>
+<p>This project aims to analyze the relationship between ESG metrics and financial/accounting data to identify any correlations and trends that may exist. By doing so, we seek to provide investors with a better understanding of how ESG factors impact financial performance and assist them in making more sustainable investment decisions.</p>
+<p>The project utilizes Python scripts to collect financial, accounting, and ESG data. The financial and accounting data is obtained using the yfinance library, while Selenium is employed to gather ESG data from the Sustainability Section of company webpages on Yahoo! Finance. ##Descripted Statistics ##Ungrouped Statistics for Balance Sheets</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balance_sheet.describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Ordinary Shares Number  Share Issued      Net Debt    Total Debt  \
+count            2.658000e+03  2.658000e+03  2.317000e+03  2.626000e+03   
+mean             6.405716e+08  7.568339e+08  1.291833e+10  1.922311e+10   
+std              1.296627e+09  1.442190e+09  2.240450e+10  4.221775e+10   
+min              3.167625e+06  9.589239e+06  2.200000e+07  1.404000e+06   
+25%              1.420809e+08  1.716074e+08  2.174900e+09  3.349737e+09   
+50%              2.720531e+08  3.142580e+08  5.714136e+09  7.261294e+09   
+75%              5.952015e+08  7.113500e+08  1.322700e+10  1.758525e+10   
+max              1.572341e+10  1.572341e+10  2.238890e+11  4.421400e+11   
+
+       Tangible Book Value  Invested Capital  Working Capital  \
+count         2.659000e+03      2.658000e+03     2.314000e+03   
+mean          6.140413e+09      3.453963e+10     1.977094e+09   
+std           2.906924e+10      6.710119e+10     7.778440e+09   
+min          -9.834700e+10      1.221960e+08    -4.443000e+10   
+25%          -1.823000e+09      7.054684e+09    -2.506682e+08   
+50%           2.157460e+09      1.482450e+10     9.074155e+08   
+75%           8.880100e+09      3.350450e+10     2.709800e+09   
+max           2.636610e+11      7.488770e+11     9.313100e+10   
+
+       Net Tangible Assets  Capital Lease Obligations  Common Stock Equity  \
+count         2.659000e+03               1.651000e+03         2.659000e+03   
+mean          6.475658e+09               1.730649e+09         1.661968e+10   
+std           3.034589e+10               5.731350e+09         3.221102e+10   
+min          -9.834700e+10              -6.100000e+07        -1.723300e+10   
+25%          -1.827950e+09               1.591580e+08         3.229000e+09   
+50%           2.120019e+09               3.918690e+08         7.500000e+09   
+75%           9.090150e+09               1.001500e+09         1.753100e+10   
+max           2.722630e+11               7.729700e+10         3.067370e+11   
+
+       ...  Trading Securities  Investmentsin Subsidiariesat Cost  \
+count  ...        1.060000e+02                       3.600000e+01   
+mean   ...        8.437230e+10                       2.777855e+09   
+std    ...        1.371783e+11                       3.849279e+09   
+min    ...        0.000000e+00                       0.000000e+00   
+25%    ...        6.462450e+07                       4.755000e+08   
+50%    ...        1.174500e+09                       1.388500e+09   
+75%    ...        1.357220e+11                       1.962875e+09   
+max    ...        5.742130e+11                       1.228100e+10   
+
+       Total Partnership Capital  Limited Partnership Capital  \
+count               1.000000e+01                 1.000000e+01   
+mean                1.964380e+10                 1.963130e+10   
+std                 1.568801e+10                 1.567458e+10   
+min                 4.479000e+09                 4.479000e+09   
+25%                 4.826250e+09                 4.826250e+09   
+50%                 1.910150e+10                 1.908800e+10   
+75%                 3.345025e+10                 3.343100e+10   
+max                 3.668200e+10                 3.665600e+10   
+
+       Dueto Related Parties Non Current  Duefrom Related Parties Non Current  \
+count                       1.400000e+01                         1.100000e+01   
+mean                        9.710000e+08                         1.903109e+07   
+std                         8.538153e+08                         4.242806e+07   
+min                         5.000000e+06                         0.000000e+00   
+25%                         2.992500e+08                         0.000000e+00   
+50%                         6.075000e+08                         1.805000e+06   
+75%                         1.882750e+09                         3.529500e+06   
+max                         2.376000e+09                         1.350000e+08   
+
+       Fixed Assets Revaluation Reserve  Current Deferred Taxes Liabilities  \
+count                      3.000000e+00                        2.000000e+00   
+mean                       3.001667e+09                        9.285000e+07   
+std                        5.158336e+09                        9.192388e+05   
+min                        2.300000e+07                        9.220000e+07   
+25%                        2.350000e+07                        9.252500e+07   
+50%                        2.400000e+07                        9.285000e+07   
+75%                        4.491000e+09                        9.317500e+07   
+max                        8.958000e+09                        9.350000e+07   
+
+       Current Deferred Taxes Assets  General Partnership Capital  
+count                   5.000000e+00                          5.0  
+mean                    3.234000e+08                   -2000000.0  
+std                     6.618761e+07                          0.0  
+min                     2.550000e+08                   -2000000.0  
+25%                     2.820000e+08                   -2000000.0  
+50%                     3.100000e+08                   -2000000.0  
+75%                     3.440000e+08                   -2000000.0  
+max                     4.260000e+08                   -2000000.0  
+
+[8 rows x 142 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="grouped-stats-for-balance-sheets" class="level1">
+<h1>Grouped stats for balance sheets</h1>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>balance_sheet[[<span class="st">'Total Assets'</span>,<span class="st">'Total Debt'</span>]].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Total Assets</th>
+      <th>Total Debt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>2.659000e+03</td>
+      <td>2.626000e+03</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>9.075012e+10</td>
+      <td>1.922311e+10</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>2.940459e+11</td>
+      <td>4.221775e+10</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.891360e+08</td>
+      <td>1.404000e+06</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.131355e+10</td>
+      <td>3.349737e+09</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2.523760e+10</td>
+      <td>7.261294e+09</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>6.313150e+10</td>
+      <td>1.758525e+10</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>4.090727e+12</td>
+      <td>4.421400e+11</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<section id="y-finance-stats-ungrouped" class="level2">
+<h2 class="anchored" data-anchor-id="y-finance-stats-ungrouped">Y-finance stats ungrouped</h2>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stock_data.describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Open           High            Low          Close  \
+count  197796.000000  197796.000000  197796.000000  197796.000000   
+mean      150.803107     152.401419     149.302798     150.909848   
+std       330.044562     333.614939     327.009474     330.419589   
+min         1.030000       1.060000       0.780000       0.980000   
+25%        40.990002      41.439999      40.509998      41.000000   
+50%        83.540001      84.449997      82.610001      83.599998   
+75%       157.000000     158.509995     155.539993     157.052502   
+max      8022.919922    8158.990234    8010.000000    8099.959961   
+
+             Volume  Dividends  Stock Splits  
+count  1.977960e+05   197796.0      197796.0  
+mean   4.134482e+06        0.0           0.0  
+std    9.289442e+06        0.0           0.0  
+min    0.000000e+00        0.0           0.0  
+25%    8.323000e+05        0.0           0.0  
+50%    1.707600e+06        0.0           0.0  
+75%    3.854425e+06        0.0           0.0  
+max    3.160112e+08        0.0           0.0  </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="y-finance-stats-volume" class="level1">
+<h1>Y-finance stats volume</h1>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>stock_data[<span class="st">'Volume'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>count    1.977960e+05
+mean     4.134482e+06
+std      9.289442e+06
+min      0.000000e+00
+25%      8.323000e+05
+50%      1.707600e+06
+75%      3.854425e+06
+max      3.160112e+08
+Name: Volume, dtype: float64</code></pre>
+</div>
+</div>
+<section id="esg-stats-ungrouped" class="level2">
+<h2 class="anchored" data-anchor-id="esg-stats-ungrouped">ESG stats ungrouped</h2>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(esg_proj_data.describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Total ESG Risk Score  Environmental Risk Score  Social Risk Score  \
+count            114.000000                111.000000         111.000000   
+mean              20.834211                  4.845045           8.748649   
+std                6.922962                  4.819237           4.165221   
+min                8.000000                  0.100000           0.800000   
+25%               16.225000                  1.500000           5.950000   
+50%               21.100000                  2.500000           8.900000   
+75%               24.425000                  7.350000          10.850000   
+max               39.600000                 22.000000          22.500000   
+
+       Governance Risk Score  Controversy Level  
+count             111.000000          100.00000  
+mean                7.133333            1.95000  
+std                 2.562078            0.79614  
+min                 3.100000            1.00000  
+25%                 5.050000            1.00000  
+50%                 6.600000            2.00000  
+75%                 8.950000            2.00000  
+max                13.700000            4.00000  </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="grouped" class="level1">
+<h1>Grouped</h1>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>esg_proj_data[<span class="st">'Total ESG Risk Score'</span> ].describe()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>esg_proj_data[<span class="st">'Controversy Level'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>count    100.00000
+mean       1.95000
+std        0.79614
+min        1.00000
+25%        1.00000
+50%        2.00000
+75%        2.00000
+max        4.00000
+Name: Controversy Level, dtype: float64</code></pre>
+</div>
+</div>
+<section id="heatmap" class="level2">
+<h2 class="anchored" data-anchor-id="heatmap">Heatmap</h2>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>numeric_data <span class="op">=</span> esg_proj_data.select_dtypes(include<span class="op">=</span><span class="st">'number'</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>corr_matrix <span class="op">=</span> numeric_data.corr()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr_matrix, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, linewidths<span class="op">=</span><span class="fl">.5</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation Heatmap with Varied Correlations'</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Danl_210_project_files/figure-html/cell-9-output-1.png" width="769" height="663"></p>
+</div>
+</div>
+</section>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>What is the distribution of closing prices for each company?</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#stock_data = pd.read_csv('yfinance-history.csv')</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'Date' column to datetime format</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#stock_data['Date'] = pd.to_datetime(stock_data['Date'])</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data for the last year</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#one_year_ago = pd.Timestamp.now() - pd.DateOffset(years=1)</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#filtered_data = stock_data[stock_data['Date'] &gt;= one_year_ago]</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histogram for each company's closing prices</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize=(12, 8))</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#sns.histplot(data=filtered_data, x='Close', h</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#hue='ticker_symbol', bins=20, kde=True)</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Distribution of Closing Prices for Each Company Over the Last Year')</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.xlabel('Closing Price')</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.ylabel('Frequency')</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.legend(title='Company')</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">#This block was having render issues hence the #</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The graph reveals insights into the variability and central tendency of closing prices across different companies. Companies with narrower and taller peaks in their histograms exhibit closing prices concentrated around specific values, indicating less variability. Conversely, broader and flatter histograms suggest a wider range of closing prices and greater variability in stock performance.</p>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p>Whats the distribution of ESG score? And Which factor of ESG tends to cause the most risk?</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_distributions(df, title_prefix):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> df.select_dtypes(include<span class="op">=</span>[<span class="st">'float64'</span>, <span class="st">'int64'</span>]).columns:</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        sns.histplot(df[col].dropna(), bins<span class="op">=</span><span class="dv">20</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'Distribution of </span><span class="sc">{</span>title_prefix<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(col)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot distributions for ESG data</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>plot_distributions(esg_proj_data, <span class="st">'ESG Data'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Danl_210_project_files/figure-html/cell-11-output-1.png" width="808" height="523"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Danl_210_project_files/figure-html/cell-11-output-2.png" width="808" height="523"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Danl_210_project_files/figure-html/cell-11-output-3.png" width="808" height="523"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Danl_210_project_files/figure-html/cell-11-output-4.png" width="821" height="523"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Danl_210_project_files/figure-html/cell-11-output-5.png" width="808" height="523"></p>
+</div>
+</div>
+<p>By visually inspecting the histograms, we can understand the distribution of ESG scores. The Environmental aspect of ESG causes companys the most risk.<br>
+</p>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p>Which companies how the worst controversy level?</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>top_10_companies <span class="op">=</span> esg_proj_data.sort_values(by<span class="op">=</span><span class="st">'Total ESG Risk Score'</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">10</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(top_10_companies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                             Comapny Name  Total ESG Risk Score  \
+64                The Boeing Company (BA)                  39.6   
+44                  APA Corporation (APA)                  38.8   
+48      Antero Resources Corporation (AR)                  36.4   
+102                Caterpillar Inc. (CAT)                  36.2   
+53         Atmos Energy Corporation (ATO)                  34.6   
+78                   Bunge Global SA (BG)                  32.9   
+52                     Ashland Inc. (ASH)                  32.4   
+12   Archer-Daniels-Midland Company (ADM)                  31.8   
+79     Bausch Health Companies Inc. (BHC)                  31.4   
+100            Conagra Brands, Inc. (CAG)                  30.8   
+
+     Environmental Risk Score  Social Risk Score  Governance Risk Score  \
+64                        8.8               22.5                    8.3   
+44                       22.0                8.9                    8.0   
+48                        NaN                NaN                    NaN   
+102                      10.4               17.7                    8.1   
+53                       14.8               13.4                    6.4   
+78                       14.4               13.3                    5.3   
+52                       19.0                7.2                    6.2   
+12                       16.6               10.1                    5.0   
+79                        5.3               17.9                    8.1   
+100                      10.7               15.4                    4.7   
+
+     Controversy Level  
+64                 4.0  
+44                 2.0  
+48                 1.0  
+102                4.0  
+53                 2.0  
+78                 3.0  
+52                 2.0  
+12                 3.0  
+79                 3.0  
+100                2.0  </code></pre>
+</div>
+</div>
+<p>Companies with the worst controversy level are companies that deal with heavy machinery. For example, Boeing and Caterpillar Inc., both have a controversy level of a 4.0 and are the worst out of the top ten companies. Boeing, which builds airplanes, and Caterpillar, which build cranes and other machinery, both fall into the same category. ## Question 4</p>
+<p>How do the successful companies compare in terms of ESG Risk Score and Controversy Level?</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> (esg_proj_data</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>       .sort_values([<span class="st">'Total ESG Risk Score'</span>, <span class="st">'Controversy Level'</span>])</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">"Comapny Name"</span>, <span class="st">'Comapny Name'</span>, <span class="st">'Total ESG Risk Score'</span>, <span class="st">'Controversy Level'</span>]]</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>       .drop_duplicates(subset <span class="op">=</span> <span class="st">'Comapny Name'</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Comapny Name</th>
+      <th>Comapny Name</th>
+      <th>Total ESG Risk Score</th>
+      <th>Controversy Level</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>105</th>
+      <td>CBRE Group, Inc. (CBRE)</td>
+      <td>CBRE Group, Inc. (CBRE)</td>
+      <td>8.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>Avnet, Inc. (AVT)</td>
+      <td>Avnet, Inc. (AVT)</td>
+      <td>8.2</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>CDW Corporation (CDW)</td>
+      <td>CDW Corporation (CDW)</td>
+      <td>9.2</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Arrow Electronics, Inc. (ARW)</td>
+      <td>Arrow Electronics, Inc. (ARW)</td>
+      <td>9.4</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>AvalonBay Communities, Inc. (AVB)</td>
+      <td>AvalonBay Communities, Inc. (AVB)</td>
+      <td>9.8</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>Caterpillar Inc. (CAT)</td>
+      <td>Caterpillar Inc. (CAT)</td>
+      <td>36.2</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Antero Resources Corporation (AR)</td>
+      <td>Antero Resources Corporation (AR)</td>
+      <td>36.4</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>APA Corporation (APA)</td>
+      <td>APA Corporation (APA)</td>
+      <td>38.8</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>The Boeing Company (BA)</td>
+      <td>The Boeing Company (BA)</td>
+      <td>39.6</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>114</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>115 rows × 4 columns</p>
+</div>
+</div>
+</div>
+<p>Insight on Correlation Among Stock Close, ESG Risk Score, and Controversy Level</p>
+<p>The heatmap analysis surprisingly reveals minimal correlation among a company’s stock Close value, ESG Risk Score, and Controversy Level. However, the strongest correlation is found between the ESG Risk Score and Controversy Level. This highlights the close link between sustainability metrics and controversies, suggesting that investors focused on ethical considerations should prioritize ESG ratings and associated controversies when making investment decisions.</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Heatmap <span class="op">=</span> esg_proj_data[[ <span class="st">'Total ESG Risk Score'</span>, <span class="st">'Controversy Level'</span>]].corr()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#sns.heatmap(corr, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5)</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Title of the heatmap</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation Heatmap with Varied Correlations'</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the heatmap</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Danl_210_project_files/figure-html/cell-14-output-1.png" width="656" height="505"></p>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>In this project, we conducted an analysis focusing on stock prices, Environmental, Social, and Governance (ESG) scores, controversy levels, and their correlations. Here’s a concise summary of our findings:</p>
+<p>Closing Prices Distribution:</p>
+<p>Histograms revealed variability in closing prices across companies. Narrow peaks indicate less variability, while broader ones suggest greater variability.</p>
+<p>ESG Scores Distribution:</p>
+<p>The Environmental aspect of ESG posed the most risk, as seen in the score distribution.</p>
+<p>Companies with Worst Controversy Level:</p>
+<p>Heavy machinery companies like Boeing and Caterpillar Inc.&nbsp;had the highest controversy levels, hinting at industry-specific trends.</p>
+<p>Comparison of Successful Companies in ESG:</p>
+<p>Successful companies showed varying ESG risk and controversy levels, emphasizing the need for sustainability in investment decisions.</p>
+<p>Insight on Correlation:</p>
+<p>While stock prices showed minimal correlation with ESG factors, a strong link was observed between ESG risk scores and controversy levels.</p>
+<p>Conclusion:</p>
+<p>Considering ESG factors alongside financial metrics is crucial for investors, as sustainability and controversies can significantly impact long-term performance. This analysis provides valuable insights for ethical investment decisions, highlighting the importance of integrating sustainability considerations into financial analysis. ## References</p>
+<p>Collaboraters:Owen Ellick, Dylan Thody</p>
+<p>ChatGPT Helped with errors and code</p>
+<p>yahoo finance: https://finance.yahoo.com/</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="text/javascript" src="links.js"></script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">Powered with GitHub and Quarto<br>©Jake Starkey, 2023</div>
+  </div>
+</footer>
+
+
+
+</body></html>

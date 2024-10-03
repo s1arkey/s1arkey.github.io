@@ -9,15 +9,13 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://www.linkedin.com/in/jake-starkey-4a53b224b/
-    - icon: instagram
-      text: Instagram
-      href: https://instagram.com
+      href: www.linkedin.com/in/jake-starkey
     - icon: github
       text: GitHub
       href: https://github.com/s1arkey/s1arkey.github.io
     - icon: file-earmark-pdf
       text: Resumé
+      href: https://docs.google.com/document/d/1gIW5DnG5YQmyyRa5WQexiNeiPf8jXekSQqpgG3Y2_g4/edit
       href: https://GITHUB_USERNAME.github.io/resume-example.pdf
     - icon: mailbox
       text: Email
@@ -26,14 +24,13 @@ about:
 ---
 
 
-Jake Starkey majors in Data Analytics. Outside of school, Jake 
-plays lacrosse and loves the outdoors. At home he enjoys surfing anytime there 
-is a wave
+Major in Economics, Data Analytics minor. Outside of school, I
+play lacrosse and love the outdoors. At home I enjoy surfing any chance I can. 
 
 ## Education
 
 State University of New York at Geneseo | Geneseo, NY <br>
-Major in Data Analytics | Aug 2022 - May 2026 <br>
+Major in Economics | Aug 2022 - May 2026 <br>
 
 
 ## Experience

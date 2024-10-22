@@ -2,9 +2,7 @@
 title: "Jake Starkey" 
 about:
   template: jolla  # jolla  trestles  solana  marquee  broadside
-  image: IMG_3768.jpg
-  image-width: 15em
-  image-shape: rectangle # rectangle  round  rounded
+ # rectangle  round  rounded
   
   links:
     - icon: linkedin
@@ -15,26 +13,23 @@ about:
       href: https://github.com/s1arkey/s1arkey.github.io
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://docs.google.com/document/d/1gIW5DnG5YQmyyRa5WQexiNeiPf8jXekSQqpgG3Y2_g4/edit
-      href: https://GITHUB_USERNAME.github.io/resume-example.pdf
+      href: https://docs.google.com/document/d/15sojY2HJEcpiDEK2WL-POByNcfqoqChHzmspWYrHfjY/edit?tab=t.0
     - icon: mailbox
       text: Email
       href: mailto:jakestarkey11@geneseo.edu
-
 ---
+## Intro
 
+Thanks for tuning into my project!
 
-Major in Economics, Data Analytics minor. Outside of school, I
-play lacrosse and love the outdoors. At home I enjoy surfing any chance I can. 
+Under the project tab, the code breaks down, ESG (Environmental, Social, and Governance) data highlighting the importance of integrating sustainability considerations into financial analysis.
+
+Under the blog tab, You will find different homework projects from multiple classes.Favorite Artist, Python Basics, Spotify All, Restaurant, NFL 2022, and Beer Markets all break down data frames using variables to answer questions.
 
 ## Education
 
-State University of New York at Geneseo | Geneseo, NY <br>
-Major in Economics | Aug 2022 - May 2026 <br>
-
+Major in Economics, Data Analytics minor\|State University of New York at Geneseo \| Geneseo, NY <br> Major in Economics \| Aug 2022 - May 2026 <br>
 
 ## Experience
 
-Student | August 2022 - May 2026
-
-
+Student \| August 2022 - May 2026

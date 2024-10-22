@@ -13,7 +13,7 @@ about:
       href: https://github.com/s1arkey/s1arkey.github.io
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://docs.google.com/document/d/15sojY2HJEcpiDEK2WL-POByNcfqoqChHzmspWYrHfjY/edit?tab=t.0
+      href: https://s1arkey.github.io/Jake_Starkey_Resume.pdf
     - icon: mailbox
       text: Email
       href: mailto:jakestarkey11@geneseo.edu

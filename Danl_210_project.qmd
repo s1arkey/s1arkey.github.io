@@ -160,8 +160,7 @@ print(top_10_companies)
 
 ```
 
-Companies with the worst controversy level are companies that deal with heavy machinery. For example, Boeing and Caterpillar Inc., both have a controversy level of a 4.0 and are the worst out of the top ten companies. Boeing, which builds airplanes, and Caterpillar, which build cranes and other machinery, both fall into the same category.
-## Question 4
+Companies with the worst controversy level are companies that deal with heavy machinery. For example, Boeing and Caterpillar Inc., both have a controversy level of a 4.0 and are the worst out of the top ten companies. Boeing, which builds airplanes, and Caterpillar, which build cranes and other machinery, both fall into the same category. \## Question 4
 
 How do the successful companies compare in terms of ESG Risk Score and Controversy Level?
 
@@ -193,7 +192,8 @@ plt.title('Correlation Heatmap with Varied Correlations')
 plt.show()
 
 ```
-## Conclusion 
+
+## Conclusion
 
 In this project, we conducted an analysis focusing on stock prices, Environmental, Social, and Governance (ESG) scores, controversy levels, and their correlations. Here's a concise summary of our findings:
 
@@ -219,9 +219,7 @@ While stock prices showed minimal correlation with ESG factors, a strong link wa
 
 Conclusion:
 
-Considering ESG factors alongside financial metrics is crucial for investors, as sustainability and controversies can significantly impact long-term performance.
-This analysis provides valuable insights for ethical investment decisions, highlighting the importance of integrating sustainability considerations into financial analysis.
-## References
+Considering ESG factors alongside financial metrics is crucial for investors, as sustainability and controversies can significantly impact long-term performance. This analysis provides valuable insights for ethical investment decisions, highlighting the importance of integrating sustainability considerations into financial analysis. \## References
 
 Collaboraters:Owen Ellick, Dylan Thody
 

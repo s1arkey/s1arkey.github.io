@@ -11,6 +11,8 @@ website:
         #href: Danl_210_project.qmd
       - text: Project
         href: project.qmd
+      - text: Dashboard
+        href: dashboard_example.qmd
       - text: Blog
         href: blog-listing.qmd
       #- text: Python Data Analysis

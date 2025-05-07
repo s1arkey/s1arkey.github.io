@@ -1,0 +1,214 @@
+---
+title: "Danl_310_HW2_Starkey_Jake.qmd"
+format: html
+---
+##Q1
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(ggrepel)
+
+selected_countries <- c("Argentina", "China", "Egypt", "Senegal", "South Africa", "Greece", "United States", "Germany", "Singapore", "Norway")
+
+hdi_corruption_labeled <- hdi_corruption %>% 
+  filter(country %in% selected_countries) %>% 
+  distinct(country, .keep_all = TRUE)
+
+x_label <- "Corruption Perceptions Index, 2014 (100 = least corrupt)"
+y_label <- "Human Development Index, 2014 (1.0 = most developed)"
+
+
+ggplot(data = hdi_corruption,
+       mapping = 
+         aes(x = cpi, 
+             y = hdi, 
+             color = region)) +
+  labs(x = x_label,
+       y = y_label) +
+  
+  
+  geom_point(alpha = .5) +
+  geom_smooth(method = "lm", formula = y ~ log(x), se = FALSE, color = "blue") +
+  geom_text_repel(data = hdi_corruption_labeled, aes(label = country), color = "black", size = 3, max.overlaps = Inf, segment.color = "black", box.padding = .75, point.padding = .75)  +
+  theme(legend.position = "top")
+```
+##Q2
+```{r}
+library(dplyr)
+library(ggplot2)
+library(ggrepel)
+library(hrbrthemes) 
+
+
+civilian_population <- labor_data %>% filter(LABFORCE != 0)
+
+
+labor_force_data <- civilian_population %>% 
+  arrange(YEAR, SEX, NCHLT5) %>% 
+  group_by(YEAR, SEX, NCHLT5) %>% 
+  summarize(civilian_pop = sum(ASECWT), labor_force_pop = sum(ASECWT[LABFORCE == 2])) %>% 
+  mutate(participation_rate =(labor_force_pop / civilian_pop) * 100)
+
+
+labor_force_data$SEX <- factor(labor_force_data$SEX, levels = c(1, 2), labels = c("Male", "Female"))
+labor_force_data$NCHLT5 <- factor(labor_force_data$NCHLT5, levels = c(1, 0), labels = c("Having Children Under Age 5 in Household","No Child Under Age 5 in Household"))
+
+labor_force_data <- labor_force_data %>% filter(!is.na(NCHLT5))
+
+```
+
+```{r}
+ggplot(labor_force_data, aes(x = YEAR, y = participation_rate, color = SEX)) +
+  geom_line(linewidth = 1) +
+  facet_wrap(~ NCHLT5, ncol = 2) +
+  labs(
+    title = "Fertility and Labor Supply in the U.S.\n1982-2022",
+    x = "Year",
+    y = "Labor Force Participation Rate",
+    color = ""
+  ) +
+  scale_y_continuous(labels = function(x) paste0(x, "%"), limits = c(50, 100), breaks = seq(50, 100, 10)) +
+  scale_color_manual(values = c("blue", "red")) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(hjust = 0, size = 12), 
+    axis.title = element_text(size = 10), 
+    axis.text = element_text(size = 8), 
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(10, 10, 10, 10), 
+    strip.text = element_text(size = 9) 
+  ) +
+  geom_label_repel(
+    data = labor_force_data %>% filter(YEAR == max(YEAR)),
+    aes(label = SEX),
+    nudge_x = 2,
+    direction = "y",
+    hjust = -0.1,
+    segment.size = 0.2,
+    size = 3 
+  ) +
+  annotate("text", x = 2000, y = 45, label = "Data: IPUMS-CPS, University of Minnesota, www.ipums.org.", size = 2.5) # Adjust annotate size
+```
+
+## Question 3
+
+```{r}
+starbucks <- read.csv(
+  'https://bcdanl.github.io/data/starbucks.csv')
+```
+
+### Q3a.
+
+-   Add the following two variables to starbucks data.frame
+-   caffeine_mgml: Caffeine in milligrams per mL
+-   calories_kcml: Calories KCal per mL
+
+```{r}
+library(readr)
+library(dplyr)
+starbucks <- starbucks %>%
+  mutate(
+    caffeine_mgml = caffeine_mg / serv_size_m_l,
+    calories_kcml = calories / serv_size_m_l
+  )
+
+head(starbucks)
+```
+
+### Q3b.
+
+-   Calculate a mean caffeine_mgml and a mean calories_kcml for each product name
+
+```{r}
+product_means <- starbucks %>%
+  group_by(product_name) %>%
+  summarize(
+    mean_caffeine_mgml = mean(caffeine_mgml, na.rm = TRUE),
+    mean_calories_kcml = mean(calories_kcml, na.rm = TRUE)
+  )
+
+print(product_means)
+```
+
+### Q3c.
+
+-   Plotting
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(ggrepel)
+library(showtext)
+library(ggtext)
+showtext_auto()
+font_add_google("Annie Use Your Telescope", "annie")
+
+top_caffeine_df <- product_means %>%
+  arrange(desc(mean_caffeine_mgml)) %>%
+  head(10)
+
+# Get top 10 products by calories per ml
+top_calories_df <- product_means %>%
+  arrange(desc(mean_calories_kcml)) %>%
+  head(10)
+
+top_products <- product_means %>%
+  filter(product_name %in% c(top_caffeine_df$product_name, top_calories_df$product_name))
+
+
+
+ggplot(top_products, aes(x = mean_calories_kcml, y = mean_caffeine_mgml)) +
+  geom_hline(yintercept = seq(0, 0.8, by = 0.2), color = "lightgray") +
+  geom_vline(xintercept = seq(0, 0.8, by = 0.2), color = "lightgray") +
+  geom_point(aes(color = product_name), size = 3) +
+  geom_text_repel(
+    aes(label = product_name, color = product_name),
+    max.overlaps = 30,
+    size = 2.5,
+    min.segment.length = 0,
+    point.padding = 0.3,  
+    box.padding = 0.3,    
+    show.legend = FALSE,
+    family = "annie"
+  )  +
+  annotate(
+    "richtext",
+    x = 0.8,             
+    y = 0.65,             
+    label = "<img src='https://bcdanl.github.io/lec_figs/starbucks.png' width='70'/>", 
+    fill = NA,
+    size = 0,          
+    color = NA
+  )  +
+  annotate(
+    "rect",
+    xmin = 0.01, xmax = 0.34, ymin = 0.42, ymax = 0.8,
+    alpha = .5, fill = "gray"
+  )  +
+  annotate(
+    "rect",
+    xmin = 0.68, xmax = .9, ymin = 0, ymax = 0.34,
+    alpha = .5, fill = "gray"
+  ) +
+  scale_x_continuous(limits = c(0, 1), breaks = seq(0, 0.95, by = 0.2)) +
+  scale_y_continuous(limits = c(-0.05, 0.85), breaks = seq(0, 0.8, by = 0.2)) +
+  labs(
+    title = "STARBUCKS DRINKS",
+    subtitle = "Caffeine or Calories, which one you would go?",
+    x = expression("Calories (Kcal mL"^-1*")"),
+    y = expression("Caffeine (mg mL"^-1*")"),
+    caption = "Source: Starbucks Coffee Company Beverage Nutrition Information"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(color = "#00704A", face = "bold", size = 22),
+    plot.subtitle = element_text(size = 14),
+    legend.position = "none",
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.title = element_text(size = 12)
+  )
+```
+
+

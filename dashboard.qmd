@@ -1,0 +1,175 @@
+--- 
+title: "NBA Player Dashboard"
+author: Jake Starkey
+format:  
+  dashboard:
+    theme: darkly
+    nav-buttons: [github]
+    github: https://github.com/s1arkey/s1arkey.github.io
+
+---
+# Overview
+
+This dashboard provides an interactive overview of NBA player visualizations and a summary table.
+
+```{r setup}
+#| include: false
+
+knitr::opts_chunk$set(
+  fig.width = 10,
+  fig.height = 6
+)
+
+library(tidyverse)
+library(ggplot2)
+library(gt)
+
+nba_players <- read_csv("http://bcdanl.github.io/data/nba_players.csv")
+
+avg_ppg <- round(mean(nba_players$PTS, na.rm = TRUE),2)
+avg_ast <- round(mean(nba_players$AST, na.rm = TRUE),2)
+avg_trb <- round(mean(nba_players$TRB, na.rm = TRUE),2)
+avg_fgpct <- paste0(round(mean(nba_players$FG_pct, na.rm = TRUE) * 100,2), "%")
+
+nba_avg_points_position <- nba_players %>%
+  group_by(Position) %>%
+  summarize(Average_Points = mean(PTS, na.rm = TRUE))
+
+
+```
+## Value Boxes
+```{r}
+#| content: valuebox
+#| title: "Average Points Per Game"
+
+list(
+  icon = "dribbble",
+  color = "primary",
+  value = avg_ppg
+)
+```
+
+```{r}
+#| content: valuebox
+#| title: "Average Assists Per Game"
+
+list(
+  icon = "apple",
+  color = "success",
+  value = avg_ast
+)
+```
+
+```{r}
+#| content: valuebox
+#| title: "Average Total Rebounds Per Game"
+
+list(
+  icon = "clipboard-data",
+  color = "info",
+  value = avg_trb
+)
+```
+
+```{r}
+#| content: valuebox
+#| title: "Average FG Percentage"
+
+list(
+  icon = "percent",
+  color = "danger",
+  value = avg_fgpct
+)
+
+```
+## Row {.tabset}
+
+### Distribution of Points Per Game
+```{r}
+ggplot(nba_players, aes(x = PTS)) +
+  geom_histogram(binwidth = 2, fill = "blue", color = "black") +
+  labs(
+    x = "Points",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+
+```
+### Points Per Game vs. Player Efficiency Rating (PER)
+```{r}
+ggplot(nba_players, aes(x = PTS, y = PER, color = Position)) +
+  geom_point(alpha = 0.7) +
+  labs(
+       x = "Points Per Game",
+       y = "Player Efficiency Rating (PER)",
+       color = "Position") +
+  theme_minimal()
+```
+
+# Visualizations and Data Table
+
+## {.column, width=50%}
+### Bar Chart: Average Points by Position
+```{r}
+#| title: Average Points by Position
+ggplot(nba_avg_points_position, aes(x = Position, y = Average_Points)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(
+       x = "Position",
+       y = "Average Points Per Game") +
+  theme_minimal()
+```
+### Box Plot: Salary by Position
+```{r}
+#| title: Salary by Position
+ggplot(nba_players, aes(x = Position, y = Salary)) +
+  geom_boxplot(fill = "tomato", alpha = 0.6, outlier.color = "black") +
+  labs(
+       x = "Position",
+       y = "Salary (USD)") +
+  theme_minimal()
+```
+## {.column, width=50%}
+### Scatter Plot: Salary vs. Win Shares
+```{r}
+#| title: Salary vs. Win Shares
+ggplot(nba_players, aes(x = Salary, y = WS, color = Position)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = "black", linetype = "dashed") +
+  labs(
+       x = "Salary (USD)",
+       y = "Win Shares",
+       color = "Position") +
+  theme_minimal()
+
+```
+### Team-Wise Stats Table
+```{r}
+#| title: Team-Wise Stats Table
+
+nba_players |>
+  filter(!str_detect(Team, "/")) %>% 
+  group_by(Team) |>
+  summarize(
+    avg_pts = round(mean(PTS, na.rm = TRUE), 1),
+    avg_ast = round(mean(AST, na.rm = TRUE), 1),
+    avg_trb = round(mean(TRB, na.rm = TRUE), 1),
+    avg_fg_pct = paste0(round(mean(FG_pct, na.rm = TRUE) * 100, 1), "%")
+  ) |>
+  gt() |>
+  tab_header(
+    title = "Team-Wise NBA Statistics",
+    subtitle = "Average Points, Assists, Rebounds, and FG%"
+  ) |>
+  cols_label(
+    avg_pts = "Avg Points",
+    avg_ast = "Avg Assists",
+    avg_trb = "Avg Rebounds",
+    avg_fg_pct = "Avg FG%"
+  ) |>
+  tab_options(
+    table.font.size = "small",
+    table.width = pct(100)
+  )
+```
+

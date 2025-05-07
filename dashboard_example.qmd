@@ -1,0 +1,23 @@
+--- 
+title: My Dashboard
+author: Jake Starkey
+format: 
+  dashboard
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+#| title: GDP and Life Expectancy
+
+library(gapminder)
+library(tidyverse)
+ggplot(gapminder, 
+       aes(x = gdpPercap, 
+           y = lifeExp, 
+           color = continent)) +
+  geom_point()
+```
+```

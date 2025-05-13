@@ -129,6 +129,10 @@ ggplot(male_Aus, aes (x = height, y = pcBfat, shape = sport, color = sport)) +
 
 ```{r}
 #Q7
+
+titanic <- read_csv(
+  'https://bcdanl.github.io/data/titanic_cleaned.csv')
+
 titanic_female <- titanic %>% 
   mutate(gender = "female", gender_new = "all passengers")
 

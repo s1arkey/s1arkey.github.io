@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jake Starkey">
+
+<title>Shooting for Success: Analyzing NBA Player Performance and Value 🏀 – Jake Starkey</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Jake Starkey</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./project.html"> 
+<span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-project" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">310 Project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-project">    
+        <li>
+    <a class="dropdown-item" href="./writeup.html">
+ <span class="dropdown-text">Write-up</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./dashboard.html">
+ <span class="dropdown-text">Dashboard</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./blog-listing.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Shooting for Success: Analyzing NBA Player Performance and Value 🏀</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jake Starkey </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div style="text-align: center; margin: 1em 0;">
+  <iframe src="https://0196caee-334c-b808-ff9b-06ba3da932f7.share.connect.posit.cloud/" style="width: 800px; height: 800px; border: none;"></iframe>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="background" class="level3">
+<h3 class="anchored" data-anchor-id="background">Background 💻</h3>
+<p>Basketball is a data-rich sport where player performance directly impacts team success. Understanding key statistics can help teams make better decisions about player value, game strategy, and resource allocation. This project dives into the 2022-23 NBA player dataset to uncover insights that could influence team building and player development.</p>
+</section>
+<section id="statement-of-the-project-interest" class="level3">
+<h3 class="anchored" data-anchor-id="statement-of-the-project-interest">Statement of the Project Interest</h3>
+<p>The goal of this project is to analyze the relationship between player performance metrics (offensive and defensive) and their salaries. We aim to identify what stats correlate most with high salaries and whether there are undervalued players based on their contributions.</p>
+</section>
+</section>
+<section id="data-storytelling" class="level2">
+<h2 class="anchored" data-anchor-id="data-storytelling">Data Storytelling 📖</h2>
+<section id="questions-and-objectives" class="level3">
+<h3 class="anchored" data-anchor-id="questions-and-objectives">Questions and Objectives</h3>
+<ol type="1">
+<li><strong>What performance metrics are most strongly correlated with player salaries?</strong></li>
+<li><strong>Are there any undervalued players based on performance statistics?</strong></li>
+<li><strong>How do offensive and defensive metrics compare in their influence on salary?</strong></li>
+<li><strong>What patterns emerge among players with high Player Efficiency Ratings (PER) and Win Shares (WS)?</strong></li>
+<li><strong>How does a player’s. scoring efficiency (True Shooting Percentage) compare to their salary?</strong></li>
+</ol>
+<hr>
+</section>
+<section id="data-transformation-and-descriptive-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="data-transformation-and-descriptive-statistics">Data Transformation and Descriptive Statistics</h3>
+<p>To prepare the data and highlight key takeaways, we performed the following steps:</p>
+<section id="data-cleaning" class="level4">
+<h4 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the NBA dataset</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nba_players <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"http://bcdanl.github.io/data/nba_players.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 467 Columns: 51
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (3): PlayerName, Position, Team
+dbl (48): Salary, Age, GP, GS, MP, FG, FGA, FG_pct, 3P, 3PA, 3P_pct, 2P, 2PA...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data cleaning: Remove outliers and invalid entries</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nba_players_clean <span class="ot">&lt;-</span> nba_players <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Salary) <span class="sc">&amp;</span> Salary <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> GP <span class="sc">&gt;</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span>  <span class="co"># Remove players with missing or zero salary, and low game participation</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Salary_Millions =</span> Salary <span class="sc">/</span> <span class="fl">1e6</span>)  <span class="co"># Convert salary to millions for easier readability</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Findings</strong>: This cleaning ensures our analysis focuses on active players with meaningful contributions, avoiding noise from incomplete or irrelevant data points.</p>
+<hr>
+</section>
+<section id="key-summary-statistics" class="level4">
+<h4 class="anchored" data-anchor-id="key-summary-statistics">Key Summary Statistics</h4>
+<p>The following code calculates averages for key metrics like salary, points per game (PTS), Player Efficiency Rating (PER), and Win Shares (WS).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate key descriptive statistics</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>summary_stats <span class="ot">&lt;-</span> nba_players_clean <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_salary =</span> <span class="fu">mean</span>(Salary_Millions),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_salary =</span> <span class="fu">median</span>(Salary_Millions),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_pts =</span> <span class="fu">mean</span>(PTS),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_per =</span> <span class="fu">mean</span>(PER),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_ws =</span> <span class="fu">mean</span>(WS)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summary_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  avg_salary median_salary avg_pts avg_per avg_ws
+       &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1       9.55          4.63    9.96    13.7   2.69</code></pre>
+</div>
+</div>
+<p><strong>Findings</strong>: The calculated averages provide a baseline for comparing individual players. For example: - Average salary: <strong>$9.55 million</strong> - Average points per game: <strong>9.96 points</strong></p>
+<p>These values help identify outliers and standout players.</p>
+<hr>
+</section>
+<section id="correlation-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="correlation-analysis">Correlation Analysis</h4>
+<p>This code computes the correlation matrix to explore relationships between salary and performance metrics. Higher correlations indicate stronger relationships.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute correlations between salary and performance metrics</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="ot">&lt;-</span> nba_players_clean <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Salary_Millions, PER, WS, TS_pct, PTS, AST, STL, BLK) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor</span>()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(correlation_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Salary_Millions       PER        WS     TS_pct       PTS
+Salary_Millions       1.0000000 0.5456509 0.5970353 0.20168943 0.7292814
+PER                   0.5456509 1.0000000 0.7409330 0.63499002 0.7011657
+WS                    0.5970353 0.7409330 1.0000000 0.51919903 0.7221934
+TS_pct                0.2016894 0.6349900 0.5191990 1.00000000 0.2745762
+PTS                   0.7292814 0.7011657 0.7221934 0.27457624 1.0000000
+AST                   0.6161033 0.4725905 0.5426286 0.04748020 0.7325362
+STL                   0.4874090 0.4118194 0.5429013 0.09145927 0.6069206
+BLK                   0.2743947 0.4826649 0.4754230 0.38408129 0.2574327
+                       AST        STL        BLK
+Salary_Millions 0.61610328 0.48740903 0.27439469
+PER             0.47259052 0.41181939 0.48266485
+WS              0.54262859 0.54290135 0.47542296
+TS_pct          0.04748020 0.09145927 0.38408129
+PTS             0.73253620 0.60692061 0.25743267
+AST             1.00000000 0.68220450 0.02631061
+STL             0.68220450 1.00000000 0.15878444
+BLK             0.02631061 0.15878444 1.00000000</code></pre>
+</div>
+</div>
+<p><strong>Findings</strong>: Metrics like PTS, AST, PER, and WS are likely to show strong correlations with salary, suggesting they are key indicators of player value.</p>
+<hr>
+</section>
+</section>
+<section id="data-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="data-visualization">Data Visualization</h3>
+<section id="salary-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="salary-distribution">Salary Distribution</h4>
+<p>This histogram shows how player salaries are distributed across the league, emphasizing the disparities between top earners and the rest.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of salary distribution</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>salary_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nba_players_clean, <span class="fu">aes</span>(<span class="at">x =</span> Salary_Millions)) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of NBA Player Salaries (in Millions)"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Salary (in Millions)"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Players"</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(nba_players_clean<span class="sc">$</span>Salary_Millions), <span class="at">by =</span> <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(salary_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="writeup_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Findings</strong>: Most players earn less than $10 million per season, with a few outliers earning significantly more.</p>
+<hr>
+</section>
+</section>
+<section id="correlation-heatmap" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-heatmap">Correlation Heatmap</h3>
+<p>This heatmap visualizes the strength of relationships between salary and various performance metrics.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>heatmap_plot <span class="ot">&lt;-</span> <span class="fu">ggcorrplot</span>(correlation_matrix, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">lab =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">lab_size =</span> <span class="dv">5</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"white"</span>, <span class="st">"blue"</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">title =</span> <span class="st">"Correlation Between Salary and Performance Metrics"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>heatmap_plot <span class="sc">+</span> </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="writeup_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Findings</strong>: Strong correlations between salary and metrics like <strong>PTS</strong> <strong>PER</strong>, <strong>WS</strong>, and <strong>AST</strong> suggest these are key drivers of player compensation.</p>
+<hr>
+</section>
+<section id="scatterplot-of-salary-vs.-per" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot-of-salary-vs.-per">Scatterplot of Salary vs.&nbsp;PER</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'scales'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    discard</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:readr':
+
+    col_factor</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>scatter_salary_per <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nba_players_clean, <span class="fu">aes</span>(<span class="at">x =</span> PER, <span class="at">y =</span> Salary_Millions, <span class="at">color =</span> PER)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">"lightblue"</span>, <span class="at">high =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Salary vs. Player Efficiency Rating (PER)"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Player Efficiency Rating (PER)"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Salary (in Millions)"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"PER"</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">dollar_format</span>(<span class="at">prefix =</span> <span class="st">"$"</span>, <span class="at">suffix =</span> <span class="st">"M"</span>)) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(scatter_salary_per)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="writeup_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Findings</strong>: Some players are shown with high PER have relatively low salaries, highlighting potential undervalued players. This means that they are highly efficient yet are paid lower than they deserve.</p>
+<hr>
+</section>
+<section id="top-10-players-by-win-shares" class="level3">
+<h3 class="anchored" data-anchor-id="top-10-players-by-win-shares">Top 10 Players by Win Shares ⛹️‍♂️</h3>
+<p>This bar chart compares the Win Shares (WS) of the top 10 players with their corresponding salaries.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify top 10 players by Win Shares</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>top_players_ws <span class="ot">&lt;-</span> nba_players_clean <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(WS)) <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(WS, <span class="at">.after =</span> Salary)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(top_players_ws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 52
+   PlayerName    Salary    WS Position   Age Team     GP    GS    MP    FG   FGA
+   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Domantas Sab… 2.11e7  12.6 C           26 SAC      79    79  34.6   7.3  11.9
+ 2 Jimmy Butler  3.77e7  12.3 PF          33 MIA      64    64  33.4   7.5  13.9
+ 3 Joel Embiid   3.36e7  12.3 C           28 PHI      66    66  34.6  11    20.1
+ 4 Shai Gilgeou… 3.09e7  11.4 PG          24 OKC      68    68  35.5  10.4  20.3
+ 5 Jayson Tatum  3.04e7  10.5 SF          24 BOS      74    74  36.9   9.8  21.1
+ 6 Jarrett Allen 2   e7   9.5 C           24 CLE      68    68  32.6   5.9   9.2
+ 7 Damian Lilla… 4.25e7   9   PG          32 POR      58    58  36.3   9.6  20.7
+ 8 Anthony Davis 3.80e7   9   C           29 LAL      56    54  34     9.7  17.2
+ 9 Donovan Mitc… 3.09e7   8.9 SG          26 CLE      68    68  35.8  10    20.6
+10 Jalen Brunson 2.77e7   8.7 PG          26 NYK      68    68  35     8.6  17.6
+# ℹ 41 more variables: FG_pct &lt;dbl&gt;, `3P` &lt;dbl&gt;, `3PA` &lt;dbl&gt;, `3P_pct` &lt;dbl&gt;,
+#   `2P` &lt;dbl&gt;, `2PA` &lt;dbl&gt;, `2P_pct` &lt;dbl&gt;, eFG_pct &lt;dbl&gt;, FT &lt;dbl&gt;,
+#   FTA &lt;dbl&gt;, FT_pct &lt;dbl&gt;, ORB &lt;dbl&gt;, DRB &lt;dbl&gt;, TRB &lt;dbl&gt;, AST &lt;dbl&gt;,
+#   STL &lt;dbl&gt;, BLK &lt;dbl&gt;, TOV &lt;dbl&gt;, PF &lt;dbl&gt;, PTS &lt;dbl&gt;, TotalMinutes &lt;dbl&gt;,
+#   PER &lt;dbl&gt;, TS_pct &lt;dbl&gt;, `3PAr` &lt;dbl&gt;, FTr &lt;dbl&gt;, ORB_pct &lt;dbl&gt;,
+#   DRB_pct &lt;dbl&gt;, TRB_pct &lt;dbl&gt;, AST_pct &lt;dbl&gt;, STL_pct &lt;dbl&gt;, BLK_pct &lt;dbl&gt;,
+#   TOV_pct &lt;dbl&gt;, USG_pct &lt;dbl&gt;, OWS &lt;dbl&gt;, DWS &lt;dbl&gt;, WS_per_48 &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)  <span class="co"># for prettier color gradients</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'viridis' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: viridisLite</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'viridis'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:scales':
+
+    viridis_pal</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes) <span class="co"># optional, for additional theme options</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggthemes' was built under R version 4.2.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enhanced bar chart</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>bar_top_ws <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(top_players_ws, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(PlayerName, WS), <span class="at">y =</span> WS, <span class="at">fill =</span> Salary_Millions)) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(WS, <span class="dv">1</span>)), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span>  <span class="co"># Add data labels</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">option =</span> <span class="st">"plasma"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">name =</span> <span class="st">"Salary ($M)"</span>, <span class="at">guide =</span> <span class="fu">guide_colorbar</span>(<span class="at">barwidth =</span> <span class="dv">10</span>, <span class="at">barheight =</span> <span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 10 NBA Players by Win Shares"</span>,</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Colored by Salary (in Millions)"</span>,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Player Name"</span>,</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Win Shares"</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">13</span>),</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">13</span>),</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"right"</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fu">max</span>(top_players_ws<span class="sc">$</span>WS) <span class="sc">+</span> <span class="dv">2</span>)  <span class="co"># Add space for text labels</span></span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bar_top_ws)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="writeup_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Findings</strong>: The highest-performing players (by WS) tend to have high salaries, although there are a few exceptions. For example, Domantas Sabonis is the number one NBA player by win share, but his salary is the second lowest among top 10 players by win share. Jarret Allen is another example he is 6th in the NBA in win share yet he is being paid the lowest by any of the top 10 players by win share. This tells us that Sabonis and Allen are extremely undervalued and contribute to their teams winning percentage at a lower price compared to others in the NBA.</p>
+<hr>
+</section>
+<section id="offensive-vs.-defensive-metrics-and-salary" class="level3">
+<h3 class="anchored" data-anchor-id="offensive-vs.-defensive-metrics-and-salary">Offensive vs.&nbsp;Defensive Metrics and Salary 📈</h3>
+<p>Below is a chart showing the Offensive and Defensive Metrics for the top 10 highest paid NBA players. The goal is to see which performance metrics (offensive or defensive) contribute to a players salary more.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>nba_off_def <span class="ot">&lt;-</span> nba_players_clean <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(Salary_Millions, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span>   <span class="co"># Top 10 highest-paid players</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(PlayerName, PTS, AST, STL, BLK) <span class="sc">%&gt;%</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(PTS, AST, STL, BLK),</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Metric"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Value"</span>)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create grouped bar chart</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>grouped_bar_chart <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nba_off_def, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(PlayerName, <span class="sc">-</span>Value), <span class="at">y =</span> Value, <span class="at">fill =</span> Metric)) <span class="sc">+</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 10 Highest-Paid Players: *Offensive vs. Defensive Metrics*"</span>,</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Comparing Points, Assists, Steals, and Blocks for Each Player"</span>,</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Player Name"</span>,</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Metric Value"</span>,</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Metric"</span>) <span class="sc">+</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"PTS"</span> <span class="ot">=</span> <span class="st">"#1f77b4"</span>, <span class="st">"AST"</span> <span class="ot">=</span> <span class="st">"#2ca02c"</span>, </span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"STL"</span> <span class="ot">=</span> <span class="st">"#ff7f0e"</span>, <span class="st">"BLK"</span> <span class="ot">=</span> <span class="st">"#9467bd"</span>)) <span class="sc">+</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold.italic"</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">14</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">10</span>)),</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">13</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">10</span>)),</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">13</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">10</span>)),</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"right"</span>,</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey80"</span>),</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title.position =</span> <span class="st">"top"</span>, <span class="at">title.hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(grouped_bar_chart)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="writeup_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Findings</strong> 1. Offesive Metrics Dominate (PTS and AST)</p>
+<ul>
+<li>Points (PTS): The PTS (light blue bars) are significantly higher for all players compared to other metrics. This suggests that scoring ability is a major factor contributing to high salaries.
+<ul>
+<li>For example, Giannis Antetokounmpo, Stephen Curry, and Damian Lillard have extremely high PTS values, indicating their scoring dominance.</li>
+<li>Players like Kevin Durant and Lebron James also exhibit high PTS, reinforcing the importance of offensive capabilities.</li>
+</ul></li>
+<li>Assists (AST): The AST (green bars) are the second-highest metric for most players, especially for those known as playmakers, such as LeBron James, Russell Westbrook, and Stephen Curry. This indicates that playmaking ability is another key factor in high salaries.</li>
+</ul>
+<ol start="2" type="1">
+<li>Defensive Metrics Are Less Prominent (BLK and STL)</li>
+</ol>
+<ul>
+<li><p>Blocks (BLK): The BLK (purple bars) are relatively low for all players, even for those known for their defensive prowess, like Kawhi Leonard and Giannis Antetokounmpo. This suggests that blocking is not a significant determinant of salary for these top players.</p></li>
+<li><p>Steals (STL): The STL (orange bars) are also consistently low across all players, indicating that steals, like blocks, have less influence on salary when compared to offensive metrics.</p></li>
+</ul>
+<ol start="3" type="1">
+<li>Balanced Players Are More Valued</li>
+</ol>
+<ul>
+<li>Some players demonstrate a balance between offensive (PTS and AST) and defensive (STL and BLK) metrics. For example:
+<ul>
+<li>Giannis Antetokounmpo and LeBron James show relatively higher values in both offensive and defensive categories, making them versatile players.</li>
+<li>Kawhi Leonard shows moderate contributions in all metrics, aligning with his reputation as a two-way player.</li>
+</ul></li>
+</ul>
+<ol start="4" type="1">
+<li>Outliers in Specific Metrics</li>
+</ol>
+<ul>
+<li>Stephen Curry: Has the highest PTS value but relatively lower defensive metrics, emphasizing his role as a scoring specialist.</li>
+<li>Russell Westbrook: Shows higher AST values compared to most other players, highlighting his playmaking ability.</li>
+</ul>
+<p>Key Conclusions:</p>
+<ul>
+<li><p>Offensive contributions (PTS and AST) have a stronger influence on salary than defensive contributions (BLK and STL).</p>
+<ul>
+<li>Players who excel in scoring (e.g., Curry, Durant, James) or playmaking (e.g., Westbrook, James) are more highly compensated.</li>
+</ul></li>
+<li><p>Defensive metrics, while still important are less impactful on salary for these top players, due to the heightened difficulty to achieve higher defensive statistics although balanced players like Giannis and LeBron are exceptions.</p></li>
+</ul>
+<p>This analysis ties the metrics back to salary by showing that offensive capabilities are the primary drivers of high compensation. - In the NBA, while being a great defensive player is important, todays fast paced, high scoring game favors players who can score a lot of points, hence the top 10 paid players all having high offensive statistics.</p>
+<hr>
+</section>
+<section id="interactive-scatterplot-of-salary-vs.-true-shooting-percentage-ts" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-scatterplot-of-salary-vs.-true-shooting-percentage-ts">Interactive Scatterplot of Salary vs.&nbsp;True Shooting Percentage (TS%) 📊</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'plotly' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'plotly'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggplot2':
+
+    last_plot</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:graphics':
+
+    layout</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set a minimum threshold for total minutes played</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>min_minutes <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter dataset to include players with at least 'min_minutes'</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>filtered_nba_data <span class="ot">&lt;-</span> nba_players_clean <span class="sc">%&gt;%</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TotalMinutes <span class="sc">&gt;=</span> min_minutes)  <span class="co"># Replace 'TotalMinutes' with your actual column name</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot: Salary vs. True Shooting Percentage (TS%)</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>scatter_salary_ts <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(filtered_nba_data, <span class="fu">aes</span>(</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> TS_pct, <span class="at">y =</span> Salary_Millions, </span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">paste</span>(</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;b&gt;Player:&lt;/b&gt;"</span>, PlayerName, </span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;TS%:&lt;/b&gt;"</span>, scales<span class="sc">::</span><span class="fu">percent</span>(TS_pct, <span class="at">accuracy =</span> <span class="fl">0.1</span>),</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;Salary:&lt;/b&gt;"</span>, scales<span class="sc">::</span><span class="fu">dollar</span>(Salary_Millions, <span class="at">prefix =</span> <span class="st">"$"</span>, <span class="at">suffix =</span> <span class="st">"M"</span>),</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;&lt;b&gt;Total Minutes Played:&lt;/b&gt;"</span>, TotalMinutes</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>)) <span class="sc">+</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#1f78b4"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span>  <span class="co"># Blue points with transparency</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"#ff7f00"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span>  <span class="co"># Orange trend line</span></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Interactive Scatterplot: Salary vs. True Shooting Percentage (TS%)"</span>,</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">"Players with at least"</span>, min_minutes, <span class="st">"Total Minutes Played"</span>),</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"True Shooting Percentage (TS%)"</span>,</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Salary (in Millions)"</span></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(), </span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.45</span>, <span class="fl">0.75</span>),</span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">0.45</span>, <span class="fl">0.75</span>, <span class="at">by =</span> .<span class="dv">05</span>), <span class="co"># Assuming TS% ranges between 40% and 70%</span></span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>(<span class="at">prefix =</span> <span class="st">"$"</span>, <span class="at">suffix =</span> <span class="st">"M"</span>), </span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>),  <span class="co"># Assuming salary ranges up to $50M</span></span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>, <span class="at">base_family =</span> <span class="st">"Arial"</span>) <span class="sc">+</span></span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"gray40"</span>),</span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray80"</span>, <span class="at">size =</span> <span class="fl">0.5</span>),</span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
+ℹ Please use the `linewidth` argument instead.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the ggplot object to an interactive plot</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>interactive_scatter_salary_ts <span class="ot">&lt;-</span> <span class="fu">ggplotly</span>(</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  scatter_salary_ts, </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">tooltip =</span> <span class="st">"text"</span>  <span class="co"># Display the custom tooltip text</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the interactive plot as an HTML file</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>htmlwidgets<span class="sc">::</span><span class="fu">saveWidget</span>(</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  interactive_scatter_salary_ts, </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"interactive_scatter_salary_ts_filtered_minutes.html"</span>, </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">selfcontained =</span> <span class="cn">TRUE</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the interactive plot to view in RStudio</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>interactive_scatter_salary_ts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-8806e484e706f51f485d" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8806e484e706f51f485d">{"x":{"data":[{"x":[0.65600000000000003,0.51300000000000001,0.58299999999999996,0.67700000000000005,0.59299999999999997,0.623,0.58799999999999997,0.60499999999999998,0.64500000000000002,0.57599999999999996,0.61299999999999999,0.67500000000000004,0.627,0.64700000000000002,0.60199999999999998,0.57299999999999995,0.60699999999999998,0.55900000000000005,0.56499999999999995,0.65100000000000002,0.58599999999999997,0.60099999999999998,0.56399999999999995,0.65500000000000003,0.54100000000000004,0.60699999999999998,0.57099999999999995,0.58199999999999996,0.60499999999999998,0.61399999999999999,0.626,0.61699999999999999,0.54800000000000004,0.60699999999999998,0.59199999999999997,0.59899999999999998,0.56299999999999994,0.58099999999999996,0.55500000000000005,0.56499999999999995,0.59699999999999998,0.59199999999999997,0.63100000000000001,0.59199999999999997,0.58099999999999996,0.59299999999999997,0.58299999999999996,0.61499999999999999,0.58099999999999996,0.51700000000000002,0.54000000000000004,0.61399999999999999,0.66800000000000004,0.60599999999999998,0.61699999999999999,0.58699999999999997,0.67000000000000004,0.59399999999999997,0.58699999999999997,0.57299999999999995,0.54600000000000004,0.621,0.63200000000000001,0.65600000000000003,0.56399999999999995,0.58599999999999997,0.53800000000000003,0.60399999999999998,0.54000000000000004,0.65200000000000002,0.61199999999999999,0.61599999999999999,0.56399999999999995,0.64000000000000001,0.53400000000000003,0.53100000000000003,0.51300000000000001,0.54600000000000004,0.61699999999999999,0.624,0.59799999999999998,0.63,0.53400000000000003,0.58999999999999997,0.68400000000000005,0.55800000000000005,0.62,0.54400000000000004,0.622,0.52300000000000002,0.64300000000000002,0.58999999999999997,0.55500000000000005,0.55700000000000005,0.54400000000000004,0.51400000000000001,0.49399999999999999,0.73799999999999999,0.52900000000000003,0.53100000000000003,0.57499999999999996,0.56399999999999995,0.50800000000000001,0.66100000000000003,0.57699999999999996,0.60199999999999998,0.56299999999999994,0.58699999999999997,0.53800000000000003,0.63500000000000001,0.53800000000000003,0.57899999999999996,0.68899999999999995,0.58799999999999997,0.61199999999999999,0.58699999999999997,0.56699999999999995,0.58299999999999996,0.51300000000000001,0.54100000000000004,0.59299999999999997,0.59099999999999997,0.56599999999999995,0.59699999999999998,0.63900000000000001,0.58099999999999996,0.57599999999999996,0.52400000000000002,0.57899999999999996,0.57199999999999995,0.59899999999999998,0.52800000000000002,0.59699999999999998,0.61399999999999999,0.52800000000000002,0.56599999999999995,0.57099999999999995,0.57099999999999995,0.61599999999999999,0.67800000000000005,0.53300000000000003,0.55600000000000005,0.56000000000000005,0.56799999999999995,0.61699999999999999,0.45500000000000002,0.59699999999999998,0.53100000000000003,0.56599999999999995,0.503,0.56499999999999995,0.58899999999999997,0.55800000000000005,0.56599999999999995,0.50900000000000001,0.53500000000000003,0.54500000000000004,0.56499999999999995,0.57599999999999996,0.59299999999999997,0.55000000000000004,0.55200000000000005,0.60399999999999998,0.68200000000000005,0.60099999999999998,0.60499999999999998,0.624,0.65500000000000003,0.56100000000000005,0.57299999999999995,0.55100000000000005,0.56599999999999995,0.56999999999999995,0.65700000000000003,0.57699999999999996,0.60999999999999999,0.56000000000000005,0.52500000000000002,0.64500000000000002,0.49199999999999999,0.56399999999999995,0.52400000000000002,0.56399999999999995,0.55400000000000005,0.56799999999999995,0.56100000000000005,0.55400000000000005,0.60499999999999998,0.70199999999999996,0.60699999999999998,0.51900000000000002,0.59499999999999997,0.57799999999999996,0.54200000000000004,0.61899999999999999,0.52800000000000002,0.53500000000000003,0.60299999999999998,0.61099999999999999,0.60699999999999998,0.60599999999999998,0.58499999999999996,0.57499999999999996,0.68200000000000005,0.53100000000000003,0.66600000000000004,0.61899999999999999,0.52700000000000002,0.61699999999999999,0.55700000000000005,0.73899999999999999,0.626,0.63,0.60899999999999999,0.52000000000000002,0.626,0.53300000000000003,0.55700000000000005,0.67600000000000005,0.52400000000000002,0.53900000000000003,0.53400000000000003,0.63400000000000001,0.56699999999999995,0.56699999999999995,0.68700000000000006,0.52500000000000002,0.60699999999999998,0.625,0.53100000000000003,0.60999999999999999],"y":[48.070014,47.080179000000001,44.474988000000003,44.119844999999998,43.279249999999998,42.492491999999999,42.492491999999999,42.492491999999999,42.492491999999999,40.600079999999998,38.917057,38.172414000000003,37.980719999999998,37.653300000000002,37.633049999999997,37.096499999999999,37.096499999999999,35.448672000000002,35.448672000000002,35.096499999999999,34.319519999999997,33.833399999999997,33.616770000000002,33.616770000000002,33.333333000000003,33,31.650600000000001,31.650600000000001,31.377749999999999,30.91375,30.91375,30.91375,30.556968000000001,30.351780000000002,30.351780000000002,30.351780000000002,30.074999999999999,29.776785,28.399999999999999,28.333334000000001,27.733332000000001,27.300000000000001,26.5,25.806467999999999,23.760000000000002,23.5,22.68,22.600000000000001,22.321428999999998,21.486315999999999,21.25,21.17775,21.100000000000001,20.954999999999998,20.690909000000001,20.100000000000001,20,19.700319,19.568359999999998,19.5,18.796296000000002,18.642856999999999,18.352273,18.206896,17.926829000000001,17.357143000000001,17.207142000000001,17.142856999999999,17.071120000000001,17.045453999999999,16.758621000000002,16.699999999999999,16.5,16.475453999999999,16.372093,15.558035,15.277778,15,14.508929,14.317458999999999,14.004702999999999,13.906976,13.801614000000001,13.75,13.745455,13.34,13,13,12.960000000000001,12.939848,12.804878,12.69,12.196094,12.119440000000001,11.5,11.457217,11.4,11.080125000000001,11.055120000000001,10.900634,10.843349999999999,10.7334,10.26,10.123457,10.0128,10.0128,9.8358810000000005,9.4722190000000008,9.4418399999999991,9.3981480000000008,9.1999999999999993,9.125,9.0804170000000006,9.0299999999999994,8.9250000000000007,8.9207940000000008,8.8548790000000004,8.7804880000000001,8.75,8.62392,8.4966530000000002,8.4787199999999991,8.25,8.0084400000000002,8,7.8048780000000004,7.7754000000000003,7.6445999999999996,7.426088,7.4139549999999996,7.3499999999999996,7.2522000000000002,7.0999999999999996,7.0408799999999996,6.92232,6.5868000000000002,6.4790000000000001,6.4790000000000001,6.4790000000000001,6.3951599999999997,6.2873999999999999,6.2631880000000004,6.0250000000000004,6.0129599999999996,5.887899,5.8377600000000003,5.7398400000000001,5.7283929999999996,5.7221159999999998,5.5086000000000004,5.3482799999999999,5.2582800000000001,5.1555,5.1219510000000001,5.0635199999999996,4.9161599999999996,4.8335999999999997,4.6701600000000001,4.5,4.5,4.4370000000000003,4.3795260000000003,4.3739999999999997,4.3439189999999996,4.3414799999999998,4.3062810000000002,4.2151199999999998,4.1242799999999997,3.9183599999999998,3.9013990000000001,3.873024,3.80436,3.61368,3.5528400000000002,3.5361600000000002,3.4649999999999999,3.4333200000000001,3.3591600000000001,3.0983999999999998,3.0461999999999998,2.9590800000000002,2.9256000000000002,2.9058510000000002,2.84016,2.8086000000000002,2.7999999999999998,2.79264,2.72688,2.6964000000000001,2.625,2.5886399999999998,2.57376,2.3162400000000001,2.2999999999999998,2.2770000000000001,2.2441110000000002,2.2015199999999999,2.2000000000000002,2.1614399999999998,2.1332779999999998,2.1302400000000001,2,1.9977180000000001,1.968175,1.968175,1.968175,1.9306810000000001,1.9306810000000001,1.9306810000000001,1.9306810000000001,1.9306810000000001,1.8787199999999999,1.8787199999999999,1.8787199999999999,1.846738,1.83609,1.815677,1.815677,1.782621,1.782621,1.782621,1.782621,1.637966,1.563518,1.563518,1.563518,1.563518,1.563518,1.563518,1.280206,0.694878],"text":["<b>Player:<\/b> Stephen Curry <br><b>TS%:<\/b> 65.6% <br><b>Salary:<\/b> $48.07M <br><b>Total Minutes Played:<\/b> 1941","<b>Player:<\/b> Russell Westbrook <br><b>TS%:<\/b> 51.3% <br><b>Salary:<\/b> $47.08M <br><b>Total Minutes Played:<\/b> 2126","<b>Player:<\/b> LeBron James <br><b>TS%:<\/b> 58.3% <br><b>Salary:<\/b> $44.47M <br><b>Total Minutes Played:<\/b> 1954","<b>Player:<\/b> Kevin Durant <br><b>TS%:<\/b> 67.7% <br><b>Salary:<\/b> $44.12M <br><b>Total Minutes Played:<\/b> 1672","<b>Player:<\/b> Bradley Beal <br><b>TS%:<\/b> 59.3% <br><b>Salary:<\/b> $43.28M <br><b>Total Minutes Played:<\/b> 1673","<b>Player:<\/b> Kawhi Leonard <br><b>TS%:<\/b> 62.3% <br><b>Salary:<\/b> $42.49M <br><b>Total Minutes Played:<\/b> 1748","<b>Player:<\/b> Paul George <br><b>TS%:<\/b> 58.8% <br><b>Salary:<\/b> $42.49M <br><b>Total Minutes Played:<\/b> 1939","<b>Player:<\/b> Giannis Antetokounmpo <br><b>TS%:<\/b> 60.5% <br><b>Salary:<\/b> $42.49M <br><b>Total Minutes Played:<\/b> 2024","<b>Player:<\/b> Damian Lillard <br><b>TS%:<\/b> 64.5% <br><b>Salary:<\/b> $42.49M <br><b>Total Minutes Played:<\/b> 2107","<b>Player:<\/b> Klay Thompson <br><b>TS%:<\/b> 57.6% <br><b>Salary:<\/b> $40.60M <br><b>Total Minutes Played:<\/b> 2279","<b>Player:<\/b> Kyrie Irving <br><b>TS%:<\/b> 61.3% <br><b>Salary:<\/b> $38.92M <br><b>Total Minutes Played:<\/b> 2241","<b>Player:<\/b> Rudy Gobert <br><b>TS%:<\/b> 67.5% <br><b>Salary:<\/b> $38.17M <br><b>Total Minutes Played:<\/b> 2148","<b>Player:<\/b> Anthony Davis <br><b>TS%:<\/b> 62.7% <br><b>Salary:<\/b> $37.98M <br><b>Total Minutes Played:<\/b> 1904","<b>Player:<\/b> Jimmy Butler <br><b>TS%:<\/b> 64.7% <br><b>Salary:<\/b> $37.65M <br><b>Total Minutes Played:<\/b> 2138","<b>Player:<\/b> Tobias Harris <br><b>TS%:<\/b> 60.2% <br><b>Salary:<\/b> $37.63M <br><b>Total Minutes Played:<\/b> 2436","<b>Player:<\/b> Trae Young <br><b>TS%:<\/b> 57.3% <br><b>Salary:<\/b> $37.10M <br><b>Total Minutes Played:<\/b> 2541","<b>Player:<\/b> Zach LaVine <br><b>TS%:<\/b> 60.7% <br><b>Salary:<\/b> $37.10M <br><b>Total Minutes Played:<\/b> 2768","<b>Player:<\/b> Ben Simmons <br><b>TS%:<\/b> 55.9% <br><b>Salary:<\/b> $35.45M <br><b>Total Minutes Played:<\/b> 1105","<b>Player:<\/b> Pascal Siakam <br><b>TS%:<\/b> 56.5% <br><b>Salary:<\/b> $35.45M <br><b>Total Minutes Played:<\/b> 2652","<b>Player:<\/b> Myles Turner <br><b>TS%:<\/b> 65.1% <br><b>Salary:<\/b> $35.10M <br><b>Total Minutes Played:<\/b> 1825","<b>Player:<\/b> Jrue Holiday <br><b>TS%:<\/b> 58.6% <br><b>Salary:<\/b> $34.32M <br><b>Total Minutes Played:<\/b> 2183","<b>Player:<\/b> Devin Booker <br><b>TS%:<\/b> 60.1% <br><b>Salary:<\/b> $33.83M <br><b>Total Minutes Played:<\/b> 1835","<b>Player:<\/b> Andrew Wiggins <br><b>TS%:<\/b> 56.4% <br><b>Salary:<\/b> $33.62M <br><b>Total Minutes Played:<\/b> 1190","<b>Player:<\/b> Joel Embiid <br><b>TS%:<\/b> 65.5% <br><b>Salary:<\/b> $33.62M <br><b>Total Minutes Played:<\/b> 2284","<b>Player:<\/b> CJ McCollum <br><b>TS%:<\/b> 54.1% <br><b>Salary:<\/b> $33.33M <br><b>Total Minutes Played:<\/b> 2649","<b>Player:<\/b> James Harden <br><b>TS%:<\/b> 60.7% <br><b>Salary:<\/b> $33.00M <br><b>Total Minutes Played:<\/b> 2135","<b>Player:<\/b> Jamal Murray <br><b>TS%:<\/b> 57.1% <br><b>Salary:<\/b> $31.65M <br><b>Total Minutes Played:<\/b> 2133","<b>Player:<\/b> Brandon Ingram <br><b>TS%:<\/b> 58.2% <br><b>Salary:<\/b> $31.65M <br><b>Total Minutes Played:<\/b> 1538","<b>Player:<\/b> D'Angelo Russell <br><b>TS%:<\/b> 60.5% <br><b>Salary:<\/b> $31.38M <br><b>Total Minutes Played:<\/b> 2304","<b>Player:<\/b> Donovan Mitchell <br><b>TS%:<\/b> 61.4% <br><b>Salary:<\/b> $30.91M <br><b>Total Minutes Played:<\/b> 2432","<b>Player:<\/b> Shai Gilgeous-Alexander <br><b>TS%:<\/b> 62.6% <br><b>Salary:<\/b> $30.91M <br><b>Total Minutes Played:<\/b> 2416","<b>Player:<\/b> Deandre Ayton <br><b>TS%:<\/b> 61.7% <br><b>Salary:<\/b> $30.91M <br><b>Total Minutes Played:<\/b> 2035","<b>Player:<\/b> Kevin Love <br><b>TS%:<\/b> 54.8% <br><b>Salary:<\/b> $30.56M <br><b>Total Minutes Played:<\/b> 1240","<b>Player:<\/b> Jayson Tatum <br><b>TS%:<\/b> 60.7% <br><b>Salary:<\/b> $30.35M <br><b>Total Minutes Played:<\/b> 2732","<b>Player:<\/b> Bam Adebayo <br><b>TS%:<\/b> 59.2% <br><b>Salary:<\/b> $30.35M <br><b>Total Minutes Played:<\/b> 2598","<b>Player:<\/b> De'Aaron Fox <br><b>TS%:<\/b> 59.9% <br><b>Salary:<\/b> $30.35M <br><b>Total Minutes Played:<\/b> 2435","<b>Player:<\/b> Gordon Hayward <br><b>TS%:<\/b> 56.3% <br><b>Salary:<\/b> $30.08M <br><b>Total Minutes Played:<\/b> 1577","<b>Player:<\/b> Jaylen Brown <br><b>TS%:<\/b> 58.1% <br><b>Salary:<\/b> $29.78M <br><b>Total Minutes Played:<\/b> 2405","<b>Player:<\/b> Chris Paul <br><b>TS%:<\/b> 55.5% <br><b>Salary:<\/b> $28.40M <br><b>Total Minutes Played:<\/b> 1889","<b>Player:<\/b> Kyle Lowry <br><b>TS%:<\/b> 56.5% <br><b>Salary:<\/b> $28.33M <br><b>Total Minutes Played:<\/b> 1718","<b>Player:<\/b> Jalen Brunson <br><b>TS%:<\/b> 59.7% <br><b>Salary:<\/b> $27.73M <br><b>Total Minutes Played:<\/b> 2379","<b>Player:<\/b> DeMar DeRozan <br><b>TS%:<\/b> 59.2% <br><b>Salary:<\/b> $27.30M <br><b>Total Minutes Played:<\/b> 2682","<b>Player:<\/b> Al Horford <br><b>TS%:<\/b> 63.1% <br><b>Salary:<\/b> $26.50M <br><b>Total Minutes Played:<\/b> 1922","<b>Player:<\/b> Draymond Green <br><b>TS%:<\/b> 59.2% <br><b>Salary:<\/b> $25.81M <br><b>Total Minutes Played:<\/b> 2297","<b>Player:<\/b> Julius Randle <br><b>TS%:<\/b> 58.1% <br><b>Salary:<\/b> $23.76M <br><b>Total Minutes Played:<\/b> 2737","<b>Player:<\/b> John Collins <br><b>TS%:<\/b> 59.3% <br><b>Salary:<\/b> $23.50M <br><b>Total Minutes Played:<\/b> 2130","<b>Player:<\/b> Mike Conley <br><b>TS%:<\/b> 58.3% <br><b>Salary:<\/b> $22.68M <br><b>Total Minutes Played:<\/b> 2029","<b>Player:<\/b> Malcolm Brogdon <br><b>TS%:<\/b> 61.5% <br><b>Salary:<\/b> $22.60M <br><b>Total Minutes Played:<\/b> 1744","<b>Player:<\/b> Anfernee Simons <br><b>TS%:<\/b> 58.1% <br><b>Salary:<\/b> $22.32M <br><b>Total Minutes Played:<\/b> 2171","<b>Player:<\/b> Terry Rozier <br><b>TS%:<\/b> 51.7% <br><b>Salary:<\/b> $21.49M <br><b>Total Minutes Played:<\/b> 2221","<b>Player:<\/b> Fred VanVleet <br><b>TS%:<\/b> 54.0% <br><b>Salary:<\/b> $21.25M <br><b>Total Minutes Played:<\/b> 2535","<b>Player:<\/b> Buddy Hield <br><b>TS%:<\/b> 61.4% <br><b>Salary:<\/b> $21.18M <br><b>Total Minutes Played:<\/b> 2482","<b>Player:<\/b> Domantas Sabonis <br><b>TS%:<\/b> 66.8% <br><b>Salary:<\/b> $21.10M <br><b>Total Minutes Played:<\/b> 2736","<b>Player:<\/b> Jerami Grant <br><b>TS%:<\/b> 60.6% <br><b>Salary:<\/b> $20.96M <br><b>Total Minutes Played:<\/b> 2246","<b>Player:<\/b> Aaron Gordon <br><b>TS%:<\/b> 61.7% <br><b>Salary:<\/b> $20.69M <br><b>Total Minutes Played:<\/b> 2055","<b>Player:<\/b> Mikal Bridges <br><b>TS%:<\/b> 58.7% <br><b>Salary:<\/b> $20.10M <br><b>Total Minutes Played:<\/b> 2963","<b>Player:<\/b> Jarrett Allen <br><b>TS%:<\/b> 67.0% <br><b>Salary:<\/b> $20.00M <br><b>Total Minutes Played:<\/b> 2220","<b>Player:<\/b> Nicolas Batum <br><b>TS%:<\/b> 59.4% <br><b>Salary:<\/b> $19.70M <br><b>Total Minutes Played:<\/b> 1709","<b>Player:<\/b> Eric Gordon <br><b>TS%:<\/b> 58.7% <br><b>Salary:<\/b> $19.57M <br><b>Total Minutes Played:<\/b> 1965","<b>Player:<\/b> Spencer Dinwiddie <br><b>TS%:<\/b> 57.3% <br><b>Salary:<\/b> $19.50M <br><b>Total Minutes Played:<\/b> 2725","<b>Player:<\/b> Caris LeVert <br><b>TS%:<\/b> 54.6% <br><b>Salary:<\/b> $18.80M <br><b>Total Minutes Played:<\/b> 2237","<b>Player:<\/b> Joe Harris <br><b>TS%:<\/b> 62.1% <br><b>Salary:<\/b> $18.64M <br><b>Total Minutes Played:<\/b> 1527","<b>Player:<\/b> Harrison Barnes <br><b>TS%:<\/b> 63.2% <br><b>Salary:<\/b> $18.35M <br><b>Total Minutes Played:<\/b> 2662","<b>Player:<\/b> Clint Capela <br><b>TS%:<\/b> 65.6% <br><b>Salary:<\/b> $18.21M <br><b>Total Minutes Played:<\/b> 1730","<b>Player:<\/b> Steven Adams <br><b>TS%:<\/b> 56.4% <br><b>Salary:<\/b> $17.93M <br><b>Total Minutes Played:<\/b> 1133","<b>Player:<\/b> OG Anunoby <br><b>TS%:<\/b> 58.6% <br><b>Salary:<\/b> $17.36M <br><b>Total Minutes Played:<\/b> 2386","<b>Player:<\/b> Marcus Smart <br><b>TS%:<\/b> 53.8% <br><b>Salary:<\/b> $17.21M <br><b>Total Minutes Played:<\/b> 1957","<b>Player:<\/b> Derrick White <br><b>TS%:<\/b> 60.4% <br><b>Salary:<\/b> $17.14M <br><b>Total Minutes Played:<\/b> 2319","<b>Player:<\/b> Dejounte Murray <br><b>TS%:<\/b> 54.0% <br><b>Salary:<\/b> $17.07M <br><b>Total Minutes Played:<\/b> 2693","<b>Player:<\/b> Mitchell Robinson <br><b>TS%:<\/b> 65.2% <br><b>Salary:<\/b> $17.05M <br><b>Total Minutes Played:<\/b> 1591","<b>Player:<\/b> Norman Powell <br><b>TS%:<\/b> 61.2% <br><b>Salary:<\/b> $16.76M <br><b>Total Minutes Played:<\/b> 1567","<b>Player:<\/b> Collin Sexton <br><b>TS%:<\/b> 61.6% <br><b>Salary:<\/b> $16.70M <br><b>Total Minutes Played:<\/b> 1145","<b>Player:<\/b> Markelle Fultz <br><b>TS%:<\/b> 56.4% <br><b>Salary:<\/b> $16.50M <br><b>Total Minutes Played:<\/b> 1778","<b>Player:<\/b> Lauri Markkanen <br><b>TS%:<\/b> 64.0% <br><b>Salary:<\/b> $16.48M <br><b>Total Minutes Played:<\/b> 2273","<b>Player:<\/b> Marcus Morris <br><b>TS%:<\/b> 53.4% <br><b>Salary:<\/b> $16.37M <br><b>Total Minutes Played:<\/b> 1825","<b>Player:<\/b> Malik Beasley <br><b>TS%:<\/b> 53.1% <br><b>Salary:<\/b> $15.56M <br><b>Total Minutes Played:<\/b> 2093","<b>Player:<\/b> Luguentz Dort <br><b>TS%:<\/b> 51.3% <br><b>Salary:<\/b> $15.28M <br><b>Total Minutes Played:<\/b> 2272","<b>Player:<\/b> Tyus Jones <br><b>TS%:<\/b> 54.6% <br><b>Salary:<\/b> $15.00M <br><b>Total Minutes Played:<\/b> 1940","<b>Player:<\/b> Kevin Huerter <br><b>TS%:<\/b> 61.7% <br><b>Salary:<\/b> $14.51M <br><b>Total Minutes Played:<\/b> 2203","<b>Player:<\/b> Christian Wood <br><b>TS%:<\/b> 62.4% <br><b>Salary:<\/b> $14.32M <br><b>Total Minutes Played:<\/b> 1738","<b>Player:<\/b> Kentavious Caldwell-Pope <br><b>TS%:<\/b> 59.8% <br><b>Salary:<\/b> $14.00M <br><b>Total Minutes Played:<\/b> 2381","<b>Player:<\/b> Brook Lopez <br><b>TS%:<\/b> 63.0% <br><b>Salary:<\/b> $13.91M <br><b>Total Minutes Played:<\/b> 2373","<b>Player:<\/b> Patrick Beverley <br><b>TS%:<\/b> 53.4% <br><b>Salary:<\/b> $13.80M <br><b>Total Minutes Played:<\/b> 1816","<b>Player:<\/b> Doug McDermott <br><b>TS%:<\/b> 59.0% <br><b>Salary:<\/b> $13.75M <br><b>Total Minutes Played:<\/b> 1314","<b>Player:<\/b> Luke Kennard <br><b>TS%:<\/b> 68.4% <br><b>Salary:<\/b> $13.75M <br><b>Total Minutes Played:<\/b> 1315","<b>Player:<\/b> Jordan Clarkson <br><b>TS%:<\/b> 55.8% <br><b>Salary:<\/b> $13.34M <br><b>Total Minutes Played:<\/b> 1988","<b>Player:<\/b> Gary Harris <br><b>TS%:<\/b> 62.0% <br><b>Salary:<\/b> $13.00M <br><b>Total Minutes Played:<\/b> 1184","<b>Player:<\/b> Kyle Kuzma <br><b>TS%:<\/b> 54.4% <br><b>Salary:<\/b> $13.00M <br><b>Total Minutes Played:<\/b> 2239","<b>Player:<\/b> Josh Hart <br><b>TS%:<\/b> 62.2% <br><b>Salary:<\/b> $12.96M <br><b>Total Minutes Played:<\/b> 2454","<b>Player:<\/b> Dorian Finney-Smith <br><b>TS%:<\/b> 52.3% <br><b>Salary:<\/b> $12.94M <br><b>Total Minutes Played:<\/b> 2009","<b>Player:<\/b> Kelly Olynyk <br><b>TS%:<\/b> 64.3% <br><b>Salary:<\/b> $12.80M <br><b>Total Minutes Played:<\/b> 1942","<b>Player:<\/b> Chris Boucher <br><b>TS%:<\/b> 59.0% <br><b>Salary:<\/b> $12.69M <br><b>Total Minutes Played:<\/b> 1523","<b>Player:<\/b> Josh Richardson <br><b>TS%:<\/b> 55.5% <br><b>Salary:<\/b> $12.20M <br><b>Total Minutes Played:<\/b> 1530","<b>Player:<\/b> Ja Morant <br><b>TS%:<\/b> 55.7% <br><b>Salary:<\/b> $12.12M <br><b>Total Minutes Played:<\/b> 1948","<b>Player:<\/b> Terrence Ross <br><b>TS%:<\/b> 54.4% <br><b>Salary:<\/b> $11.50M <br><b>Total Minutes Played:<\/b> 1330","<b>Player:<\/b> Reggie Jackson <br><b>TS%:<\/b> 51.4% <br><b>Salary:<\/b> $11.46M <br><b>Total Minutes Played:<\/b> 1657","<b>Player:<\/b> Dillon Brooks <br><b>TS%:<\/b> 49.4% <br><b>Salary:<\/b> $11.40M <br><b>Total Minutes Played:<\/b> 2214","<b>Player:<\/b> Dwight Powell <br><b>TS%:<\/b> 73.8% <br><b>Salary:<\/b> $11.08M <br><b>Total Minutes Played:<\/b> 1458","<b>Player:<\/b> Paolo Banchero <br><b>TS%:<\/b> 52.9% <br><b>Salary:<\/b> $11.06M <br><b>Total Minutes Played:<\/b> 2430","<b>Player:<\/b> RJ Barrett <br><b>TS%:<\/b> 53.1% <br><b>Salary:<\/b> $10.90M <br><b>Total Minutes Played:<\/b> 2475","<b>Player:<\/b> Bobby Portis <br><b>TS%:<\/b> 57.5% <br><b>Salary:<\/b> $10.84M <br><b>Total Minutes Played:<\/b> 1818","<b>Player:<\/b> Anthony Edwards <br><b>TS%:<\/b> 56.4% <br><b>Salary:<\/b> $10.73M <br><b>Total Minutes Played:<\/b> 2842","<b>Player:<\/b> Talen Horton-Tucker <br><b>TS%:<\/b> 50.8% <br><b>Salary:<\/b> $10.26M <br><b>Total Minutes Played:<\/b> 1313","<b>Player:<\/b> Ivica Zubac <br><b>TS%:<\/b> 66.1% <br><b>Salary:<\/b> $10.12M <br><b>Total Minutes Played:<\/b> 2170","<b>Player:<\/b> Reggie Bullock <br><b>TS%:<\/b> 57.7% <br><b>Salary:<\/b> $10.01M <br><b>Total Minutes Played:<\/b> 2364","<b>Player:<\/b> Alec Burks <br><b>TS%:<\/b> 60.2% <br><b>Salary:<\/b> $10.01M <br><b>Total Minutes Played:<\/b> 1122","<b>Player:<\/b> De'Andre Hunter <br><b>TS%:<\/b> 56.3% <br><b>Salary:<\/b> $9.84M <br><b>Total Minutes Played:<\/b> 2126","<b>Player:<\/b> Malik Monk <br><b>TS%:<\/b> 58.7% <br><b>Salary:<\/b> $9.47M <br><b>Total Minutes Played:<\/b> 1719","<b>Player:<\/b> Jalen Green <br><b>TS%:<\/b> 53.8% <br><b>Salary:<\/b> $9.44M <br><b>Total Minutes Played:<\/b> 2602","<b>Player:<\/b> Jakob Poeltl <br><b>TS%:<\/b> 63.5% <br><b>Salary:<\/b> $9.40M <br><b>Total Minutes Played:<\/b> 1906","<b>Player:<\/b> Royce O'Neale <br><b>TS%:<\/b> 53.8% <br><b>Salary:<\/b> $9.20M <br><b>Total Minutes Played:<\/b> 2409","<b>Player:<\/b> Monte Morris <br><b>TS%:<\/b> 57.9% <br><b>Salary:<\/b> $9.12M <br><b>Total Minutes Played:<\/b> 1695","<b>Player:<\/b> Mason Plumlee <br><b>TS%:<\/b> 68.9% <br><b>Salary:<\/b> $9.08M <br><b>Total Minutes Played:<\/b> 2054","<b>Player:<\/b> Alex Caruso <br><b>TS%:<\/b> 58.8% <br><b>Salary:<\/b> $9.03M <br><b>Total Minutes Played:<\/b> 1575","<b>Player:<\/b> Grayson Allen <br><b>TS%:<\/b> 61.2% <br><b>Salary:<\/b> $8.92M <br><b>Total Minutes Played:<\/b> 1972","<b>Player:<\/b> Darius Garland <br><b>TS%:<\/b> 58.7% <br><b>Salary:<\/b> $8.92M <br><b>Total Minutes Played:<\/b> 2447","<b>Player:<\/b> Isaiah Hartenstein <br><b>TS%:<\/b> 56.7% <br><b>Salary:<\/b> $8.85M <br><b>Total Minutes Played:<\/b> 1626","<b>Player:<\/b> Kyle Anderson <br><b>TS%:<\/b> 58.3% <br><b>Salary:<\/b> $8.78M <br><b>Total Minutes Played:<\/b> 1957","<b>Player:<\/b> Victor Oladipo <br><b>TS%:<\/b> 51.3% <br><b>Salary:<\/b> $8.75M <br><b>Total Minutes Played:<\/b> 1106","<b>Player:<\/b> LaMelo Ball <br><b>TS%:<\/b> 54.1% <br><b>Salary:<\/b> $8.62M <br><b>Total Minutes Played:<\/b> 1268","<b>Player:<\/b> Seth Curry <br><b>TS%:<\/b> 59.3% <br><b>Salary:<\/b> $8.50M <br><b>Total Minutes Played:<\/b> 1211","<b>Player:<\/b> Evan Mobley <br><b>TS%:<\/b> 59.1% <br><b>Salary:<\/b> $8.48M <br><b>Total Minutes Played:<\/b> 2715","<b>Player:<\/b> De'Anthony Melton <br><b>TS%:<\/b> 56.6% <br><b>Salary:<\/b> $8.25M <br><b>Total Minutes Played:<\/b> 2150","<b>Player:<\/b> Keegan Murray <br><b>TS%:<\/b> 59.7% <br><b>Salary:<\/b> $8.01M <br><b>Total Minutes Played:<\/b> 2382","<b>Player:<\/b> Kevon Looney <br><b>TS%:<\/b> 63.9% <br><b>Salary:<\/b> $8.00M <br><b>Total Minutes Played:<\/b> 1958","<b>Player:<\/b> Delon Wright <br><b>TS%:<\/b> 58.1% <br><b>Salary:<\/b> $7.80M <br><b>Total Minutes Played:<\/b> 1221","<b>Player:<\/b> Patrick Williams <br><b>TS%:<\/b> 57.6% <br><b>Salary:<\/b> $7.78M <br><b>Total Minutes Played:<\/b> 2323","<b>Player:<\/b> Scottie Barnes <br><b>TS%:<\/b> 52.4% <br><b>Salary:<\/b> $7.64M <br><b>Total Minutes Played:<\/b> 2678","<b>Player:<\/b> Cedi Osman <br><b>TS%:<\/b> 57.9% <br><b>Salary:<\/b> $7.43M <br><b>Total Minutes Played:<\/b> 1548","<b>Player:<\/b> Coby White <br><b>TS%:<\/b> 57.2% <br><b>Salary:<\/b> $7.41M <br><b>Total Minutes Played:<\/b> 1730","<b>Player:<\/b> Zach Collins <br><b>TS%:<\/b> 59.9% <br><b>Salary:<\/b> $7.35M <br><b>Total Minutes Played:<\/b> 1441","<b>Player:<\/b> Jaden Ivey <br><b>TS%:<\/b> 52.8% <br><b>Salary:<\/b> $7.25M <br><b>Total Minutes Played:<\/b> 2304","<b>Player:<\/b> Taurean Prince <br><b>TS%:<\/b> 59.7% <br><b>Salary:<\/b> $7.10M <br><b>Total Minutes Played:<\/b> 1192","<b>Player:<\/b> Isaac Okoro <br><b>TS%:<\/b> 61.4% <br><b>Salary:<\/b> $7.04M <br><b>Total Minutes Played:<\/b> 1652","<b>Player:<\/b> Jalen Suggs <br><b>TS%:<\/b> 52.8% <br><b>Salary:<\/b> $6.92M <br><b>Total Minutes Played:<\/b> 1246","<b>Player:<\/b> Bennedict Mathurin <br><b>TS%:<\/b> 56.6% <br><b>Salary:<\/b> $6.59M <br><b>Total Minutes Played:<\/b> 2222","<b>Player:<\/b> Bruce Brown <br><b>TS%:<\/b> 57.1% <br><b>Salary:<\/b> $6.48M <br><b>Total Minutes Played:<\/b> 2280","<b>Player:<\/b> Caleb Martin <br><b>TS%:<\/b> 57.1% <br><b>Salary:<\/b> $6.48M <br><b>Total Minutes Played:<\/b> 2077","<b>Player:<\/b> Joe Ingles <br><b>TS%:<\/b> 61.6% <br><b>Salary:<\/b> $6.48M <br><b>Total Minutes Played:<\/b> 1044","<b>Player:<\/b> Onyeka Okongwu <br><b>TS%:<\/b> 67.8% <br><b>Salary:<\/b> $6.40M <br><b>Total Minutes Played:<\/b> 1849","<b>Player:<\/b> Josh Giddey <br><b>TS%:<\/b> 53.3% <br><b>Salary:<\/b> $6.29M <br><b>Total Minutes Played:<\/b> 2367","<b>Player:<\/b> Rui Hachimura <br><b>TS%:<\/b> 55.6% <br><b>Salary:<\/b> $6.26M <br><b>Total Minutes Played:<\/b> 1466","<b>Player:<\/b> Jevon Carter <br><b>TS%:<\/b> 56.0% <br><b>Salary:<\/b> $6.02M <br><b>Total Minutes Played:<\/b> 1810","<b>Player:<\/b> Shaedon Sharpe <br><b>TS%:<\/b> 56.8% <br><b>Salary:<\/b> $6.01M <br><b>Total Minutes Played:<\/b> 1779","<b>Player:<\/b> Cameron Johnson <br><b>TS%:<\/b> 61.7% <br><b>Salary:<\/b> $5.89M <br><b>Total Minutes Played:<\/b> 1199","<b>Player:<\/b> Killian Hayes <br><b>TS%:<\/b> 45.5% <br><b>Salary:<\/b> $5.84M <br><b>Total Minutes Played:<\/b> 2154","<b>Player:<\/b> Jonathan Kuminga <br><b>TS%:<\/b> 59.7% <br><b>Salary:<\/b> $5.74M <br><b>Total Minutes Played:<\/b> 1394","<b>Player:<\/b> Pat Connaughton <br><b>TS%:<\/b> 53.1% <br><b>Salary:<\/b> $5.73M <br><b>Total Minutes Played:<\/b> 1443","<b>Player:<\/b> Tyler Herro <br><b>TS%:<\/b> 56.6% <br><b>Salary:<\/b> $5.72M <br><b>Total Minutes Played:<\/b> 2337","<b>Player:<\/b> Dyson Daniels <br><b>TS%:<\/b> 50.3% <br><b>Salary:<\/b> $5.51M <br><b>Total Minutes Played:<\/b> 1042","<b>Player:<\/b> Obi Toppin <br><b>TS%:<\/b> 56.5% <br><b>Salary:<\/b> $5.35M <br><b>Total Minutes Played:<\/b> 1050","<b>Player:<\/b> Franz Wagner <br><b>TS%:<\/b> 58.9% <br><b>Salary:<\/b> $5.26M <br><b>Total Minutes Played:<\/b> 2609","<b>Player:<\/b> Cory Joseph <br><b>TS%:<\/b> 55.8% <br><b>Salary:<\/b> $5.16M <br><b>Total Minutes Played:<\/b> 1227","<b>Player:<\/b> Torrey Craig <br><b>TS%:<\/b> 56.6% <br><b>Salary:<\/b> $5.12M <br><b>Total Minutes Played:<\/b> 1948","<b>Player:<\/b> Jeremy Sochan <br><b>TS%:<\/b> 50.9% <br><b>Salary:<\/b> $5.06M <br><b>Total Minutes Played:<\/b> 1458","<b>Player:<\/b> Deni Avdija <br><b>TS%:<\/b> 53.5% <br><b>Salary:<\/b> $4.92M <br><b>Total Minutes Played:<\/b> 2020","<b>Player:<\/b> Davion Mitchell <br><b>TS%:<\/b> 54.5% <br><b>Salary:<\/b> $4.83M <br><b>Total Minutes Played:<\/b> 1447","<b>Player:<\/b> Jalen Smith <br><b>TS%:<\/b> 56.5% <br><b>Salary:<\/b> $4.67M <br><b>Total Minutes Played:<\/b> 1279","<b>Player:<\/b> Jeff Green <br><b>TS%:<\/b> 57.6% <br><b>Salary:<\/b> $4.50M <br><b>Total Minutes Played:<\/b> 1091","<b>Player:<\/b> Donte DiVincenzo <br><b>TS%:<\/b> 59.3% <br><b>Salary:<\/b> $4.50M <br><b>Total Minutes Played:<\/b> 1894","<b>Player:<\/b> Devin Vassell <br><b>TS%:<\/b> 55.0% <br><b>Salary:<\/b> $4.44M <br><b>Total Minutes Played:<\/b> 1178","<b>Player:<\/b> Matisse Thybulle <br><b>TS%:<\/b> 55.2% <br><b>Salary:<\/b> $4.38M <br><b>Total Minutes Played:<\/b> 1200","<b>Player:<\/b> Jarred Vanderbilt <br><b>TS%:<\/b> 60.4% <br><b>Salary:<\/b> $4.37M <br><b>Total Minutes Played:<\/b> 1879","<b>Player:<\/b> Brandon Clarke <br><b>TS%:<\/b> 68.2% <br><b>Salary:<\/b> $4.34M <br><b>Total Minutes Played:<\/b> 1090","<b>Player:<\/b> Jalen Williams <br><b>TS%:<\/b> 60.1% <br><b>Salary:<\/b> $4.34M <br><b>Total Minutes Played:<\/b> 2276","<b>Player:<\/b> Grant Williams <br><b>TS%:<\/b> 60.5% <br><b>Salary:<\/b> $4.31M <br><b>Total Minutes Played:<\/b> 2045","<b>Player:<\/b> Tyrese Haliburton <br><b>TS%:<\/b> 62.4% <br><b>Salary:<\/b> $4.22M <br><b>Total Minutes Played:<\/b> 1883","<b>Player:<\/b> Jalen Duren <br><b>TS%:<\/b> 65.5% <br><b>Salary:<\/b> $4.12M <br><b>Total Minutes Played:<\/b> 1670","<b>Player:<\/b> Ochai Agbaji <br><b>TS%:<\/b> 56.1% <br><b>Salary:<\/b> $3.92M <br><b>Total Minutes Played:<\/b> 1209","<b>Player:<\/b> Jordan Poole <br><b>TS%:<\/b> 57.3% <br><b>Salary:<\/b> $3.90M <br><b>Total Minutes Played:<\/b> 2458","<b>Player:<\/b> Keldon Johnson <br><b>TS%:<\/b> 55.1% <br><b>Salary:<\/b> $3.87M <br><b>Total Minutes Played:<\/b> 2063","<b>Player:<\/b> Aaron Nesmith <br><b>TS%:<\/b> 56.6% <br><b>Salary:<\/b> $3.80M <br><b>Total Minutes Played:<\/b> 1816","<b>Player:<\/b> Cole Anthony <br><b>TS%:<\/b> 57.0% <br><b>Salary:<\/b> $3.61M <br><b>Total Minutes Played:<\/b> 1552","<b>Player:<\/b> Corey Kispert <br><b>TS%:<\/b> 65.7% <br><b>Salary:<\/b> $3.55M <br><b>Total Minutes Played:<\/b> 2093","<b>Player:<\/b> AJ Griffin <br><b>TS%:<\/b> 57.7% <br><b>Salary:<\/b> $3.54M <br><b>Total Minutes Played:<\/b> 1401","<b>Player:<\/b> Georges Niang <br><b>TS%:<\/b> 61.0% <br><b>Salary:<\/b> $3.46M <br><b>Total Minutes Played:<\/b> 1512","<b>Player:<\/b> Isaiah Stewart <br><b>TS%:<\/b> 56.0% <br><b>Salary:<\/b> $3.43M <br><b>Total Minutes Played:<\/b> 1414","<b>Player:<\/b> Tari Eason <br><b>TS%:<\/b> 52.5% <br><b>Salary:<\/b> $3.36M <br><b>Total Minutes Played:<\/b> 1767","<b>Player:<\/b> Josh Green <br><b>TS%:<\/b> 64.5% <br><b>Salary:<\/b> $3.10M <br><b>Total Minutes Played:<\/b> 1539","<b>Player:<\/b> Tre Mann <br><b>TS%:<\/b> 49.2% <br><b>Salary:<\/b> $3.05M <br><b>Total Minutes Played:<\/b> 1183","<b>Player:<\/b> Saddiq Bey <br><b>TS%:<\/b> 56.4% <br><b>Salary:<\/b> $2.96M <br><b>Total Minutes Played:<\/b> 2129","<b>Player:<\/b> Malaki Branham <br><b>TS%:<\/b> 52.4% <br><b>Salary:<\/b> $2.93M <br><b>Total Minutes Played:<\/b> 1550","<b>Player:<\/b> Austin Rivers <br><b>TS%:<\/b> 56.4% <br><b>Salary:<\/b> $2.91M <br><b>Total Minutes Played:<\/b> 1016","<b>Player:<\/b> Precious Achiuwa <br><b>TS%:<\/b> 55.4% <br><b>Salary:<\/b> $2.84M <br><b>Total Minutes Played:<\/b> 1140","<b>Player:<\/b> Christian Braun <br><b>TS%:<\/b> 56.8% <br><b>Salary:<\/b> $2.81M <br><b>Total Minutes Played:<\/b> 1181","<b>Player:<\/b> Jordan Nwora <br><b>TS%:<\/b> 56.1% <br><b>Salary:<\/b> $2.80M <br><b>Total Minutes Played:<\/b> 1188","<b>Player:<\/b> Jalen Johnson <br><b>TS%:<\/b> 55.4% <br><b>Salary:<\/b> $2.79M <br><b>Total Minutes Played:<\/b> 1042","<b>Player:<\/b> Tyrese Maxey <br><b>TS%:<\/b> 60.5% <br><b>Salary:<\/b> $2.73M <br><b>Total Minutes Played:<\/b> 2016","<b>Player:<\/b> Walker Kessler <br><b>TS%:<\/b> 70.2% <br><b>Salary:<\/b> $2.70M <br><b>Total Minutes Played:<\/b> 1703","<b>Player:<\/b> Trey Lyles <br><b>TS%:<\/b> 60.7% <br><b>Salary:<\/b> $2.62M <br><b>Total Minutes Played:<\/b> 1247","<b>Player:<\/b> David Roddy <br><b>TS%:<\/b> 51.9% <br><b>Salary:<\/b> $2.59M <br><b>Total Minutes Played:<\/b> 1258","<b>Player:<\/b> Isaiah Jackson <br><b>TS%:<\/b> 59.5% <br><b>Salary:<\/b> $2.57M <br><b>Total Minutes Played:<\/b> 1042","<b>Player:<\/b> Immanuel Quickley <br><b>TS%:<\/b> 57.8% <br><b>Salary:<\/b> $2.32M <br><b>Total Minutes Played:<\/b> 2344","<b>Player:<\/b> John Konchar <br><b>TS%:<\/b> 54.2% <br><b>Salary:<\/b> $2.30M <br><b>Total Minutes Played:<\/b> 1494","<b>Player:<\/b> Quentin Grimes <br><b>TS%:<\/b> 61.9% <br><b>Salary:<\/b> $2.28M <br><b>Total Minutes Played:<\/b> 2121","<b>Player:<\/b> Andrew Nembhard <br><b>TS%:<\/b> 52.8% <br><b>Salary:<\/b> $2.24M <br><b>Total Minutes Played:<\/b> 2073","<b>Player:<\/b> Bones Hyland <br><b>TS%:<\/b> 53.5% <br><b>Salary:<\/b> $2.20M <br><b>Total Minutes Played:<\/b> 1085","<b>Player:<\/b> Bol Bol <br><b>TS%:<\/b> 60.3% <br><b>Salary:<\/b> $2.20M <br><b>Total Minutes Played:<\/b> 1505","<b>Player:<\/b> Jaden McDaniels <br><b>TS%:<\/b> 61.1% <br><b>Salary:<\/b> $2.16M <br><b>Total Minutes Played:<\/b> 2416","<b>Player:<\/b> Damion Lee <br><b>TS%:<\/b> 60.7% <br><b>Salary:<\/b> $2.13M <br><b>Total Minutes Played:<\/b> 1506","<b>Player:<\/b> Desmond Bane <br><b>TS%:<\/b> 60.6% <br><b>Salary:<\/b> $2.13M <br><b>Total Minutes Played:<\/b> 1841","<b>Player:<\/b> Kenrich Williams <br><b>TS%:<\/b> 58.5% <br><b>Salary:<\/b> $2.00M <br><b>Total Minutes Played:<\/b> 1206","<b>Player:<\/b> Shake Milton <br><b>TS%:<\/b> 57.5% <br><b>Salary:<\/b> $2.00M <br><b>Total Minutes Played:<\/b> 1567","<b>Player:<\/b> Thomas Bryant <br><b>TS%:<\/b> 68.2% <br><b>Salary:<\/b> $1.97M <br><b>Total Minutes Played:<\/b> 1081","<b>Player:<\/b> Josh Okogie <br><b>TS%:<\/b> 53.1% <br><b>Salary:<\/b> $1.97M <br><b>Total Minutes Played:<\/b> 1350","<b>Player:<\/b> Drew Eubanks <br><b>TS%:<\/b> 66.6% <br><b>Salary:<\/b> $1.97M <br><b>Total Minutes Played:<\/b> 1584","<b>Player:<\/b> Terance Mann <br><b>TS%:<\/b> 61.9% <br><b>Salary:<\/b> $1.93M <br><b>Total Minutes Played:<\/b> 1872","<b>Player:<\/b> Jaylen Nowell <br><b>TS%:<\/b> 52.7% <br><b>Salary:<\/b> $1.93M <br><b>Total Minutes Played:<\/b> 1252","<b>Player:<\/b> Naz Reid <br><b>TS%:<\/b> 61.7% <br><b>Salary:<\/b> $1.93M <br><b>Total Minutes Played:<\/b> 1251","<b>Player:<\/b> Jalen McDaniels <br><b>TS%:<\/b> 55.7% <br><b>Salary:<\/b> $1.93M <br><b>Total Minutes Played:<\/b> 1913","<b>Player:<\/b> Daniel Gafford <br><b>TS%:<\/b> 73.9% <br><b>Salary:<\/b> $1.93M <br><b>Total Minutes Played:<\/b> 1604","<b>Player:<\/b> Wenyen Gabriel <br><b>TS%:<\/b> 62.6% <br><b>Salary:<\/b> $1.88M <br><b>Total Minutes Played:<\/b> 1024","<b>Player:<\/b> Moritz Wagner <br><b>TS%:<\/b> 63.0% <br><b>Salary:<\/b> $1.88M <br><b>Total Minutes Played:<\/b> 1109","<b>Player:<\/b> Keita Bates-Diop <br><b>TS%:<\/b> 60.9% <br><b>Salary:<\/b> $1.88M <br><b>Total Minutes Played:<\/b> 1452","<b>Player:<\/b> Oshae Brissett <br><b>TS%:<\/b> 52.0% <br><b>Salary:<\/b> $1.85M <br><b>Total Minutes Played:<\/b> 1083","<b>Player:<\/b> Isaiah Joe <br><b>TS%:<\/b> 62.6% <br><b>Salary:<\/b> $1.84M <br><b>Total Minutes Played:<\/b> 1395","<b>Player:<\/b> Gabe Vincent <br><b>TS%:<\/b> 53.3% <br><b>Salary:<\/b> $1.82M <br><b>Total Minutes Played:<\/b> 1759","<b>Player:<\/b> Max Strus <br><b>TS%:<\/b> 55.7% <br><b>Salary:<\/b> $1.82M <br><b>Total Minutes Played:<\/b> 2272","<b>Player:<\/b> Nick Richards <br><b>TS%:<\/b> 67.6% <br><b>Salary:<\/b> $1.78M <br><b>Total Minutes Played:<\/b> 1217","<b>Player:<\/b> Lamar Stevens <br><b>TS%:<\/b> 52.4% <br><b>Salary:<\/b> $1.78M <br><b>Total Minutes Played:<\/b> 1120","<b>Player:<\/b> Naji Marshall <br><b>TS%:<\/b> 53.9% <br><b>Salary:<\/b> $1.78M <br><b>Total Minutes Played:<\/b> 1792","<b>Player:<\/b> Tre Jones <br><b>TS%:<\/b> 53.4% <br><b>Salary:<\/b> $1.78M <br><b>Total Minutes Played:<\/b> 1984","<b>Player:<\/b> Sam Hauser <br><b>TS%:<\/b> 63.4% <br><b>Salary:<\/b> $1.64M <br><b>Total Minutes Played:<\/b> 1290","<b>Player:<\/b> Ayo Dosunmu <br><b>TS%:<\/b> 56.7% <br><b>Salary:<\/b> $1.56M <br><b>Total Minutes Played:<\/b> 2098","<b>Player:<\/b> Isaiah Livers <br><b>TS%:<\/b> 56.7% <br><b>Salary:<\/b> $1.56M <br><b>Total Minutes Played:<\/b> 1199","<b>Player:<\/b> Austin Reaves <br><b>TS%:<\/b> 68.7% <br><b>Salary:<\/b> $1.56M <br><b>Total Minutes Played:<\/b> 1843","<b>Player:<\/b> Jose Alvarado <br><b>TS%:<\/b> 52.5% <br><b>Salary:<\/b> $1.56M <br><b>Total Minutes Played:<\/b> 1310","<b>Player:<\/b> Aaron Wiggins <br><b>TS%:<\/b> 60.7% <br><b>Salary:<\/b> $1.56M <br><b>Total Minutes Played:<\/b> 1297","<b>Player:<\/b> Trendon Watford <br><b>TS%:<\/b> 62.5% <br><b>Salary:<\/b> $1.56M <br><b>Total Minutes Played:<\/b> 1182","<b>Player:<\/b> Jordan Goodwin <br><b>TS%:<\/b> 53.1% <br><b>Salary:<\/b> $1.28M <br><b>Total Minutes Played:<\/b> 1106","<b>Player:<\/b> Anthony Lamb <br><b>TS%:<\/b> 61.0% <br><b>Salary:<\/b> $0.69M <br><b>Total Minutes Played:<\/b> 1195"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(31,120,180,1)","opacity":0.80000000000000004,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(31,120,180,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"visible":false,"showlegend":false,"xaxis":null,"yaxis":null,"hoverinfo":"text","frame":null}],"layout":{"margin":{"t":50.271481942714821,"r":9.2984640929846432,"b":46.890826068908268,"l":56.454960564549616},"font":{"color":"rgba(0,0,0,1)","family":"Arial","size":18.596928185969279},"title":{"text":"<b> Interactive Scatterplot: Salary vs. True Shooting Percentage (TS%) <\/b>","font":{"color":"rgba(0,0,0,1)","family":"Arial","size":21.253632212536321},"x":0.5,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.45000000000000001,0.75],"tickmode":"array","ticktext":["45%","50%","55%","60%","65%","70%","75%"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009,0.65000000000000002,0.69999999999999996,0.75],"categoryorder":"array","categoryarray":["45%","50%","55%","60%","65%","70%","75%"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.6492320464923198,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial","size":13.283520132835205},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(204,204,204,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"<i> True Shooting Percentage (TS%) <\/i>","font":{"color":"rgba(0,0,0,1)","family":"Arial","size":15.940224159402241}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0,50],"tickmode":"array","ticktext":["$0M","$10M","$20M","$30M","$40M","$50M"],"tickvals":[0,10,20,30,40,50],"categoryorder":"array","categoryarray":["$0M","$10M","$20M","$30M","$40M","$50M"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.6492320464923216,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial","size":13.283520132835205},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(204,204,204,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"<i> Salary (in Millions) <\/i>","font":{"color":"rgba(0,0,0,1)","family":"Arial","size":15.940224159402241}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"Arial","size":14.877542548775427}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"820f4ba22612":{"x":{},"y":{},"text":{},"type":"scatter"},"820f2718e89":{"x":{},"y":{},"text":{}}},"cur_data":"820f4ba22612","visdat":{"820f4ba22612":["function (y) ","x"],"820f2718e89":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Above is an interactive plot showing the relationship between True Shooting Percentage and Player Salaries.</p>
+</section>
+</section>
+<section id="significance-of-the-project" class="level2">
+<h2 class="anchored" data-anchor-id="significance-of-the-project">Significance of the Project 🔊</h2>
+<section id="why-these-findings-matter" class="level3">
+<h3 class="anchored" data-anchor-id="why-these-findings-matter">Why These Findings Matter</h3>
+<p>The insights uncovered in this project go beyond basketball and can be applied to several real-world scenarios:</p>
+<ol type="1">
+<li><strong>Influencing Business Decisions in Sports</strong>:
+<ul>
+<li><strong>Salary Optimization</strong>: Teams can use the findings to identify undervalued players whose contributions (e.g., high PER or WS) exceed their current salaries. This can guide better salary negotiations and resource allocation.</li>
+<li><strong>Player Evaluation</strong>: By understanding which metrics (e.g., offensive contributions like PTS and AST) strongly influence salaries, teams can refine their scouting and recruitment strategies to focus on high-impact players.</li>
+<li><strong>Data-Driven Contracts</strong>: Teams can use this analysis to structure contracts that better reflect a player’s overall value, balancing offensive and defensive contributions.</li>
+</ul></li>
+<li><strong>Broader Applications Beyond Sports</strong>:
+<ul>
+<li><strong>Workforce Compensation Analysis</strong>: Just as we analyzed player salaries, organizations in other industries can use data to ensure fair and performance-based compensation for employees.</li>
+<li><strong>Influencing Public Policy</strong>: The methodology of linking measurable performance metrics to pay could also be applied in sectors like education, healthcare, and public services to assess resource allocation and equity.</li>
+</ul></li>
+<li><strong>Enhancing Fan Engagement</strong>:
+<ul>
+<li>Fans love debating whether players are underpaid or overpaid. This analysis provides a data-backed framework for fans, sports journalists, and commentators to discuss player value and team-building strategies.</li>
+</ul></li>
+</ol>
+</section>
+<section id="connecting-to-broader-themes" class="level3">
+<h3 class="anchored" data-anchor-id="connecting-to-broader-themes"><strong>Connecting to Broader Themes</strong></h3>
+<ul>
+<li><strong>Data-Driven Decision-Making</strong>: This project underscores how data can lead to more informed, fair, and efficient decisions in any industry.</li>
+<li><strong>Value Assessment</strong>: By identifying inefficiencies and patterns in compensation, we can promote better allocation of resources, whether in sports or other fields.</li>
+</ul>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references"><strong>References</strong></h2>
+<section id="data-sources" class="level3">
+<h3 class="anchored" data-anchor-id="data-sources"><strong>Data Sources</strong></h3>
+<ol type="1">
+<li><strong>NBA Dataset</strong>: <a href="http://bcdanl.github.io/data/nba_players.csv">Source</a>
+<ul>
+<li>Contains player performance metrics and salary data for the 2022-23 NBA season.</li>
+</ul></li>
+</ol>
+</section>
+<section id="ai-assistance" class="level3">
+<h3 class="anchored" data-anchor-id="ai-assistance">AI Assistance</h3>
+<p>This project benefited from the use of <strong>GitHub Copilot</strong>, a code-generation and AI assistant tool.</p>
+<p>GitHub Copilot was employed to:</p>
+<ul>
+<li><p>Refine code aesthetics, such as improving themes, scales, and formatting for better presentation.</p></li>
+<li><p>Provide insights and guidance on implementing project-specific requirements (e.g., filtering datasets, embedding interactive visualizations).</p></li>
+<li><p>Answer technical questions and suggest best practices for reproducible and professional code.</p></li>
+<li><p>Help to refine errors and troubleshoot incorrect code.</p></li>
+</ul>
+<p>GitHub Copilot facilitated faster implementation and enhanced the overall quality of the project by offering suggestions and reducing development time.</p>
+<p><strong>Note</strong>: All outputs from GitHub Copilot were reviewed and validated by the project team to ensure accuracy and relevance to the project goals.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="text/javascript" src="links.js"></script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Powered with GitHub and Quarto<br>©Jake Starkey, 2023</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

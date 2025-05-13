@@ -9,7 +9,7 @@ collaborators:
 ```{=html}
 <div style="text-align: center; margin: 1em 0;">
   <iframe
-    src="https://0196a20d-e711-5cd2-c5dd-7b0d25292b9a.share.connect.posit.cloud/"
+    src="https://0196caee-334c-b808-ff9b-06ba3da932f7.share.connect.posit.cloud/"
     style="width: 800px; height: 800px; border: none;"
   ></iframe>
 </div>

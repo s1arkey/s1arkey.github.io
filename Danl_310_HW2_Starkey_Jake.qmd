@@ -7,6 +7,10 @@ format: html
 library(tidyverse)
 library(ggplot2)
 library(ggrepel)
+library(readr)
+
+hdi_corruption <- read_csv(
+  'https://bcdanl.github.io/data/hdi_corruption.csv')
 
 selected_countries <- c("Argentina", "China", "Egypt", "Senegal", "South Africa", "Greece", "United States", "Germany", "Singapore", "Norway")
 
@@ -39,7 +43,7 @@ library(ggplot2)
 library(ggrepel)
 library(hrbrthemes) 
 
-
+labor_data <- read_csv('/Users/jakestarkey/Downloads/labor_supply.csv')
 civilian_population <- labor_data %>% filter(LABFORCE != 0)
 
 

@@ -9,8 +9,8 @@ website:
     left: 
      # - text: Danl_210_prject
         #href: Danl_210_project.qmd
-      - text: Project
-        href: project.qmd
+      - text: Capstone Project
+        href: danl-410-capstone-template-html.qmd
         
       - text: 310 Project
         menu: 

@@ -1,0 +1,155 @@
+---
+title: Data Analytics Capstone Title
+subtitle: "My Project"
+author:
+  - name: YOUR NAME 
+    affiliation: SUNY Geneseo
+    
+  - name: YOUR COWORKER 1
+    affiliation: SUNY Geneseo
+    
+date: last-modified
+
+execute: 
+  echo: false
+  eval: true
+  warning: false
+  message: false
+  fig-width: 10
+  fig-height: 6
+
+format:
+  docx:
+    toc: false
+    number-sections: true
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(skimr)
+library(ggthemes)
+library(hrbrthemes)
+library(rmarkdown)
+
+# Add other packages as needed.
+# Examples:
+# library(broom)
+# library(stargazer)
+# library(modelsummary)
+# library(glmnet)
+# library(ranger)
+# library(xgboost)
+
+# Note: DT tables are designed mainly for HTML output.
+# For Word output, use `kable()`, `gt`, `modelsummary`, or `stargazer`.
+# Simple printed R output is also acceptable for basic summaries, but polished tables are preferred.
+# It is also okay to add or revise tables manually in Microsoft Word after rendering the Word file from Quarto.
+
+# Feel free to revise this ggplot theme_set
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="lightgray"),
+                axis.title.x = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(10,0,0,0)),
+                axis.title.y = 
+                  element_text(angle = 90,
+                               size = rel(1.33),
+                               margin = margin(0,10,0,0))
+                )
+          )
+
+# Feel free to use below global options for color-blind-friendly scales
+# scale_colour_discrete <- function(...) scale_colour_viridis_d(...)
+# scale_fill_discrete <- function(...) scale_fill_viridis_d(...)
+```
+
+# Introduction
+
+Describe the real-world motivation for your project. Clearly state your research question and explain why it matters.
+
+Briefly preview your data, empirical approach, main findings, and contribution.
+
+# Background and Related Literature
+
+Summarize the relevant background, institutional setting, or prior research related to your topic.
+
+Explain what is already known and how your project contributes to the existing discussion.
+
+# Data
+
+## Data Source
+
+Describe the data source clearly. Include the source name, link, and access date in the References section.
+
+## Unit of Observation
+
+Explain what each row in your dataset represents.
+
+## Key Variables
+
+Describe your outcome variable, main explanatory variables, and important control variables.
+
+## Data Cleaning
+
+Explain major cleaning steps, sample restrictions, missing values, and variable construction.
+
+## Summary Statistics
+
+```{r summary-statistics}
+# Replace this example with your own data and summary statistics.
+# skim(your_data)
+```
+
+# Empirical Strategy / Methods
+
+Describe the method used to answer your research question. This may include regression, classification, clustering, forecasting, text analysis, or another data analytics method.
+
+For example, a **two-way fixed effects regression** can be used as an empirical strategy for **inference** when the goal is to estimate the relationship between a key explanatory variable and an outcome while accounting for unit-specific and time-specific factors:
+
+$$
+Y_{it} = \beta_0 + \beta_1 X_{it} + \delta' Z_{it} + \alpha_i + \lambda_t + \varepsilon_{it},
+$$
+
+where $Y_{it}$ is the outcome of interest for unit $i$ at time $t$, $X_{it}$ is the main explanatory variable, $Z_{it}$ represents control variables, $\alpha_i$ captures unit fixed effects, $\lambda_t$ captures time fixed effects, and $\varepsilon_{it}$ is the error term.
+
+If your project uses machine learning or prediction, explain your train/test split, cross-validation, model tuning, and performance metrics.
+
+# Results
+
+Present your main empirical findings using tables, figures, and written interpretation.
+
+```{r results-table}
+# Replace this example with your own table or model output.
+# modelsummary(list(model1, model2))
+```
+
+```{r results-figure}
+# Replace this example with your own figure.
+# ggplot(your_data, aes(x = x_variable, y = y_variable)) +
+#   geom_point() +
+#   labs(x = "X Variable", y = "Y Variable", title = "Main Result")
+```
+
+# Discussion and Implications
+
+Interpret your results. Explain what they imply for economics, business, policy, or society.
+
+Discuss limitations and clarify what your analysis can and cannot show.
+
+# Conclusion
+
+Summarize your research question, data, method, main findings, and key takeaway.
+
+Briefly suggest possible future extensions.
+
+# References
+
+List all sources cited in your project, including data sources, academic articles, reports, websites, packages, and tools.
+
+For online sources, include the full URL and date/time accessed.
+
+# Appendix
+
+Include additional tables, figures, robustness checks, code explanations, or variable definitions if needed.

@@ -101,7 +101,7 @@ Control variables:
 
 
 ```{r summary-statistics}
-model_data %>%###################################################
+model_data %>%
   select(
     overdose_deaths_midpoint_per_100k,
     arrests_total_per_100k_lag1,
